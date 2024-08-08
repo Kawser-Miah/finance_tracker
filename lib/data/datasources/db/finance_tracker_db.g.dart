@@ -90,6 +90,8 @@ class _$FinanceTrackerDB extends FinanceTrackerDB {
             'CREATE TABLE IF NOT EXISTS `incomes` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `category` TEXT, `type` TEXT, `income` REAL, `description` TEXT, `date` TEXT)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `expenses` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `category` TEXT, `type` TEXT, `expense` REAL, `description` TEXT, `date` TEXT)');
+        await database.execute(
+            'CREATE TABLE IF NOT EXISTS `BestExpense` (`category` TEXT NOT NULL, `total_expense` REAL NOT NULL, PRIMARY KEY (`category`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -186,6 +188,20 @@ class _$IncomeDao extends IncomeDao {
   }
 
   @override
+  Future<double?> getTotalIncomeByCurrentMonth() async {
+    return _queryAdapter.query(
+        'SELECT SUM(income) AS total_income FROM incomes WHERE strftime(\'%Y-%m\', date) = strftime(\'%Y-%m\', \'now\')',
+        mapper: (Map<String, Object?> row) => row.values.first as double);
+  }
+
+  @override
+  Future<double?> getTotalIncomeByPreviousMonth() async {
+    return _queryAdapter.query(
+        'SELECT SUM(income) AS total_income FROM incomes WHERE strftime(\'%Y-%m\', date) = strftime(\'%Y-%m\', \'now\',\'-1 month\')',
+        mapper: (Map<String, Object?> row) => row.values.first as double);
+  }
+
+  @override
   Future<void> insertIncome(IncomeEntityModel income) async {
     await _incomeEntityModelInsertionAdapter.insert(
         income, OnConflictStrategy.abort);
@@ -268,6 +284,29 @@ class _$ExpenseDao extends ExpenseDao {
             expense: row['expense'] as double?,
             description: row['description'] as String?,
             date: row['date'] as String?));
+  }
+
+  @override
+  Future<double?> getTotalExpenseByCurrentMonth() async {
+    return _queryAdapter.query(
+        'SELECT SUM(expense) AS total_expense FROM expenses WHERE strftime(\'%Y-%m\', date) = strftime(\'%Y-%m\', \'now\')',
+        mapper: (Map<String, Object?> row) => row.values.first as double);
+  }
+
+  @override
+  Future<double?> getTotalExpenseByPreviousMonth() async {
+    return _queryAdapter.query(
+        'SELECT SUM(expense) AS total_expense FROM expenses WHERE strftime(\'%Y-%m\', date) = strftime(\'%Y-%m\', \'now\',\'-1 month\')',
+        mapper: (Map<String, Object?> row) => row.values.first as double);
+  }
+
+  @override
+  Future<BestExpense?> getCategoryWithHighestExpenseByLastWeek() async {
+    return _queryAdapter.query(
+        'SELECT category, SUM(expense) AS total_expense FROM expenses WHERE date BETWEEN date(\'now\', \'-7 days\') AND date(\'now\') GROUP BY category ORDER BY total_expense DESC LIMIT 1;',
+        mapper: (Map<String, Object?> row) => BestExpense(
+            category: row['category'] as String,
+            total_expense: row['total_expense'] as double));
   }
 
   @override

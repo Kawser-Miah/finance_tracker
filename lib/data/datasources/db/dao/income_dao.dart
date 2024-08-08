@@ -15,6 +15,12 @@ abstract class IncomeDao {
   
   @Query("SELECT * FROM incomes WHERE strftime('%Y-%m', date) = strftime('%Y-%m', 'now') ORDER BY date DESC;")
   Future<List<IncomeEntityModel>> getIncomeDataByCurrentMonth();
+  
+  @Query("SELECT SUM(income) AS total_income FROM incomes WHERE strftime('%Y-%m', date) = strftime('%Y-%m', 'now')")
+  Future<double?> getTotalIncomeByCurrentMonth();
+
+  @Query("SELECT SUM(income) AS total_income FROM incomes WHERE strftime('%Y-%m', date) = strftime('%Y-%m', 'now','-1 month')")
+  Future<double?> getTotalIncomeByPreviousMonth();
 
 
   @insert
