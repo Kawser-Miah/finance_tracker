@@ -4,7 +4,7 @@ class Strings{
   monthly = "monthly",
   yearly = "yearly",
   load = "Loading...",
-  todayErrorMsg ="To day you do not added any income or expense..!",
+  todayErrorMsg ="Today you do not added any income or expense..!",
   weekErrorMsg ="You do not added any income or expense in this week..!",
   monthErrorMsg="You do not added any income or expense in this Month..!";
 }
