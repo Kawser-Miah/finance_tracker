@@ -16,7 +16,8 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
             totalBalance: TotalBalance(
                 totalExpense: 0,
                 totalIncome: 0,
-                bestExpense: null,
+                bestExpense:
+                    BestExpense(category: "category", total_expense: 0),
                 savingsLastMonth: 0))) {
     on<HomePageEvent>((event, emit) async {
       final response = await homePageUseCase.call();
