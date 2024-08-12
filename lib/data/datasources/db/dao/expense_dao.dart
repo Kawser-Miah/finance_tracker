@@ -28,6 +28,9 @@ abstract class ExpenseDao {
 
   @Query("SELECT category, SUM(expense) AS total_expense FROM expenses WHERE date BETWEEN date('now', '-7 days') AND date('now') GROUP BY category ORDER BY total_expense DESC LIMIT 1;")
   Future<BestExpense?>getCategoryWithHighestExpenseByLastWeek();
+  
+  @Query("DELETE FROM expenses WHERE id =:id")
+  Future<void> deleteExpense(int id);
 
 
   @insert

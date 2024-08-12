@@ -6,21 +6,32 @@ part of 'finance_tracker_db.dart';
 // FloorGenerator
 // **************************************************************************
 
+abstract class $FinanceTrackerDBBuilderContract {
+  /// Adds migrations to the builder.
+  $FinanceTrackerDBBuilderContract addMigrations(List<Migration> migrations);
+
+  /// Adds a database [Callback] to the builder.
+  $FinanceTrackerDBBuilderContract addCallback(Callback callback);
+
+  /// Creates the database and initializes it.
+  Future<FinanceTrackerDB> build();
+}
+
 // ignore: avoid_classes_with_only_static_members
 class $FloorFinanceTrackerDB {
   /// Creates a database builder for a persistent database.
   /// Once a database is built, you should keep a reference to it and re-use it.
-  static _$FinanceTrackerDBBuilder databaseBuilder(String name) =>
+  static $FinanceTrackerDBBuilderContract databaseBuilder(String name) =>
       _$FinanceTrackerDBBuilder(name);
 
   /// Creates a database builder for an in memory database.
   /// Information stored in an in memory database disappears when the process is killed.
   /// Once a database is built, you should keep a reference to it and re-use it.
-  static _$FinanceTrackerDBBuilder inMemoryDatabaseBuilder() =>
+  static $FinanceTrackerDBBuilderContract inMemoryDatabaseBuilder() =>
       _$FinanceTrackerDBBuilder(null);
 }
 
-class _$FinanceTrackerDBBuilder {
+class _$FinanceTrackerDBBuilder implements $FinanceTrackerDBBuilderContract {
   _$FinanceTrackerDBBuilder(this.name);
 
   final String? name;
@@ -29,19 +40,19 @@ class _$FinanceTrackerDBBuilder {
 
   Callback? _callback;
 
-  /// Adds migrations to the builder.
-  _$FinanceTrackerDBBuilder addMigrations(List<Migration> migrations) {
+  @override
+  $FinanceTrackerDBBuilderContract addMigrations(List<Migration> migrations) {
     _migrations.addAll(migrations);
     return this;
   }
 
-  /// Adds a database [Callback] to the builder.
-  _$FinanceTrackerDBBuilder addCallback(Callback callback) {
+  @override
+  $FinanceTrackerDBBuilderContract addCallback(Callback callback) {
     _callback = callback;
     return this;
   }
 
-  /// Creates the database and initializes it.
+  @override
   Future<FinanceTrackerDB> build() async {
     final path = name != null
         ? await sqfliteDatabaseFactory.getDatabasePath(name!)
@@ -91,7 +102,7 @@ class _$FinanceTrackerDB extends FinanceTrackerDB {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `expenses` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `category` TEXT, `type` TEXT, `expense` REAL, `description` TEXT, `date` TEXT)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `BestExpense` (`category` TEXT NOT NULL, `total_expense` REAL NOT NULL, PRIMARY KEY (`category`))');
+            'CREATE TABLE IF NOT EXISTS `expenses` (`category` TEXT NOT NULL, `total_expense` REAL NOT NULL, PRIMARY KEY (`category`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -307,6 +318,12 @@ class _$ExpenseDao extends ExpenseDao {
         mapper: (Map<String, Object?> row) => BestExpense(
             category: row['category'] as String,
             total_expense: row['total_expense'] as double));
+  }
+
+  @override
+  Future<void> deleteExpense(int id) async {
+    await _queryAdapter
+        .queryNoReturn('DELETE FROM expenses WHERE id =?1', arguments: [id]);
   }
 
   @override
