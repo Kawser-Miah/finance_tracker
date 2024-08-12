@@ -6,12 +6,19 @@ import '../../../generated/assets.dart';
 import '../../../utils/models/theme.dart';
 
 class IncomeExpenseBox extends StatelessWidget {
-  final double totalIncome, totalExpense;
+  final double? totalIncome, totalExpense;
   const IncomeExpenseBox(
       {super.key, required this.totalIncome, required this.totalExpense});
 
   @override
   Widget build(BuildContext context) {
+    double percentage = (totalExpense! / totalIncome!);
+    if (percentage > 1) {
+      percentage = 1;
+    }
+    if (percentage.isNaN) {
+      percentage = 0;
+    }
     return Container(
       margin: const EdgeInsets.only(top: 20, right: 10, left: 10),
       height: 135,
@@ -82,13 +89,15 @@ class IncomeExpenseBox extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 10.0),
             child: LinearPercentIndicator(
-              percent: 0.7,
+              animation: true,
+              animationDuration: 800,
+              percent: percentage,
               lineHeight: 20,
               barRadius: const Radius.circular(13.5),
               backgroundColor: Colors.black54,
               progressColor: Theme.of(context).colorScheme.onPrimary,
               center: Text(
-                "70%",
+                "${percentage * 100}%",
                 style: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
                     fontWeight: FontWeight.bold),
@@ -104,7 +113,7 @@ class IncomeExpenseBox extends StatelessWidget {
                   width: 3,
                 ),
                 Text(
-                  "70% Of Your Savings, Looks Good.",
+                  "${percentage * 100}% Of Your Expense, Looks Good.",
                   style: AppTheme.lightBodyText
                       .copyWith(fontWeight: FontWeight.w500),
                 )
