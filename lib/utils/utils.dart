@@ -17,6 +17,24 @@ class Utils {
     }
   }
 
+  static String getMessage(double value) {
+    if (value >= 0 && value <= 0.2) {
+      return 'Well done!';
+    } else if (value > 0.2 && value <= 0.3) {
+      return 'Nice job!';
+    } else if (value > 0.3 && value <= 0.4) {
+      return 'Looks good..!';
+    } else if (value > 0.4 && value <= 0.5) {
+      return 'On track!';
+    } else if (value > 0.5 && value <= 0.8) {
+      return 'Good going!';
+    } else if (value > 0.8 && value <= 1) {
+      return 'Keep an eye on it!';
+    } else {
+      return 'Keep an eye on it!';
+    }
+  }
+
   static String getErrorMessage(CategoryEnum categoryEnum) {
     switch (categoryEnum) {
       case CategoryEnum.daily:
@@ -30,14 +48,15 @@ class Utils {
     }
   }
 
-  static final List<Category> categoriesList=[
+  static final List<Category> categoriesList = [
     const Category(id: 1, img: Assets.categoryFood, name: 'Food'),
     const Category(id: 2, img: Assets.categoryTransport, name: 'Transport'),
     const Category(id: 3, img: Assets.categoryGroceries, name: 'Groceries'),
     const Category(id: 4, img: Assets.categoryMedicine, name: 'Medicine'),
     const Category(id: 5, img: Assets.categoryRent, name: 'Rent'),
     const Category(id: 6, img: Assets.categoryGifts, name: 'Gifts'),
-    const Category(id: 7, img: Assets.categoryEntertainment, name: 'Entertainment'),
+    const Category(
+        id: 7, img: Assets.categoryEntertainment, name: 'Entertainment'),
     const Category(id: 8, img: Assets.homeSalary, name: 'Savings'),
     const Category(id: 9, img: Assets.categoryMore, name: 'Add')
   ];
