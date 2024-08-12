@@ -23,7 +23,7 @@ class Utils {
     } else if (value > 0.2 && value <= 0.3) {
       return 'Nice job!';
     } else if (value > 0.3 && value <= 0.4) {
-      return 'Looks good..!';
+      return 'Looks good!';
     } else if (value > 0.4 && value <= 0.5) {
       return 'On track!';
     } else if (value > 0.5 && value <= 0.8) {

@@ -4,6 +4,7 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../../generated/assets.dart';
 import '../../../utils/models/theme.dart';
+import '../../../utils/utils.dart';
 
 class IncomeExpenseBox extends StatelessWidget {
   final double? totalIncome, totalExpense;
@@ -105,7 +106,7 @@ class IncomeExpenseBox extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 10, top: 10),
+            padding: const EdgeInsets.only(left: 5, top: 10),
             child: Row(
               children: [
                 const Icon(Icons.check_box_outlined),
@@ -113,7 +114,7 @@ class IncomeExpenseBox extends StatelessWidget {
                   width: 3,
                 ),
                 Text(
-                  "${percentage * 100}% Of Your Expense, Looks Good.",
+                  "${percentage * 100}% Of Your Expense, ${Utils.getMessage(percentage)}",
                   style: AppTheme.lightBodyText
                       .copyWith(fontWeight: FontWeight.w500),
                 )
