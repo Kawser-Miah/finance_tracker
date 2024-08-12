@@ -20,6 +20,6 @@ class Assets {
   static const String homeExpense = 'assets/home/Expense.svg';
   static const String homeIncome = 'assets/home/Income.svg';
   static const String homeNotification = 'assets/home/notification.svg';
-  static const String homeSalary = 'assets/home/Salary.svg';
+  static const String homeSalary = 'assets/home/salary.svg';
 
 }
