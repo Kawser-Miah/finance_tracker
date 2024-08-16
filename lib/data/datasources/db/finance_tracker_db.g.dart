@@ -98,9 +98,9 @@ class _$FinanceTrackerDB extends FinanceTrackerDB {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `incomes` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `category` TEXT, `type` TEXT, `income` REAL, `description` TEXT, `date` TEXT)');
+            'CREATE TABLE IF NOT EXISTS `incomes` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `category` TEXT, `type` TEXT, `incomeTitle` TEXT, `income` REAL, `description` TEXT, `date` TEXT)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `expenses` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `category` TEXT, `type` TEXT, `expense` REAL, `description` TEXT, `date` TEXT)');
+            'CREATE TABLE IF NOT EXISTS `expenses` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `category` TEXT, `type` TEXT, `expenseTitle` TEXT, `expense` REAL, `description` TEXT, `date` TEXT)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `expenses` (`category` TEXT NOT NULL, `total_expense` REAL NOT NULL, PRIMARY KEY (`category`))');
 
@@ -133,6 +133,7 @@ class _$IncomeDao extends IncomeDao {
                   'id': item.id,
                   'category': item.category,
                   'type': item.type,
+                  'incomeTitle': item.incomeTitle,
                   'income': item.income,
                   'description': item.description,
                   'date': item.date
@@ -152,6 +153,7 @@ class _$IncomeDao extends IncomeDao {
         'SELECT * FROM incomes WHERE DATE(date) = DATE(\'now\') ORDER BY date DESC',
         mapper: (Map<String, Object?> row) => IncomeEntityModel(
             id: row['id'] as int?,
+            incomeTitle: row['incomeTitle'] as String?,
             category: row['category'] as String?,
             type: row['type'] as String?,
             income: row['income'] as double?,
@@ -165,6 +167,7 @@ class _$IncomeDao extends IncomeDao {
         'SELECT * FROM incomes WHERE DATE(date) = DATE(\'now\',\'-1 day\') ORDER BY date DESC',
         mapper: (Map<String, Object?> row) => IncomeEntityModel(
             id: row['id'] as int?,
+            incomeTitle: row['incomeTitle'] as String?,
             category: row['category'] as String?,
             type: row['type'] as String?,
             income: row['income'] as double?,
@@ -178,6 +181,7 @@ class _$IncomeDao extends IncomeDao {
         'SELECT * FROM incomes WHERE DATE(date) BETWEEN DATE(\'now\', \'weekday 0\', \'-7 days\') AND DATE(\'now\', \'weekday 0\') ORDER BY date DESC;',
         mapper: (Map<String, Object?> row) => IncomeEntityModel(
             id: row['id'] as int?,
+            incomeTitle: row['incomeTitle'] as String?,
             category: row['category'] as String?,
             type: row['type'] as String?,
             income: row['income'] as double?,
@@ -191,6 +195,7 @@ class _$IncomeDao extends IncomeDao {
         'SELECT * FROM incomes WHERE strftime(\'%Y-%m\', date) = strftime(\'%Y-%m\', \'now\') ORDER BY date DESC;',
         mapper: (Map<String, Object?> row) => IncomeEntityModel(
             id: row['id'] as int?,
+            incomeTitle: row['incomeTitle'] as String?,
             category: row['category'] as String?,
             type: row['type'] as String?,
             income: row['income'] as double?,
@@ -231,6 +236,7 @@ class _$ExpenseDao extends ExpenseDao {
                   'id': item.id,
                   'category': item.category,
                   'type': item.type,
+                  'expenseTitle': item.expenseTitle,
                   'expense': item.expense,
                   'description': item.description,
                   'date': item.date
@@ -253,6 +259,7 @@ class _$ExpenseDao extends ExpenseDao {
             id: row['id'] as int?,
             category: row['category'] as String?,
             type: row['type'] as String?,
+            expenseTitle: row['expenseTitle'] as String?,
             expense: row['expense'] as double?,
             description: row['description'] as String?,
             date: row['date'] as String?));
@@ -266,6 +273,7 @@ class _$ExpenseDao extends ExpenseDao {
             id: row['id'] as int?,
             category: row['category'] as String?,
             type: row['type'] as String?,
+            expenseTitle: row['expenseTitle'] as String?,
             expense: row['expense'] as double?,
             description: row['description'] as String?,
             date: row['date'] as String?));
@@ -279,6 +287,7 @@ class _$ExpenseDao extends ExpenseDao {
             id: row['id'] as int?,
             category: row['category'] as String?,
             type: row['type'] as String?,
+            expenseTitle: row['expenseTitle'] as String?,
             expense: row['expense'] as double?,
             description: row['description'] as String?,
             date: row['date'] as String?));
@@ -292,6 +301,7 @@ class _$ExpenseDao extends ExpenseDao {
             id: row['id'] as int?,
             category: row['category'] as String?,
             type: row['type'] as String?,
+            expenseTitle: row['expenseTitle'] as String?,
             expense: row['expense'] as double?,
             description: row['description'] as String?,
             date: row['date'] as String?));

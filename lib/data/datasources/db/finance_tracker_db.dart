@@ -10,7 +10,7 @@ import 'package:injectable/injectable.dart';
 
 part 'finance_tracker_db.g.dart';
 
-@Database(version: 1, entities: [IncomeEntityModel, ExpenseEntityModel, BestExpense])
+@Database(version: 2, entities: [IncomeEntityModel, ExpenseEntityModel, BestExpense])
 abstract class FinanceTrackerDB extends FloorDatabase {
   @injectable
   IncomeDao get incomeDao;
