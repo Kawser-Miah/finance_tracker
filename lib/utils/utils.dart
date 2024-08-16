@@ -29,9 +29,9 @@ class Utils {
     } else if (value > 0.5 && value <= 0.8) {
       return 'Good going!';
     } else if (value > 0.8 && value <= 1) {
-      return 'Keep an eye on it!';
+      return 'Careful!';
     } else {
-      return 'Keep an eye on it!';
+      return 'Careful!';
     }
   }
 
@@ -57,7 +57,7 @@ class Utils {
     const Category(id: 6, img: Assets.categoryGifts, name: 'Gifts'),
     const Category(
         id: 7, img: Assets.categoryEntertainment, name: 'Entertainment'),
-    const Category(id: 8, img: Assets.homeSalary, name: 'Savings'),
-    const Category(id: 9, img: Assets.categoryMore, name: 'Add')
+    const Category(id: 8, img: Assets.homeSalary, name: 'Salary'),
+    const Category(id: 9, img: Assets.categoryMore, name: 'Add/Others')
   ];
 }
