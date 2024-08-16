@@ -1,3 +1,5 @@
+import 'package:finance_tracker/application/core/services/routing/app_router.dart';
+import 'package:finance_tracker/application/core/services/routing/route_utils.dart';
 import 'package:finance_tracker/domain/models/transaction_model.dart';
 import 'package:finance_tracker/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -57,8 +59,11 @@ class _AllFieldState extends State<AllField> {
         if (state is SuccessedState) {
           FocusScope.of(context).unfocus();
 
+
           SchedulerBinding.instance.addPostFrameCallback((_) {
-            Navigator.of(context).pop();
+            // Navigator.of(context).pop();
+            AppRouter.router.pushReplacement(PAGES.categoryDetails.screenPath,
+                extra: widget.category);
           });
         }
         return CustomScrollView(
