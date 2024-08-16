@@ -66,6 +66,9 @@ class _$CategoryEventCopyWithImpl<$Res, $Val extends CategoryEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of CategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -82,6 +85,9 @@ class __$$CategoryRequestEventImplCopyWithImpl<$Res>
   __$$CategoryRequestEventImplCopyWithImpl(_$CategoryRequestEventImpl _value,
       $Res Function(_$CategoryRequestEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of CategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

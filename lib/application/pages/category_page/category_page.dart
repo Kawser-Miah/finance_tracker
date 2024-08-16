@@ -103,9 +103,14 @@ class CategoryPage extends StatelessWidget {
                     itemCount: state.categories.length,
                     itemBuilder: (context, index) => InkWell(
                           onTap: () {
-                            AppRouter.router.push(
-                                PAGES.categoryDetails.screenPath,
-                                extra: state.categories[index].name);
+                            AppRouter.router
+                                .push(PAGES.categoryDetails.screenPath,
+                                    extra: state.categories[index].name)
+                                .then((_) {
+                              context
+                                  .read<HomePageBloc>()
+                                  .add(const HomePageEvent.started());
+                            });
                           },
                           child: Column(
                             // mainAxisAlignment: MainAxisAlignment.spaceBetween,

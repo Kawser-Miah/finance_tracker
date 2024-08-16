@@ -5,9 +5,7 @@ import 'package:finance_tracker/utils/models/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../../../domain/models/income_expense_category.dart';
-import '../../../generated/assets.dart';
+import '../../../utils/strings.dart';
 import '../../core/services/routing/route_utils.dart';
 import '../../core/widgets/income_expense_box.dart';
 import '../home_page/bloc/home_page_bloc.dart';
@@ -15,7 +13,10 @@ import '../home_page/bloc/home_page_bloc.dart';
 class CategoryDetailsPage extends StatelessWidget {
   final String category;
 
-  const CategoryDetailsPage({super.key, required this.category,});
+  const CategoryDetailsPage({
+    super.key,
+    required this.category,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +39,16 @@ class CategoryDetailsPage extends StatelessWidget {
 }
 
 class CustomCategoryDetailsPage extends StatelessWidget {
-
   final String category;
-  const CustomCategoryDetailsPage({super.key, required this.category,});
+  const CustomCategoryDetailsPage({
+    super.key,
+    required this.category,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -157,7 +161,14 @@ class CustomCategoryDetailsPage extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           AppRouter.router
-                              .push(PAGES.insert.screenPath, extra: ['Income',category,]);
+                              .push(PAGES.insert.screenPath, extra: [
+                            Strings.income,
+                            category,
+                          ]).then((_) {
+                            context
+                                .read<HomePageBloc>()
+                                .add(const HomePageEvent.started());
+                          });
                         },
                         child: Container(
                           margin: const EdgeInsets.only(top: 2, bottom: 2),
@@ -174,7 +185,14 @@ class CustomCategoryDetailsPage extends StatelessWidget {
                       InkWell(
                         onTap: () {
                           AppRouter.router
-                              .push(PAGES.insert.screenPath, extra: ['Expense',category,]);
+                              .push(PAGES.insert.screenPath, extra: [
+                            Strings.expense,
+                            category,
+                          ]).then((_) {
+                            context
+                                .read<HomePageBloc>()
+                                .add(const HomePageEvent.started());
+                          });
                         },
                         child: Container(
                           margin: const EdgeInsets.only(top: 2, bottom: 2),
