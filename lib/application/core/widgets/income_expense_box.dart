@@ -98,7 +98,7 @@ class IncomeExpenseBox extends StatelessWidget {
               backgroundColor: Colors.black54,
               progressColor: Theme.of(context).colorScheme.onPrimary,
               center: Text(
-                "${percentage * 100}%",
+                "${(percentage * 100).round()}%",
                 style: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
                     fontWeight: FontWeight.bold),
@@ -114,7 +114,7 @@ class IncomeExpenseBox extends StatelessWidget {
                   width: 3,
                 ),
                 Text(
-                  "${percentage * 100}% Of Your Expense, ${Utils.getMessage(percentage)}",
+                  "${(percentage * 100).round()}% Of Your Expense, ${Utils.getMessage(percentage)}",
                   style: AppTheme.lightBodyText
                       .copyWith(fontWeight: FontWeight.w500),
                 )
