@@ -12,22 +12,47 @@ class HomePageRepositoryIml extends HomePageRepository {
   HomePageRepositoryIml({required this.db});
   @override
   Future<Either<Failure, TotalBalance>> getIncomeExpenseData() async {
+    double totalExpenseC = 0;
+    double totalIncomeC = 0;
+    double totalExpensePre = 0;
+    double totalIncomePre = 0;
     try {
-      final totalExpenseC = await db.expenseDao.getTotalExpenseByCurrentMonth();
-      final totalIncomeC = await db.incomeDao.getTotalIncomeByCurrentMonth();
-      final totalExpensePre =
-          await db.expenseDao.getTotalExpenseByPreviousMonth();
-      final totalIncomePre = await db.incomeDao.getTotalIncomeByPreviousMonth();
-      var bestExpense =
-          await db.expenseDao.getCategoryWithHighestExpenseByLastWeek();
-      bestExpense ??= BestExpense(category: 'category', total_expense: 0);
-      return right(TotalBalance(
-          totalExpense: totalExpenseC,
-          totalIncome: totalIncomeC,
-          bestExpense: bestExpense,
-          savingsLastMonth: (totalIncomePre! - totalExpensePre!)));
+      totalExpenseC =
+          (await db.expenseDao.getTotalExpenseByCurrentMonth())?.toDouble() ??
+              0.0;
     } catch (e) {
-      return left(NullFailure());
+      print("EC: $e");
     }
+    try {
+      totalIncomeC =
+          (await db.incomeDao.getTotalIncomeByCurrentMonth())?.toDouble() ??
+              0.0;
+    } catch (e) {
+      print("IC: $e");
+    }
+    try {
+      totalExpensePre =
+          await db.expenseDao.getTotalExpenseByPreviousMonth() ?? 0;
+    } catch (e) {
+      print("EP: $e");
+    }
+    try {
+      totalIncomePre = await db.incomeDao.getTotalIncomeByPreviousMonth() ?? 0;
+    } catch (e) {
+      print("IP: $e");
+    }
+    var bestExpense =
+        await db.expenseDao.getCategoryWithHighestExpenseByLastWeek();
+    bestExpense ??= BestExpense(category: 'category', total_expense: 0);
+    return right(TotalBalance(
+        totalExpense: totalExpenseC,
+        totalIncome: totalIncomeC,
+        bestExpense: bestExpense,
+        savingsLastMonth: (totalIncomePre - totalExpensePre)));
+    // savingsLastMonth: 23));
+    // } catch (e) {
+    //   print(e);
+    //   return left(NullFailure());
+    // }
   }
 }
