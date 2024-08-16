@@ -22,6 +22,7 @@ class _BottomNavPageState extends State<BottomNavPage> {
   Widget build(BuildContext context) {
     return BlocBuilder<BottomBloc, BottomState>(builder: (context, state) {
       return Scaffold(
+        resizeToAvoidBottomInset: false,
         body: _buildPage(state.currentIndex),
         bottomNavigationBar: NavigationBar(
           selectedIndex: state.currentIndex,

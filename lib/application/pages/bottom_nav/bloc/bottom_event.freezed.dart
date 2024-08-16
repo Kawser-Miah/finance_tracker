@@ -50,7 +50,9 @@ mixin _$BottomEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BottomEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BottomEventCopyWith<BottomEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -74,6 +76,8 @@ class _$BottomEventCopyWithImpl<$Res, $Val extends BottomEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BottomEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -107,6 +111,8 @@ class __$$ChangeBottomEventImplCopyWithImpl<$Res>
       $Res Function(_$ChangeBottomEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BottomEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -146,7 +152,9 @@ class _$ChangeBottomEventImpl implements ChangeBottomEvent {
   @override
   int get hashCode => Object.hash(runtimeType, tabIndex);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BottomEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChangeBottomEventImplCopyWith<_$ChangeBottomEventImpl> get copyWith =>
@@ -215,8 +223,11 @@ abstract class ChangeBottomEvent implements BottomEvent {
 
   @override
   int get tabIndex;
+
+  /// Create a copy of BottomEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChangeBottomEventImplCopyWith<_$ChangeBottomEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
