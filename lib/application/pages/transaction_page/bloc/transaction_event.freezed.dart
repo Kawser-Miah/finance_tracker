@@ -53,7 +53,9 @@ mixin _$TransactionEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TransactionEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TransactionEventCopyWith<TransactionEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -77,6 +79,8 @@ class _$TransactionEventCopyWithImpl<$Res, $Val extends TransactionEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TransactionEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -113,6 +117,8 @@ class __$$HomePageTransactionDataRequestEventImplCopyWithImpl<$Res>
       $Res Function(_$HomePageTransactionDataRequestEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TransactionEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -152,7 +158,9 @@ class _$HomePageTransactionDataRequestEventImpl
   @override
   int get hashCode => Object.hash(runtimeType, name);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TransactionEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HomePageTransactionDataRequestEventImplCopyWith<
@@ -226,8 +234,11 @@ abstract class HomePageTransactionDataRequestEvent implements TransactionEvent {
 
   @override
   String get name;
+
+  /// Create a copy of TransactionEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HomePageTransactionDataRequestEventImplCopyWith<
           _$HomePageTransactionDataRequestEventImpl>
       get copyWith => throw _privateConstructorUsedError;

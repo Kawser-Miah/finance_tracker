@@ -85,6 +85,9 @@ class _$TransactionStateCopyWithImpl<$Res, $Val extends TransactionState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -101,6 +104,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -222,6 +228,8 @@ class __$$HomePageTransactionDataLoadedStateImplCopyWithImpl<$Res>
       $Res Function(_$HomePageTransactionDataLoadedStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -270,7 +278,9 @@ class _$HomePageTransactionDataLoadedStateImpl
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_transactions));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$HomePageTransactionDataLoadedStateImplCopyWith<
@@ -360,7 +370,10 @@ abstract class HomePageTransactionDataLoadedState implements TransactionState {
       _$HomePageTransactionDataLoadedStateImpl;
 
   List<TransactionModel> get transactions;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$HomePageTransactionDataLoadedStateImplCopyWith<
           _$HomePageTransactionDataLoadedStateImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -380,6 +393,9 @@ class __$$LoadingStateImplCopyWithImpl<$Res>
   __$$LoadingStateImplCopyWithImpl(
       _$LoadingStateImpl _value, $Res Function(_$LoadingStateImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -499,6 +515,8 @@ class __$$TransactionErrorStateImplCopyWithImpl<$Res>
       $Res Function(_$TransactionErrorStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -538,7 +556,9 @@ class _$TransactionErrorStateImpl implements TransactionErrorState {
   @override
   int get hashCode => Object.hash(runtimeType, errorMessage);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TransactionErrorStateImplCopyWith<_$TransactionErrorStateImpl>
@@ -626,7 +646,10 @@ abstract class TransactionErrorState implements TransactionState {
       _$TransactionErrorStateImpl;
 
   String get errorMessage;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TransactionErrorStateImplCopyWith<_$TransactionErrorStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
