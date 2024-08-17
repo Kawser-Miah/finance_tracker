@@ -218,6 +218,12 @@ class _$IncomeDao extends IncomeDao {
   }
 
   @override
+  Future<void> deleteIncomes(int id) async {
+    await _queryAdapter
+        .queryNoReturn('DELETE FROM incomes WHERE id =?1', arguments: [id]);
+  }
+
+  @override
   Future<void> insertIncome(IncomeEntityModel income) async {
     await _incomeEntityModelInsertionAdapter.insert(
         income, OnConflictStrategy.abort);
