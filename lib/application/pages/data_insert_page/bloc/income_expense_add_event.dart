@@ -13,7 +13,12 @@ class IncomeExpenseAddEvent with _$IncomeExpenseAddEvent {
       required String amount,
       required String description,
       required String date}) = TextFieldTextChangeEvent;
+  const factory IncomeExpenseAddEvent.delete(
+      {required int id, required String type}) = DeleteEvent;
+
   const factory IncomeExpenseAddEvent.submitted(
       {required TransactionModel transaction}) = SubmitToDataBaseEvent;
 
+  const factory IncomeExpenseAddEvent.update(
+      {required TransactionModel transaction}) = UpdateToDataBaseEvent;
 }

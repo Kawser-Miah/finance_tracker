@@ -21,7 +21,9 @@ mixin _$IncomeExpenseAddEvent {
     required TResult Function(String category, String type, String title,
             String amount, String description, String date)
         textChanged,
+    required TResult Function(int id, String type) delete,
     required TResult Function(TransactionModel transaction) submitted,
+    required TResult Function(TransactionModel transaction) update,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +31,9 @@ mixin _$IncomeExpenseAddEvent {
     TResult? Function(String category, String type, String title, String amount,
             String description, String date)?
         textChanged,
+    TResult? Function(int id, String type)? delete,
     TResult? Function(TransactionModel transaction)? submitted,
+    TResult? Function(TransactionModel transaction)? update,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,26 +41,34 @@ mixin _$IncomeExpenseAddEvent {
     TResult Function(String category, String type, String title, String amount,
             String description, String date)?
         textChanged,
+    TResult Function(int id, String type)? delete,
     TResult Function(TransactionModel transaction)? submitted,
+    TResult Function(TransactionModel transaction)? update,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(TextFieldTextChangeEvent value) textChanged,
+    required TResult Function(DeleteEvent value) delete,
     required TResult Function(SubmitToDataBaseEvent value) submitted,
+    required TResult Function(UpdateToDataBaseEvent value) update,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(TextFieldTextChangeEvent value)? textChanged,
+    TResult? Function(DeleteEvent value)? delete,
     TResult? Function(SubmitToDataBaseEvent value)? submitted,
+    TResult? Function(UpdateToDataBaseEvent value)? update,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(TextFieldTextChangeEvent value)? textChanged,
+    TResult Function(DeleteEvent value)? delete,
     TResult Function(SubmitToDataBaseEvent value)? submitted,
+    TResult Function(UpdateToDataBaseEvent value)? update,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -214,7 +226,9 @@ class _$TextFieldTextChangeEventImpl implements TextFieldTextChangeEvent {
     required TResult Function(String category, String type, String title,
             String amount, String description, String date)
         textChanged,
+    required TResult Function(int id, String type) delete,
     required TResult Function(TransactionModel transaction) submitted,
+    required TResult Function(TransactionModel transaction) update,
   }) {
     return textChanged(category, type, title, amount, description, date);
   }
@@ -225,7 +239,9 @@ class _$TextFieldTextChangeEventImpl implements TextFieldTextChangeEvent {
     TResult? Function(String category, String type, String title, String amount,
             String description, String date)?
         textChanged,
+    TResult? Function(int id, String type)? delete,
     TResult? Function(TransactionModel transaction)? submitted,
+    TResult? Function(TransactionModel transaction)? update,
   }) {
     return textChanged?.call(category, type, title, amount, description, date);
   }
@@ -236,7 +252,9 @@ class _$TextFieldTextChangeEventImpl implements TextFieldTextChangeEvent {
     TResult Function(String category, String type, String title, String amount,
             String description, String date)?
         textChanged,
+    TResult Function(int id, String type)? delete,
     TResult Function(TransactionModel transaction)? submitted,
+    TResult Function(TransactionModel transaction)? update,
     required TResult orElse(),
   }) {
     if (textChanged != null) {
@@ -249,7 +267,9 @@ class _$TextFieldTextChangeEventImpl implements TextFieldTextChangeEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(TextFieldTextChangeEvent value) textChanged,
+    required TResult Function(DeleteEvent value) delete,
     required TResult Function(SubmitToDataBaseEvent value) submitted,
+    required TResult Function(UpdateToDataBaseEvent value) update,
   }) {
     return textChanged(this);
   }
@@ -258,7 +278,9 @@ class _$TextFieldTextChangeEventImpl implements TextFieldTextChangeEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(TextFieldTextChangeEvent value)? textChanged,
+    TResult? Function(DeleteEvent value)? delete,
     TResult? Function(SubmitToDataBaseEvent value)? submitted,
+    TResult? Function(UpdateToDataBaseEvent value)? update,
   }) {
     return textChanged?.call(this);
   }
@@ -267,7 +289,9 @@ class _$TextFieldTextChangeEventImpl implements TextFieldTextChangeEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(TextFieldTextChangeEvent value)? textChanged,
+    TResult Function(DeleteEvent value)? delete,
     TResult Function(SubmitToDataBaseEvent value)? submitted,
+    TResult Function(UpdateToDataBaseEvent value)? update,
     required TResult orElse(),
   }) {
     if (textChanged != null) {
@@ -298,6 +322,174 @@ abstract class TextFieldTextChangeEvent implements IncomeExpenseAddEvent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TextFieldTextChangeEventImplCopyWith<_$TextFieldTextChangeEventImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteEventImplCopyWith<$Res> {
+  factory _$$DeleteEventImplCopyWith(
+          _$DeleteEventImpl value, $Res Function(_$DeleteEventImpl) then) =
+      __$$DeleteEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id, String type});
+}
+
+/// @nodoc
+class __$$DeleteEventImplCopyWithImpl<$Res>
+    extends _$IncomeExpenseAddEventCopyWithImpl<$Res, _$DeleteEventImpl>
+    implements _$$DeleteEventImplCopyWith<$Res> {
+  __$$DeleteEventImplCopyWithImpl(
+      _$DeleteEventImpl _value, $Res Function(_$DeleteEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of IncomeExpenseAddEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? type = null,
+  }) {
+    return _then(_$DeleteEventImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteEventImpl implements DeleteEvent {
+  const _$DeleteEventImpl({required this.id, required this.type});
+
+  @override
+  final int id;
+  @override
+  final String type;
+
+  @override
+  String toString() {
+    return 'IncomeExpenseAddEvent.delete(id: $id, type: $type)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteEventImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, type);
+
+  /// Create a copy of IncomeExpenseAddEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteEventImplCopyWith<_$DeleteEventImpl> get copyWith =>
+      __$$DeleteEventImplCopyWithImpl<_$DeleteEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String category, String type, String title,
+            String amount, String description, String date)
+        textChanged,
+    required TResult Function(int id, String type) delete,
+    required TResult Function(TransactionModel transaction) submitted,
+    required TResult Function(TransactionModel transaction) update,
+  }) {
+    return delete(id, type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String category, String type, String title, String amount,
+            String description, String date)?
+        textChanged,
+    TResult? Function(int id, String type)? delete,
+    TResult? Function(TransactionModel transaction)? submitted,
+    TResult? Function(TransactionModel transaction)? update,
+  }) {
+    return delete?.call(id, type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String category, String type, String title, String amount,
+            String description, String date)?
+        textChanged,
+    TResult Function(int id, String type)? delete,
+    TResult Function(TransactionModel transaction)? submitted,
+    TResult Function(TransactionModel transaction)? update,
+    required TResult orElse(),
+  }) {
+    if (delete != null) {
+      return delete(id, type);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TextFieldTextChangeEvent value) textChanged,
+    required TResult Function(DeleteEvent value) delete,
+    required TResult Function(SubmitToDataBaseEvent value) submitted,
+    required TResult Function(UpdateToDataBaseEvent value) update,
+  }) {
+    return delete(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TextFieldTextChangeEvent value)? textChanged,
+    TResult? Function(DeleteEvent value)? delete,
+    TResult? Function(SubmitToDataBaseEvent value)? submitted,
+    TResult? Function(UpdateToDataBaseEvent value)? update,
+  }) {
+    return delete?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TextFieldTextChangeEvent value)? textChanged,
+    TResult Function(DeleteEvent value)? delete,
+    TResult Function(SubmitToDataBaseEvent value)? submitted,
+    TResult Function(UpdateToDataBaseEvent value)? update,
+    required TResult orElse(),
+  }) {
+    if (delete != null) {
+      return delete(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DeleteEvent implements IncomeExpenseAddEvent {
+  const factory DeleteEvent(
+      {required final int id, required final String type}) = _$DeleteEventImpl;
+
+  int get id;
+  String get type;
+
+  /// Create a copy of IncomeExpenseAddEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DeleteEventImplCopyWith<_$DeleteEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -375,7 +567,9 @@ class _$SubmitToDataBaseEventImpl implements SubmitToDataBaseEvent {
     required TResult Function(String category, String type, String title,
             String amount, String description, String date)
         textChanged,
+    required TResult Function(int id, String type) delete,
     required TResult Function(TransactionModel transaction) submitted,
+    required TResult Function(TransactionModel transaction) update,
   }) {
     return submitted(transaction);
   }
@@ -386,7 +580,9 @@ class _$SubmitToDataBaseEventImpl implements SubmitToDataBaseEvent {
     TResult? Function(String category, String type, String title, String amount,
             String description, String date)?
         textChanged,
+    TResult? Function(int id, String type)? delete,
     TResult? Function(TransactionModel transaction)? submitted,
+    TResult? Function(TransactionModel transaction)? update,
   }) {
     return submitted?.call(transaction);
   }
@@ -397,7 +593,9 @@ class _$SubmitToDataBaseEventImpl implements SubmitToDataBaseEvent {
     TResult Function(String category, String type, String title, String amount,
             String description, String date)?
         textChanged,
+    TResult Function(int id, String type)? delete,
     TResult Function(TransactionModel transaction)? submitted,
+    TResult Function(TransactionModel transaction)? update,
     required TResult orElse(),
   }) {
     if (submitted != null) {
@@ -410,7 +608,9 @@ class _$SubmitToDataBaseEventImpl implements SubmitToDataBaseEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(TextFieldTextChangeEvent value) textChanged,
+    required TResult Function(DeleteEvent value) delete,
     required TResult Function(SubmitToDataBaseEvent value) submitted,
+    required TResult Function(UpdateToDataBaseEvent value) update,
   }) {
     return submitted(this);
   }
@@ -419,7 +619,9 @@ class _$SubmitToDataBaseEventImpl implements SubmitToDataBaseEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(TextFieldTextChangeEvent value)? textChanged,
+    TResult? Function(DeleteEvent value)? delete,
     TResult? Function(SubmitToDataBaseEvent value)? submitted,
+    TResult? Function(UpdateToDataBaseEvent value)? update,
   }) {
     return submitted?.call(this);
   }
@@ -428,7 +630,9 @@ class _$SubmitToDataBaseEventImpl implements SubmitToDataBaseEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(TextFieldTextChangeEvent value)? textChanged,
+    TResult Function(DeleteEvent value)? delete,
     TResult Function(SubmitToDataBaseEvent value)? submitted,
+    TResult Function(UpdateToDataBaseEvent value)? update,
     required TResult orElse(),
   }) {
     if (submitted != null) {
@@ -449,5 +653,169 @@ abstract class SubmitToDataBaseEvent implements IncomeExpenseAddEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SubmitToDataBaseEventImplCopyWith<_$SubmitToDataBaseEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateToDataBaseEventImplCopyWith<$Res> {
+  factory _$$UpdateToDataBaseEventImplCopyWith(
+          _$UpdateToDataBaseEventImpl value,
+          $Res Function(_$UpdateToDataBaseEventImpl) then) =
+      __$$UpdateToDataBaseEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({TransactionModel transaction});
+}
+
+/// @nodoc
+class __$$UpdateToDataBaseEventImplCopyWithImpl<$Res>
+    extends _$IncomeExpenseAddEventCopyWithImpl<$Res,
+        _$UpdateToDataBaseEventImpl>
+    implements _$$UpdateToDataBaseEventImplCopyWith<$Res> {
+  __$$UpdateToDataBaseEventImplCopyWithImpl(_$UpdateToDataBaseEventImpl _value,
+      $Res Function(_$UpdateToDataBaseEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of IncomeExpenseAddEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? transaction = null,
+  }) {
+    return _then(_$UpdateToDataBaseEventImpl(
+      transaction: null == transaction
+          ? _value.transaction
+          : transaction // ignore: cast_nullable_to_non_nullable
+              as TransactionModel,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateToDataBaseEventImpl implements UpdateToDataBaseEvent {
+  const _$UpdateToDataBaseEventImpl({required this.transaction});
+
+  @override
+  final TransactionModel transaction;
+
+  @override
+  String toString() {
+    return 'IncomeExpenseAddEvent.update(transaction: $transaction)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateToDataBaseEventImpl &&
+            (identical(other.transaction, transaction) ||
+                other.transaction == transaction));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, transaction);
+
+  /// Create a copy of IncomeExpenseAddEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateToDataBaseEventImplCopyWith<_$UpdateToDataBaseEventImpl>
+      get copyWith => __$$UpdateToDataBaseEventImplCopyWithImpl<
+          _$UpdateToDataBaseEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String category, String type, String title,
+            String amount, String description, String date)
+        textChanged,
+    required TResult Function(int id, String type) delete,
+    required TResult Function(TransactionModel transaction) submitted,
+    required TResult Function(TransactionModel transaction) update,
+  }) {
+    return update(transaction);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String category, String type, String title, String amount,
+            String description, String date)?
+        textChanged,
+    TResult? Function(int id, String type)? delete,
+    TResult? Function(TransactionModel transaction)? submitted,
+    TResult? Function(TransactionModel transaction)? update,
+  }) {
+    return update?.call(transaction);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String category, String type, String title, String amount,
+            String description, String date)?
+        textChanged,
+    TResult Function(int id, String type)? delete,
+    TResult Function(TransactionModel transaction)? submitted,
+    TResult Function(TransactionModel transaction)? update,
+    required TResult orElse(),
+  }) {
+    if (update != null) {
+      return update(transaction);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TextFieldTextChangeEvent value) textChanged,
+    required TResult Function(DeleteEvent value) delete,
+    required TResult Function(SubmitToDataBaseEvent value) submitted,
+    required TResult Function(UpdateToDataBaseEvent value) update,
+  }) {
+    return update(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TextFieldTextChangeEvent value)? textChanged,
+    TResult? Function(DeleteEvent value)? delete,
+    TResult? Function(SubmitToDataBaseEvent value)? submitted,
+    TResult? Function(UpdateToDataBaseEvent value)? update,
+  }) {
+    return update?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TextFieldTextChangeEvent value)? textChanged,
+    TResult Function(DeleteEvent value)? delete,
+    TResult Function(SubmitToDataBaseEvent value)? submitted,
+    TResult Function(UpdateToDataBaseEvent value)? update,
+    required TResult orElse(),
+  }) {
+    if (update != null) {
+      return update(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateToDataBaseEvent implements IncomeExpenseAddEvent {
+  const factory UpdateToDataBaseEvent(
+          {required final TransactionModel transaction}) =
+      _$UpdateToDataBaseEventImpl;
+
+  TransactionModel get transaction;
+
+  /// Create a copy of IncomeExpenseAddEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdateToDataBaseEventImplCopyWith<_$UpdateToDataBaseEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
