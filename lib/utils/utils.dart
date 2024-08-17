@@ -48,16 +48,39 @@ class Utils {
     }
   }
 
+  static String getWeeklyCategoryImage(String category) {
+    switch (category) {
+      case "Food":
+        return Assets.categoryFood;
+      case "Transport":
+        return Assets.categoryTransport;
+      case "Groceries":
+        return Assets.categoryGroceries;
+      case "Medicine":
+        return Assets.categoryMedicine;
+      case "Rent":
+        return Assets.categoryRent;
+      case "Gifts":
+        return Assets.categoryGifts;
+      case "Entertainment":
+        return Assets.categoryEntertainment;
+      case "Salary":
+        return Assets.homeSalary;
+      default:
+        return Assets.bottomNavIconCategory;
+    }
+  }
+
   static final List<Category> categoriesList = [
-    const Category(id: 1, img: Assets.categoryFood, name: 'Food'),
-    const Category(id: 2, img: Assets.categoryTransport, name: 'Transport'),
-    const Category(id: 3, img: Assets.categoryGroceries, name: 'Groceries'),
-    const Category(id: 4, img: Assets.categoryMedicine, name: 'Medicine'),
-    const Category(id: 5, img: Assets.categoryRent, name: 'Rent'),
-    const Category(id: 6, img: Assets.categoryGifts, name: 'Gifts'),
-    const Category(
-        id: 7, img: Assets.categoryEntertainment, name: 'Entertainment'),
-    const Category(id: 8, img: Assets.homeSalary, name: 'Salary'),
-    const Category(id: 9, img: Assets.categoryMore, name: 'Add/Others')
+    Category(id: 1, img: Assets.categoryFood, name: Strings.food),
+    Category(id: 2, img: Assets.categoryTransport, name: Strings.transport),
+    Category(id: 3, img: Assets.categoryGroceries, name: Strings.groceries),
+    Category(id: 4, img: Assets.categoryMedicine, name: Strings.medicine),
+    Category(id: 5, img: Assets.categoryRent, name: Strings.rent),
+    Category(id: 6, img: Assets.categoryGifts, name: Strings.gift),
+    Category(
+        id: 7, img: Assets.categoryEntertainment, name: Strings.entertainment),
+    Category(id: 8, img: Assets.homeSalary, name: Strings.salary),
+    Category(id: 9, img: Assets.categoryMore, name: Strings.addOrOthers)
   ];
 }
