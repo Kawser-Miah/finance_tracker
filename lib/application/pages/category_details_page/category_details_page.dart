@@ -1,10 +1,12 @@
 import 'package:finance_tracker/application/core/services/routing/app_router.dart';
 import 'package:finance_tracker/application/pages/category_page/bloc/category_bloc.dart';
 import 'package:finance_tracker/di/di.dart';
+import 'package:finance_tracker/domain/models/transaction_model.dart';
 import 'package:finance_tracker/utils/models/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 import '../../../utils/strings.dart';
 import '../../core/services/routing/route_utils.dart';
 import '../../core/widgets/income_expense_box.dart';
@@ -162,13 +164,23 @@ class CustomCategoryDetailsPage extends StatelessWidget {
                         onTap: () {
                           AppRouter.router
                               .push(PAGES.insert.screenPath, extra: [
-                            Strings.income,
-                            category,
-                          ]).then((_) {
-                            context
-                                .read<HomePageBloc>()
-                                .add(const HomePageEvent.started());
-                          });
+                            Strings.add,
+                            TransactionModel(
+                                title: "",
+                                id: 0,
+                                category: category,
+                                type: Strings.income,
+                                amount: 0,
+                                description: "",
+                                date: DateFormat('yyyy-MM-dd')
+                                    .format(DateTime.now())),
+                            PAGES.categoryDetails.screenPath
+                          ]);
+                          //     .then((_) {
+                          //   context
+                          //       .read<HomePageBloc>()
+                          //       .add(const HomePageEvent.started());
+                          // });
                         },
                         child: Container(
                           margin: const EdgeInsets.only(top: 2, bottom: 2),
@@ -186,13 +198,23 @@ class CustomCategoryDetailsPage extends StatelessWidget {
                         onTap: () {
                           AppRouter.router
                               .push(PAGES.insert.screenPath, extra: [
-                            Strings.expense,
-                            category,
-                          ]).then((_) {
-                            context
-                                .read<HomePageBloc>()
-                                .add(const HomePageEvent.started());
-                          });
+                            Strings.add,
+                            TransactionModel(
+                                title: "",
+                                id: 0,
+                                category: category,
+                                type: Strings.expense,
+                                amount: 0,
+                                description: '',
+                                date: DateFormat('yyyy-MM-dd')
+                                    .format(DateTime.now())),
+                            PAGES.categoryDetails.screenPath
+                          ]);
+                          //     .then((_) {
+                          //   context
+                          //       .read<HomePageBloc>()
+                          //       .add(const HomePageEvent.started());
+                          // });
                         },
                         child: Container(
                           margin: const EdgeInsets.only(top: 2, bottom: 2),

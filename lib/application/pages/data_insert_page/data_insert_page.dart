@@ -1,6 +1,7 @@
 import 'package:finance_tracker/application/pages/data_insert_page/all_field.dart';
 import 'package:finance_tracker/application/pages/data_insert_page/bloc/income_expense_add_bloc.dart';
 import 'package:finance_tracker/di/di.dart';
+import 'package:finance_tracker/domain/models/transaction_model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,13 +9,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../utils/models/theme.dart';
 
 class DataInsertPage extends StatelessWidget {
-  final String type;
-
-  final String category;
+  final String todo;
+  final TransactionModel transaction;
+  final String path;
   const DataInsertPage({
     super.key,
-    required this.type,
-    required this.category,
+    required this.todo,
+    required this.transaction, required this.path,
   });
 
   @override
@@ -50,7 +51,7 @@ class DataInsertPage extends StatelessWidget {
                       width: 8,
                     ),
                     Text(
-                      "Add ${type}s",
+                      "$todo ${transaction.type}s",
                       style: AppTheme.lightHeadingText,
                     ),
                   ],
@@ -66,7 +67,7 @@ class DataInsertPage extends StatelessWidget {
                             topLeft: Radius.circular(50),
                             topRight: Radius.circular(50)),
                         color: Theme.of(context).colorScheme.onPrimary),
-                    child: AllField(type: type, category: category)),
+                    child: AllField(transaction: transaction, todo: todo, path: path,)),
               ),
             ],
           ),
