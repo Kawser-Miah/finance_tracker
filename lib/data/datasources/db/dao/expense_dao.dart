@@ -32,6 +32,8 @@ abstract class ExpenseDao {
   @Query("DELETE FROM expenses WHERE id =:id")
   Future<void> deleteExpense(int id);
 
+  @update
+  Future<void> updateExpense(ExpenseEntityModel expense);
 
   @insert
   Future<void> insertExpense(ExpenseEntityModel expense);

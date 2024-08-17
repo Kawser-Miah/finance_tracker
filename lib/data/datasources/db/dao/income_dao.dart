@@ -25,6 +25,8 @@ abstract class IncomeDao {
   @Query("DELETE FROM incomes WHERE id =:id")
   Future<void> deleteIncomes(int id);
 
+  @update
+  Future<void> updateIncome(IncomeEntityModel income);
 
   @insert
   Future<void> insertIncome(IncomeEntityModel income);

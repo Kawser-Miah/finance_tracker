@@ -137,6 +137,19 @@ class _$IncomeDao extends IncomeDao {
                   'income': item.income,
                   'description': item.description,
                   'date': item.date
+                }),
+        _incomeEntityModelUpdateAdapter = UpdateAdapter(
+            database,
+            'incomes',
+            ['id'],
+            (IncomeEntityModel item) => <String, Object?>{
+                  'id': item.id,
+                  'category': item.category,
+                  'type': item.type,
+                  'incomeTitle': item.incomeTitle,
+                  'income': item.income,
+                  'description': item.description,
+                  'date': item.date
                 });
 
   final sqflite.DatabaseExecutor database;
@@ -146,6 +159,8 @@ class _$IncomeDao extends IncomeDao {
   final QueryAdapter _queryAdapter;
 
   final InsertionAdapter<IncomeEntityModel> _incomeEntityModelInsertionAdapter;
+
+  final UpdateAdapter<IncomeEntityModel> _incomeEntityModelUpdateAdapter;
 
   @override
   Future<List<IncomeEntityModel>> getIncomeDataByCurrentDate() async {
@@ -228,6 +243,12 @@ class _$IncomeDao extends IncomeDao {
     await _incomeEntityModelInsertionAdapter.insert(
         income, OnConflictStrategy.abort);
   }
+
+  @override
+  Future<void> updateIncome(IncomeEntityModel income) async {
+    await _incomeEntityModelUpdateAdapter.update(
+        income, OnConflictStrategy.abort);
+  }
 }
 
 class _$ExpenseDao extends ExpenseDao {
@@ -246,6 +267,19 @@ class _$ExpenseDao extends ExpenseDao {
                   'expense': item.expense,
                   'description': item.description,
                   'date': item.date
+                }),
+        _expenseEntityModelUpdateAdapter = UpdateAdapter(
+            database,
+            'expenses',
+            ['id'],
+            (ExpenseEntityModel item) => <String, Object?>{
+                  'id': item.id,
+                  'category': item.category,
+                  'type': item.type,
+                  'expenseTitle': item.expenseTitle,
+                  'expense': item.expense,
+                  'description': item.description,
+                  'date': item.date
                 });
 
   final sqflite.DatabaseExecutor database;
@@ -256,6 +290,8 @@ class _$ExpenseDao extends ExpenseDao {
 
   final InsertionAdapter<ExpenseEntityModel>
       _expenseEntityModelInsertionAdapter;
+
+  final UpdateAdapter<ExpenseEntityModel> _expenseEntityModelUpdateAdapter;
 
   @override
   Future<List<ExpenseEntityModel>> getExpenseDataByCurrentDate() async {
@@ -345,6 +381,12 @@ class _$ExpenseDao extends ExpenseDao {
   @override
   Future<void> insertExpense(ExpenseEntityModel expense) async {
     await _expenseEntityModelInsertionAdapter.insert(
+        expense, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<void> updateExpense(ExpenseEntityModel expense) async {
+    await _expenseEntityModelUpdateAdapter.update(
         expense, OnConflictStrategy.abort);
   }
 }
