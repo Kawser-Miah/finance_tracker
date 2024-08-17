@@ -1,5 +1,5 @@
 import 'package:finance_tracker/application/core/services/routing/route_utils.dart';
-import 'package:finance_tracker/domain/models/income_expense_category.dart';
+import 'package:finance_tracker/domain/models/transaction_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../pages/bottom_nav/bottom_nav_page.dart';
@@ -34,10 +34,10 @@ class AppRouter {
             builder: (context, state) {
               final List<dynamic> extras = state.extra as List<dynamic>;
 
-              String type = extras[0] as String;
-
-              String category = extras[1] as String;
-              return DataInsertPage(type: type, category: category);
+              String todo = extras[0] as String;
+              TransactionModel transaction = extras[1] as TransactionModel;
+              String path = extras[2] as String;
+              return DataInsertPage(todo: todo, transaction: transaction, path: path,);
             })
       ],
       errorBuilder: (context, state) => const NotFoundScreen());
