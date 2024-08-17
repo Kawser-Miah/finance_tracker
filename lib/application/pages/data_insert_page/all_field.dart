@@ -1,5 +1,4 @@
 import 'package:finance_tracker/application/core/services/routing/app_router.dart';
-import 'package:finance_tracker/application/core/services/routing/route_utils.dart';
 import 'package:finance_tracker/domain/models/transaction_model.dart';
 import 'package:finance_tracker/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +12,11 @@ import '../../../utils/strings.dart';
 import 'bloc/income_expense_add_bloc.dart';
 
 class AllField extends StatefulWidget {
-  final String type;
+  final TransactionModel transaction;
+  final String todo;
+  final String path;
 
-  final String category;
-  const AllField({super.key, required this.type, required this.category});
+  const AllField({super.key, required this.transaction, required this.todo, required this.path});
 
   @override
   State<AllField> createState() => _AllFieldState();
@@ -25,32 +25,39 @@ class AllField extends StatefulWidget {
 class _AllFieldState extends State<AllField> {
   String? defaultValue;
   List<Category>? items;
-  @override
-  void initState() {
-    super.initState();
-    if (widget.type == Strings.expense) {
-      if (widget.category != "Salary") {
-        defaultValue = widget.category;
-      } else {
-        defaultValue = "Food";
-      }
-    } else {
-      defaultValue = "Salary";
-    }
-    if (widget.type == Strings.expense) {
-      items = Utils.categoriesList.where((e) => e.name != "Salary").toList();
-    } else {
-      items = Utils.categoriesList
-          .where((e) => e.name == "Salary" || e.name == "Add/Others")
-          .toList();
-    }
-  }
 
-  final dateController = TextEditingController(
-      text: DateFormat('yyyy-MM-dd').format(DateTime.now()));
+  final dateController = TextEditingController();
   final amountController = TextEditingController();
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    amountController.text = widget.transaction.amount.toString();
+    titleController.text = widget.transaction.title.toString();
+    descriptionController.text = widget.transaction.description.toString();
+    dateController.text = widget.transaction.date.toString();
+
+    if (widget.transaction.type == Strings.expense) {
+      if (widget.transaction.category != Strings.salary) {
+        defaultValue = widget.transaction.category;
+      } else {
+        defaultValue = Strings.food;
+      }
+    } else {
+      defaultValue = Strings.salary;
+    }
+    if (widget.transaction.type == Strings.expense) {
+      items =
+          Utils.categoriesList.where((e) => e.name != Strings.salary).toList();
+    } else {
+      items = Utils.categoriesList
+          .where(
+              (e) => e.name == Strings.salary || e.name == Strings.addOrOthers)
+          .toList();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,11 +66,10 @@ class _AllFieldState extends State<AllField> {
         if (state is SuccessedState) {
           FocusScope.of(context).unfocus();
 
-
           SchedulerBinding.instance.addPostFrameCallback((_) {
             // Navigator.of(context).pop();
-            AppRouter.router.pushReplacement(PAGES.categoryDetails.screenPath,
-                extra: widget.category);
+            AppRouter.router.pushReplacement(widget.path,
+                extra: widget.transaction.category);
           });
         }
         return CustomScrollView(
@@ -149,7 +155,7 @@ class _AllFieldState extends State<AllField> {
                               context.read<IncomeExpenseAddBloc>().add(
                                   TextFieldTextChangeEvent(
                                       category: defaultValue!,
-                                      type: widget.type,
+                                      type: widget.transaction.type!,
                                       title: titleController.text,
                                       amount: amountController.text,
                                       description: descriptionController.text,
@@ -178,7 +184,7 @@ class _AllFieldState extends State<AllField> {
                       context.read<IncomeExpenseAddBloc>().add(
                           TextFieldTextChangeEvent(
                               category: defaultValue!,
-                              type: widget.type,
+                              type: widget.transaction.type!,
                               title: titleController.text,
                               amount: amountController.text,
                               description: descriptionController.text,
@@ -201,7 +207,7 @@ class _AllFieldState extends State<AllField> {
                   Padding(
                     padding: const EdgeInsets.only(left: 15),
                     child: Text(
-                      '${widget.type} Title*',
+                      '${widget.transaction.type} Title*',
                       style: AppTheme.lightBodyText,
                     ),
                   ),
@@ -214,7 +220,7 @@ class _AllFieldState extends State<AllField> {
                       context.read<IncomeExpenseAddBloc>().add(
                           TextFieldTextChangeEvent(
                               category: defaultValue!,
-                              type: widget.type,
+                              type: widget.transaction.type!,
                               title: titleController.text,
                               amount: amountController.text,
                               description: descriptionController.text,
@@ -256,7 +262,7 @@ class _AllFieldState extends State<AllField> {
                         context.read<IncomeExpenseAddBloc>().add(
                             TextFieldTextChangeEvent(
                                 category: defaultValue!,
-                                type: widget.type,
+                                type: widget.transaction.type!,
                                 title: titleController.text,
                                 amount: amountController.text,
                                 description: descriptionController.text,
@@ -282,16 +288,29 @@ class _AllFieldState extends State<AllField> {
                           ),
                           onPressed: (state is AllValidState)
                               ? () {
-                                  context.read<IncomeExpenseAddBloc>().add(
-                                      SubmitToDataBaseEvent(
-                                          transaction: TransactionModel(
-                                              category: state.category,
-                                              type: state.type,
-                                              title: state.title,
-                                              amount: state.amount,
-                                              description: state.description,
-                                              date: state.date,
-                                              id: 0)));
+                                  if (widget.todo == Strings.add) {
+                                    context.read<IncomeExpenseAddBloc>().add(
+                                        SubmitToDataBaseEvent(
+                                            transaction: TransactionModel(
+                                                category: state.category,
+                                                type: state.type,
+                                                title: state.title,
+                                                amount: state.amount,
+                                                description: state.description,
+                                                date: state.date,
+                                                id: widget.transaction.id)));
+                                  } else {
+                                    context.read<IncomeExpenseAddBloc>().add(
+                                        UpdateToDataBaseEvent(
+                                            transaction: TransactionModel(
+                                                category: state.category,
+                                                type: state.type,
+                                                title: state.title,
+                                                amount: state.amount,
+                                                description: state.description,
+                                                date: state.date,
+                                                id: widget.transaction.id)));
+                                  }
                                 }
                               : null,
                           child: Text(
@@ -321,7 +340,7 @@ class _AllFieldState extends State<AllField> {
       if (mounted) {
         context.read<IncomeExpenseAddBloc>().add(TextFieldTextChangeEvent(
             category: defaultValue!,
-            type: widget.type,
+            type: widget.transaction.type!,
             title: titleController.text,
             amount: amountController.text,
             description: descriptionController.text,
