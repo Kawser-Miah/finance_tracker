@@ -11,4 +11,12 @@ class InsertTransactionDataUseCase {
   Future<void> callForInsert(TransactionModel transaction) async {
     return await insertTransactionRepository.insertTransaction(transaction);
   }
+
+  Future<void> callForDelete(int id, String type) async {
+    return await insertTransactionRepository.deleteTransaction(id, type);
+  }
+
+  Future<void> callForUpdate(TransactionModel transaction) async {
+    return await insertTransactionRepository.updateTransaction(transaction);
+  }
 }

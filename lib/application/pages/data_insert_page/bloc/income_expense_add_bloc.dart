@@ -2,6 +2,7 @@ import 'package:finance_tracker/domain/usecases/insert_transaction_usecase.dart'
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../utils/strings.dart';
 import 'income_expense_add_state.dart';
 import 'income_expense_add_event.dart';
 export 'income_expense_add_event.dart';
@@ -14,7 +15,10 @@ class IncomeExpenseAddBloc
   IncomeExpenseAddBloc({required this.insertTransactionDataUseCase})
       : super(const IncomeExpenseAddState.initial()) {
     on<TextFieldTextChangeEvent>((event, emit) {
-      if (event.amount == "") {
+      if (event.amount == "" ||
+          double.tryParse(event.amount.replaceFirst(RegExp(r'^0+0'), '')) ==
+              0 ||
+          event.amount == '.') {
         emit(const AmountNullState(errorMessage: "Null Field Not Applicable!"));
       } else if (RegExp(r'[!@#\$%\^&\*\(\)_\+\-=\[\]\{\};:"\\|,<>\/?]')
           .hasMatch(event.amount)) {
@@ -25,7 +29,7 @@ class IncomeExpenseAddBloc
       } else {
         String? description;
         String? category;
-        if (event.category == 'Add/Others') {
+        if (event.category == Strings.addOrOthers) {
           category = 'Others';
         } else {
           category = event.category;
@@ -44,6 +48,14 @@ class IncomeExpenseAddBloc
             description: description,
             date: event.date));
       }
+    });
+    on<DeleteEvent>((event, emit) async {
+      await insertTransactionDataUseCase.callForDelete(event.id, event.type);
+    });
+
+    on<UpdateToDataBaseEvent>((event, emit) async {
+      await insertTransactionDataUseCase.callForUpdate(event.transaction);
+      emit(const SuccessedState());
     });
 
     on<SubmitToDataBaseEvent>((event, emit) async {

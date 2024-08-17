@@ -32,4 +32,36 @@ class InsertTransactionRepositoryIml extends InsertTransactionRepository {
           date: t.date));
     }
   }
+
+  @override
+  Future<void> deleteTransaction(int id, String type) async {
+    if (type == Strings.income) {
+      await db.incomeDao.deleteIncomes(id);
+    } else {
+      await db.expenseDao.deleteExpense(id);
+    }
+  }
+
+  @override
+  Future<void> updateTransaction(TransactionModel t) async {
+    if (t.type == Strings.income) {
+      await db.incomeDao.updateIncome(IncomeEntityModel(
+          id: t.id,
+          type: t.type,
+          category: t.category,
+          income: t.amount,
+          incomeTitle: t.title,
+          description: t.description,
+          date: t.date));
+    } else {
+      await db.expenseDao.updateExpense(ExpenseEntityModel(
+          id: t.id,
+          type: t.type,
+          category: t.category,
+          expense: t.amount,
+          expenseTitle: t.title,
+          description: t.description,
+          date: t.date));
+    }
+  }
 }
