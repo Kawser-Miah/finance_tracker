@@ -1,4 +1,5 @@
 import 'package:finance_tracker/application/core/widgets/transaction_container.dart';
+import 'package:finance_tracker/application/pages/data_insert_page/bloc/income_expense_add_bloc.dart';
 import 'package:finance_tracker/di/di.dart';
 import 'package:finance_tracker/utils/strings.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,14 @@ class Tabs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => getIt<TransactionBloc>()
-        ..add(HomePageTransactionDataRequestEvent(name)),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => getIt<TransactionBloc>()
+            ..add(HomePageTransactionDataRequestEvent(name)),
+        ),
+        BlocProvider(create: (_) => getIt<IncomeExpenseAddBloc>()),
+      ],
       child: const CustomTab(),
     );
   }
@@ -29,16 +35,6 @@ class CustomTab extends StatefulWidget {
 }
 
 class _CustomTabState extends State<CustomTab> {
-  // final _controller = PageController(initialPage: 0);
-  //
-  //
-  // @override
-  // void dispose() {
-  //   // TODO: implement dispose
-  //   _controller.dispose();
-  //   super.dispose();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TransactionBloc, TransactionState>(
