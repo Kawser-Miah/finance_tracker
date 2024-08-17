@@ -151,7 +151,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 color: Theme.of(context).colorScheme.onPrimary,
                               ),
                               _widgetBox(context, "${state.totalBalance.bestExpense?.category} Last Week",
-                                  Assets.categoryFood, state.totalBalance.bestExpense?.total_expense)
+                                  Utils.getWeeklyCategoryImage(state.totalBalance.bestExpense!.category), state.totalBalance.bestExpense?.total_expense)
                             ],
                           ),
                         ],
