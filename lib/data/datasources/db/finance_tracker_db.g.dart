@@ -150,7 +150,7 @@ class _$IncomeDao extends IncomeDao {
   @override
   Future<List<IncomeEntityModel>> getIncomeDataByCurrentDate() async {
     return _queryAdapter.queryList(
-        'SELECT * FROM incomes WHERE DATE(date) = DATE(\'now\') ORDER BY date DESC',
+        'SELECT * FROM incomes WHERE DATE(date) = DATE(\'now\',\'localtime\') ORDER BY date DESC',
         mapper: (Map<String, Object?> row) => IncomeEntityModel(
             id: row['id'] as int?,
             incomeTitle: row['incomeTitle'] as String?,
@@ -164,7 +164,7 @@ class _$IncomeDao extends IncomeDao {
   @override
   Future<List<IncomeEntityModel>> getIncomeDataByPreviousDate() async {
     return _queryAdapter.queryList(
-        'SELECT * FROM incomes WHERE DATE(date) = DATE(\'now\',\'-1 day\') ORDER BY date DESC',
+        'SELECT * FROM incomes WHERE DATE(date) = DATE(\'now\',\'-1 day\',\'localtime\') ORDER BY date DESC',
         mapper: (Map<String, Object?> row) => IncomeEntityModel(
             id: row['id'] as int?,
             incomeTitle: row['incomeTitle'] as String?,
@@ -178,7 +178,7 @@ class _$IncomeDao extends IncomeDao {
   @override
   Future<List<IncomeEntityModel>> getIncomeDataByCurrentWeek() async {
     return _queryAdapter.queryList(
-        'SELECT * FROM incomes WHERE DATE(date) BETWEEN DATE(\'now\', \'weekday 0\', \'-7 days\') AND DATE(\'now\', \'weekday 0\') ORDER BY date DESC;',
+        'SELECT * FROM incomes WHERE DATE(date) BETWEEN DATE(\'now\', \'weekday 0\', \'-7 days\',\'localtime\') AND DATE(\'now\', \'weekday 0\',\'localtime\') ORDER BY date DESC;',
         mapper: (Map<String, Object?> row) => IncomeEntityModel(
             id: row['id'] as int?,
             incomeTitle: row['incomeTitle'] as String?,
@@ -192,7 +192,7 @@ class _$IncomeDao extends IncomeDao {
   @override
   Future<List<IncomeEntityModel>> getIncomeDataByCurrentMonth() async {
     return _queryAdapter.queryList(
-        'SELECT * FROM incomes WHERE strftime(\'%Y-%m\', date) = strftime(\'%Y-%m\', \'now\') ORDER BY date DESC;',
+        'SELECT * FROM incomes WHERE strftime(\'%Y-%m\', date) = strftime(\'%Y-%m\', \'now\',\'localtime\') ORDER BY date DESC;',
         mapper: (Map<String, Object?> row) => IncomeEntityModel(
             id: row['id'] as int?,
             incomeTitle: row['incomeTitle'] as String?,
@@ -206,14 +206,14 @@ class _$IncomeDao extends IncomeDao {
   @override
   Future<double?> getTotalIncomeByCurrentMonth() async {
     return _queryAdapter.query(
-        'SELECT SUM(income) AS total_income FROM incomes WHERE strftime(\'%Y-%m\', date) = strftime(\'%Y-%m\', \'now\')',
+        'SELECT SUM(income) AS total_income FROM incomes WHERE strftime(\'%Y-%m\', date) = strftime(\'%Y-%m\', \'now\',\'localtime\')',
         mapper: (Map<String, Object?> row) => row.values.first as double);
   }
 
   @override
   Future<double?> getTotalIncomeByPreviousMonth() async {
     return _queryAdapter.query(
-        'SELECT SUM(income) AS total_income FROM incomes WHERE strftime(\'%Y-%m\', date) = strftime(\'%Y-%m\', \'now\',\'-1 month\')',
+        'SELECT SUM(income) AS total_income FROM incomes WHERE strftime(\'%Y-%m\', date) = strftime(\'%Y-%m\', \'now\',\'-1 month\',\'localtime\')',
         mapper: (Map<String, Object?> row) => row.values.first as double);
   }
 
@@ -260,7 +260,7 @@ class _$ExpenseDao extends ExpenseDao {
   @override
   Future<List<ExpenseEntityModel>> getExpenseDataByCurrentDate() async {
     return _queryAdapter.queryList(
-        'SELECT * FROM expenses WHERE DATE(date) = DATE(\'now\') ORDER BY date DESC',
+        'SELECT * FROM expenses WHERE DATE(date) = DATE(\'now\',\'localtime\') ORDER BY date DESC',
         mapper: (Map<String, Object?> row) => ExpenseEntityModel(
             id: row['id'] as int?,
             category: row['category'] as String?,
@@ -274,7 +274,7 @@ class _$ExpenseDao extends ExpenseDao {
   @override
   Future<List<ExpenseEntityModel>> getExpenseDataByPreviousDate() async {
     return _queryAdapter.queryList(
-        'SELECT * FROM expenses WHERE DATE(date) = DATE(\'now\', \'-1 day\') ORDER BY date DESC',
+        'SELECT * FROM expenses WHERE DATE(date) = DATE(\'now\', \'-1 day\',\'localtime\') ORDER BY date DESC',
         mapper: (Map<String, Object?> row) => ExpenseEntityModel(
             id: row['id'] as int?,
             category: row['category'] as String?,
@@ -288,7 +288,7 @@ class _$ExpenseDao extends ExpenseDao {
   @override
   Future<List<ExpenseEntityModel>> getExpenseDataByCurrentWeek() async {
     return _queryAdapter.queryList(
-        'SELECT * FROM expenses WHERE DATE(date) BETWEEN DATE(\'now\', \'weekday 0\', \'-7 days\') AND DATE(\'now\', \'weekday 0\') ORDER BY date DESC;',
+        'SELECT * FROM expenses WHERE DATE(date) BETWEEN DATE(\'now\', \'weekday 0\', \'-7 days\',\'localtime\') AND DATE(\'now\', \'weekday 0\',\'localtime\') ORDER BY date DESC;',
         mapper: (Map<String, Object?> row) => ExpenseEntityModel(
             id: row['id'] as int?,
             category: row['category'] as String?,
@@ -302,7 +302,7 @@ class _$ExpenseDao extends ExpenseDao {
   @override
   Future<List<ExpenseEntityModel>> getExpenseDataByCurrentMonth() async {
     return _queryAdapter.queryList(
-        'SELECT * FROM expenses WHERE strftime(\'%Y-%m\', date) = strftime(\'%Y-%m\', \'now\') ORDER BY date DESC;',
+        'SELECT * FROM expenses WHERE strftime(\'%Y-%m\', date) = strftime(\'%Y-%m\', \'now\',\'localtime\') ORDER BY date DESC;',
         mapper: (Map<String, Object?> row) => ExpenseEntityModel(
             id: row['id'] as int?,
             category: row['category'] as String?,
@@ -316,21 +316,21 @@ class _$ExpenseDao extends ExpenseDao {
   @override
   Future<double?> getTotalExpenseByCurrentMonth() async {
     return _queryAdapter.query(
-        'SELECT SUM(expense) AS total_expense FROM expenses WHERE strftime(\'%Y-%m\', date) = strftime(\'%Y-%m\', \'now\')',
+        'SELECT SUM(expense) AS total_expense FROM expenses WHERE strftime(\'%Y-%m\', date) = strftime(\'%Y-%m\', \'now\',\'localtime\')',
         mapper: (Map<String, Object?> row) => row.values.first as double);
   }
 
   @override
   Future<double?> getTotalExpenseByPreviousMonth() async {
     return _queryAdapter.query(
-        'SELECT SUM(expense) AS total_expense FROM expenses WHERE strftime(\'%Y-%m\', date) = strftime(\'%Y-%m\', \'now\',\'-1 month\')',
+        'SELECT SUM(expense) AS total_expense FROM expenses WHERE strftime(\'%Y-%m\', date) = strftime(\'%Y-%m\', \'now\',\'-1 month\',\'localtime\')',
         mapper: (Map<String, Object?> row) => row.values.first as double);
   }
 
   @override
   Future<BestExpense?> getCategoryWithHighestExpenseByLastWeek() async {
     return _queryAdapter.query(
-        'SELECT category, SUM(expense) AS total_expense FROM expenses WHERE date BETWEEN date(\'now\', \'-7 days\') AND date(\'now\') GROUP BY category ORDER BY total_expense DESC LIMIT 1;',
+        'SELECT category, SUM(expense) AS total_expense FROM expenses WHERE date BETWEEN date(\'now\', \'-7 days\',\'localtime\') AND date(\'now\',\'localtime\') GROUP BY category ORDER BY total_expense DESC LIMIT 1;',
         mapper: (Map<String, Object?> row) => BestExpense(
             category: row['category'] as String,
             total_expense: row['total_expense'] as double));
