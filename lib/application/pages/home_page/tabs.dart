@@ -22,13 +22,16 @@ class Tabs extends StatelessWidget {
         ),
         BlocProvider(create: (_) => getIt<IncomeExpenseAddBloc>()),
       ],
-      child: const CustomTab(),
+      child: CustomTab(
+        name: name,
+      ),
     );
   }
 }
 
 class CustomTab extends StatefulWidget {
-  const CustomTab({super.key});
+  final String name;
+  const CustomTab({super.key, required this.name});
 
   @override
   State<CustomTab> createState() => _CustomTabState();
@@ -50,6 +53,7 @@ class _CustomTabState extends State<CustomTab> {
               itemBuilder: (context, index) {
                 return TransactionContainer(
                   transaction: state.transactions[index],
+                  name: widget.name,
                 );
               });
         }
