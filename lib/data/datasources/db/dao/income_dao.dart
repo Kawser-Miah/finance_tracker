@@ -22,6 +22,9 @@ abstract class IncomeDao {
   @Query("SELECT SUM(income) AS total_income FROM incomes WHERE strftime('%Y-%m', date) = strftime('%Y-%m', 'now','-1 month')")
   Future<double?> getTotalIncomeByPreviousMonth();
 
+  @Query("DELETE FROM incomes WHERE id =:id")
+  Future<void> deleteIncomes(int id);
+
 
   @insert
   Future<void> insertIncome(IncomeEntityModel income);
