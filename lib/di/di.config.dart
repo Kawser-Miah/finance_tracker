@@ -10,6 +10,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:finance_tracker/application/pages/bottom_nav/bloc/bottom_bloc.dart'
     as _i854;
+import 'package:finance_tracker/application/pages/category_details_page/bloc/category_details_bloc.dart'
+    as _i511;
 import 'package:finance_tracker/application/pages/category_page/bloc/category_bloc.dart'
     as _i782;
 import 'package:finance_tracker/application/pages/data_insert_page/bloc/income_expense_add_bloc.dart'
@@ -20,6 +22,8 @@ import 'package:finance_tracker/application/pages/transaction_page/bloc/transact
     as _i709;
 import 'package:finance_tracker/data/datasources/db/finance_tracker_db.dart'
     as _i273;
+import 'package:finance_tracker/data/repositories/category_details_repository_iml.dart'
+    as _i114;
 import 'package:finance_tracker/data/repositories/category_repository_iml.dart'
     as _i25;
 import 'package:finance_tracker/data/repositories/home_page_repository_iml.dart'
@@ -29,6 +33,8 @@ import 'package:finance_tracker/data/repositories/insert_transaction_repository_
 import 'package:finance_tracker/data/repositories/transaction_repository_iml.dart'
     as _i338;
 import 'package:finance_tracker/di/register_module.dart' as _i827;
+import 'package:finance_tracker/domain/repositories/category_details_repository.dart'
+    as _i546;
 import 'package:finance_tracker/domain/repositories/category_repository.dart'
     as _i192;
 import 'package:finance_tracker/domain/repositories/home_page_repository.dart'
@@ -63,10 +69,13 @@ extension GetItInjectableX on _i174.GetIt {
       () => registerModule.db,
       preResolve: true,
     );
+    gh.factory<_i511.CategoryDetailsBloc>(() => _i511.CategoryDetailsBloc());
     gh.lazySingleton<_i192.CategoryRepository>(
         () => _i25.CategoryRepositoryIml());
     gh.lazySingleton<_i856.HomePageRepository>(
         () => _i256.HomePageRepositoryIml(db: gh<_i273.FinanceTrackerDB>()));
+    gh.lazySingleton<_i546.CategoryDetailsRepository>(
+        () => _i114.CategoryDetailsRepositoryIml(gh<_i273.FinanceTrackerDB>()));
     gh.lazySingleton<_i52.InsertTransactionRepository>(() =>
         _i635.InsertTransactionRepositoryIml(gh<_i273.FinanceTrackerDB>()));
     gh.lazySingleton<_i163.TransactionRepository>(

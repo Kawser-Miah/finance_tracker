@@ -233,6 +233,28 @@ class _$IncomeDao extends IncomeDao {
   }
 
   @override
+  Future<List<String>> getMonthYear(String category) async {
+    return _queryAdapter.queryList(
+        'SELECT DISTINCT strftime(\'%m-%Y\', date) AS month_year FROM incomes WHERE category =?1',
+        mapper: (Map<String, Object?> row) => row.values.first as String,
+        arguments: [category]);
+  }
+
+  @override
+  Future<List<IncomeEntityModel>> getIncomeByCategory(String category) async {
+    return _queryAdapter.queryList('SELECT * FROM incomes WHERE category =?1',
+        mapper: (Map<String, Object?> row) => IncomeEntityModel(
+            id: row['id'] as int?,
+            incomeTitle: row['incomeTitle'] as String?,
+            category: row['category'] as String?,
+            type: row['type'] as String?,
+            income: row['income'] as double?,
+            description: row['description'] as String?,
+            date: row['date'] as String?),
+        arguments: [category]);
+  }
+
+  @override
   Future<void> deleteIncomes(int id) async {
     await _queryAdapter
         .queryNoReturn('DELETE FROM incomes WHERE id =?1', arguments: [id]);
@@ -376,6 +398,28 @@ class _$ExpenseDao extends ExpenseDao {
   Future<void> deleteExpense(int id) async {
     await _queryAdapter
         .queryNoReturn('DELETE FROM expenses WHERE id =?1', arguments: [id]);
+  }
+
+  @override
+  Future<List<String>> getMonthYear(String category) async {
+    return _queryAdapter.queryList(
+        'SELECT DISTINCT strftime(\'%m-%Y\', date) AS month_year FROM expenses WHERE category =?1',
+        mapper: (Map<String, Object?> row) => row.values.first as String,
+        arguments: [category]);
+  }
+
+  @override
+  Future<List<ExpenseEntityModel>> getExpenseByCategory(String category) async {
+    return _queryAdapter.queryList('SELECT * FROM expenses WHERE category =?1',
+        mapper: (Map<String, Object?> row) => ExpenseEntityModel(
+            id: row['id'] as int?,
+            category: row['category'] as String?,
+            type: row['type'] as String?,
+            expenseTitle: row['expenseTitle'] as String?,
+            expense: row['expense'] as double?,
+            description: row['description'] as String?,
+            date: row['date'] as String?),
+        arguments: [category]);
   }
 
   @override
