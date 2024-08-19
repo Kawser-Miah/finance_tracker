@@ -37,10 +37,10 @@ abstract class ExpenseDao {
   Future<void> deleteExpense(int id);
 
   @Query(
-      "SELECT DISTINCT strftime('%m-%Y', date) AS month_year FROM expenses WHERE category =:category")
+      "SELECT DISTINCT strftime('%m-%Y', date) AS month_year FROM expenses WHERE category =:category ORDER BY date DESC")
   Future<List<String>> getMonthYear(String category);
 
-  @Query("SELECT * FROM expenses WHERE category =:category")
+  @Query("SELECT * FROM expenses WHERE category =:category ORDER BY date DESC")
   Future<List<ExpenseEntityModel>> getExpenseByCategory(String category);
 
   @update
