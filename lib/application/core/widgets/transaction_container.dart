@@ -35,7 +35,9 @@ class TransactionContainer extends StatelessWidget {
                   TransactionModel(
                       title: transaction.title,
                       id: transaction.id,
-                      category: transaction.category,
+                      category: (transaction.category == Strings.others)
+                          ? Strings.addOrOthers
+                          : transaction.category,
                       type: transaction.type,
                       amount: transaction.amount,
                       description: transaction.description,
