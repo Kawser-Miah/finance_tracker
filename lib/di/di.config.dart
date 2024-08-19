@@ -43,6 +43,8 @@ import 'package:finance_tracker/domain/repositories/insert_transaction_repositor
     as _i52;
 import 'package:finance_tracker/domain/repositories/transaction_repository.dart'
     as _i163;
+import 'package:finance_tracker/domain/usecases/category_details_usecase.dart'
+    as _i43;
 import 'package:finance_tracker/domain/usecases/category_usecase.dart' as _i347;
 import 'package:finance_tracker/domain/usecases/home_page_usecase.dart' as _i89;
 import 'package:finance_tracker/domain/usecases/insert_transaction_usecase.dart'
@@ -69,7 +71,6 @@ extension GetItInjectableX on _i174.GetIt {
       () => registerModule.db,
       preResolve: true,
     );
-    gh.factory<_i511.CategoryDetailsBloc>(() => _i511.CategoryDetailsBloc());
     gh.lazySingleton<_i192.CategoryRepository>(
         () => _i25.CategoryRepositoryIml());
     gh.lazySingleton<_i856.HomePageRepository>(
@@ -84,6 +85,8 @@ extension GetItInjectableX on _i174.GetIt {
         homePageRepository: gh<_i856.HomePageRepository>()));
     gh.factory<_i347.CategoryUseCase>(() => _i347.CategoryUseCase(
         categoryRepository: gh<_i192.CategoryRepository>()));
+    gh.factory<_i43.CategoryDetailsUseCase>(() => _i43.CategoryDetailsUseCase(
+        categoryDetailsRepository: gh<_i546.CategoryDetailsRepository>()));
     gh.factory<_i782.CategoryBloc>(
         () => _i782.CategoryBloc(categoryUseCase: gh<_i347.CategoryUseCase>()));
     gh.factory<_i815.TransactionUseCase>(() => _i815.TransactionUseCase(
@@ -94,6 +97,8 @@ extension GetItInjectableX on _i174.GetIt {
         _i635.InsertTransactionDataUseCase(
             insertTransactionRepository:
                 gh<_i52.InsertTransactionRepository>()));
+    gh.factory<_i511.CategoryDetailsBloc>(() => _i511.CategoryDetailsBloc(
+        categoryDetailsUseCase: gh<_i43.CategoryDetailsUseCase>()));
     gh.factory<_i709.TransactionBloc>(() => _i709.TransactionBloc(
         transactionUseCase: gh<_i815.TransactionUseCase>()));
     gh.factory<_i559.IncomeExpenseAddBloc>(() => _i559.IncomeExpenseAddBloc(
