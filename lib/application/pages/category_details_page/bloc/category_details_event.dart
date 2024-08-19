@@ -4,5 +4,5 @@ part 'category_details_event.freezed.dart';
 
 @freezed
 class CategoryDetailsEvent with _$CategoryDetailsEvent {
-  const factory CategoryDetailsEvent.started() = _Started;
+  const factory CategoryDetailsEvent.started({required String category}) = _Started;
 }
