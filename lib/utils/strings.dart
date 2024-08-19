@@ -19,5 +19,6 @@ class Strings {
       gift = 'Gifts',
       entertainment = 'Entertainment',
       salary = 'Salary',
-      addOrOthers = 'Add/Others';
+      addOrOthers = 'Add/Others',
+      others = 'Others';
 }
