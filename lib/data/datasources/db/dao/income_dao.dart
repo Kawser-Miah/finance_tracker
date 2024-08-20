@@ -30,9 +30,16 @@ abstract class IncomeDao {
   @Query(
       "SELECT DISTINCT strftime('%m-%Y', date) AS month_year FROM incomes WHERE category =:category ORDER BY date DESC")
   Future<List<String>> getMonthYear(String category);
-  
+
+  @Query(
+      "SELECT DISTINCT strftime('%m-%Y', date) AS month_year FROM incomes ORDER BY date DESC")
+  Future<List<String>> getAllMonthYear();
+
+  @Query("SELECT * FROM incomes ORDER BY date DESC")
+  Future<List<IncomeEntityModel>> getAllIncome();
+
   @Query("SELECT * FROM incomes WHERE category =:category ORDER BY date DESC")
-  Future<List<IncomeEntityModel>>getIncomeByCategory(String category);
+  Future<List<IncomeEntityModel>> getIncomeByCategory(String category);
 
   @Query("DELETE FROM incomes WHERE id =:id")
   Future<void> deleteIncomes(int id);

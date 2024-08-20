@@ -43,6 +43,13 @@ abstract class ExpenseDao {
   @Query("SELECT * FROM expenses WHERE category =:category ORDER BY date DESC")
   Future<List<ExpenseEntityModel>> getExpenseByCategory(String category);
 
+  @Query("SELECT * FROM expenses ORDER BY date DESC")
+  Future<List<ExpenseEntityModel>> getAllExpense();
+
+  @Query(
+      "SELECT DISTINCT strftime('%m-%Y', date) AS month_year FROM expenses ORDER BY date DESC")
+  Future<List<String>> getAllMonthYear();
+
   @update
   Future<void> updateExpense(ExpenseEntityModel expense);
 

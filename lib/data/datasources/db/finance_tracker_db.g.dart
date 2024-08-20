@@ -241,6 +241,26 @@ class _$IncomeDao extends IncomeDao {
   }
 
   @override
+  Future<List<String>> getAllMonthYear() async {
+    return _queryAdapter.queryList(
+        'SELECT DISTINCT strftime(\'%m-%Y\', date) AS month_year FROM incomes ORDER BY date DESC',
+        mapper: (Map<String, Object?> row) => row.values.first as String);
+  }
+
+  @override
+  Future<List<IncomeEntityModel>> getAllIncome() async {
+    return _queryAdapter.queryList('SELECT * FROM incomes ORDER BY date DESC',
+        mapper: (Map<String, Object?> row) => IncomeEntityModel(
+            id: row['id'] as int?,
+            incomeTitle: row['incomeTitle'] as String?,
+            category: row['category'] as String?,
+            type: row['type'] as String?,
+            income: row['income'] as double?,
+            description: row['description'] as String?,
+            date: row['date'] as String?));
+  }
+
+  @override
   Future<List<IncomeEntityModel>> getIncomeByCategory(String category) async {
     return _queryAdapter.queryList(
         'SELECT * FROM incomes WHERE category =?1 ORDER BY date DESC',
@@ -422,6 +442,26 @@ class _$ExpenseDao extends ExpenseDao {
             description: row['description'] as String?,
             date: row['date'] as String?),
         arguments: [category]);
+  }
+
+  @override
+  Future<List<ExpenseEntityModel>> getAllExpense() async {
+    return _queryAdapter.queryList('SELECT * FROM expenses ORDER BY date DESC',
+        mapper: (Map<String, Object?> row) => ExpenseEntityModel(
+            id: row['id'] as int?,
+            category: row['category'] as String?,
+            type: row['type'] as String?,
+            expenseTitle: row['expenseTitle'] as String?,
+            expense: row['expense'] as double?,
+            description: row['description'] as String?,
+            date: row['date'] as String?));
+  }
+
+  @override
+  Future<List<String>> getAllMonthYear() async {
+    return _queryAdapter.queryList(
+        'SELECT DISTINCT strftime(\'%m-%Y\', date) AS month_year FROM expenses ORDER BY date DESC',
+        mapper: (Map<String, Object?> row) => row.values.first as String);
   }
 
   @override
