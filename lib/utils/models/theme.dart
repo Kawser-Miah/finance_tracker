@@ -21,7 +21,7 @@ class AppTheme {
   static const TextStyle lightBodyText = TextStyle(
     color: _lightTextColorPrimary,
     fontSize: 16,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w500,
   );
 
   ThemeData lightTheme() {
