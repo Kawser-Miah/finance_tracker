@@ -24,5 +24,38 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
               errorMessage: Utils.getErrorMessage(categoryEnum))),
           (r) => emit(HomePageTransactionDataLoadedState(transactions: r)));
     });
+
+    on<TransactionRequestEvent>((event, emit) async {
+      emit(const LoadingState());
+      final response = await transactionUseCase.callForAllTransaction();
+
+      response.fold(
+          (l) => emit(const TransactionErrorState(
+              errorMessage: "Did not found any data!")),
+          (r) => emit(TransactionDataLoadedState(
+              transaction: r.transactions!, months: r.months!)));
+    });
+
+    on<AllIncomesRequestEvent>((event, emit) async {
+      emit(const LoadingState());
+      final response = await transactionUseCase.callForAllIncomes();
+
+      response.fold(
+          (l) => emit(const TransactionErrorState(
+              errorMessage: "Did not found any data!")),
+          (r) => emit(TransactionDataLoadedState(
+              transaction: r.transactions!, months: r.months!)));
+    });
+
+    on<AllExpensesRequestEvent>((event, emit) async {
+      emit(const LoadingState());
+      final response = await transactionUseCase.callForAllExpenses();
+
+      response.fold(
+          (l) => emit(const TransactionErrorState(
+              errorMessage: "Did not found any data!")),
+          (r) => emit(TransactionDataLoadedState(
+              transaction: r.transactions!, months: r.months!)));
+    });
   }
 }

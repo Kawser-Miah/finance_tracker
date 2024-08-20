@@ -21,6 +21,9 @@ mixin _$TransactionState {
     required TResult Function() initial,
     required TResult Function(List<TransactionModel> transactions) dataLoaded,
     required TResult Function() dataLoading,
+    required TResult Function(
+            List<TransactionModel> transaction, List<String> months)
+        allDataLoaded,
     required TResult Function(String errorMessage) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,6 +32,8 @@ mixin _$TransactionState {
     TResult? Function()? initial,
     TResult? Function(List<TransactionModel> transactions)? dataLoaded,
     TResult? Function()? dataLoading,
+    TResult? Function(List<TransactionModel> transaction, List<String> months)?
+        allDataLoaded,
     TResult? Function(String errorMessage)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,6 +42,8 @@ mixin _$TransactionState {
     TResult Function()? initial,
     TResult Function(List<TransactionModel> transactions)? dataLoaded,
     TResult Function()? dataLoading,
+    TResult Function(List<TransactionModel> transaction, List<String> months)?
+        allDataLoaded,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) =>
@@ -47,6 +54,7 @@ mixin _$TransactionState {
     required TResult Function(HomePageTransactionDataLoadedState value)
         dataLoaded,
     required TResult Function(LoadingState value) dataLoading,
+    required TResult Function(TransactionDataLoadedState value) allDataLoaded,
     required TResult Function(TransactionErrorState value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -55,6 +63,7 @@ mixin _$TransactionState {
     TResult? Function(Initial value)? initial,
     TResult? Function(HomePageTransactionDataLoadedState value)? dataLoaded,
     TResult? Function(LoadingState value)? dataLoading,
+    TResult? Function(TransactionDataLoadedState value)? allDataLoaded,
     TResult? Function(TransactionErrorState value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -63,6 +72,7 @@ mixin _$TransactionState {
     TResult Function(Initial value)? initial,
     TResult Function(HomePageTransactionDataLoadedState value)? dataLoaded,
     TResult Function(LoadingState value)? dataLoading,
+    TResult Function(TransactionDataLoadedState value)? allDataLoaded,
     TResult Function(TransactionErrorState value)? error,
     required TResult orElse(),
   }) =>
@@ -134,6 +144,9 @@ class _$InitialImpl implements Initial {
     required TResult Function() initial,
     required TResult Function(List<TransactionModel> transactions) dataLoaded,
     required TResult Function() dataLoading,
+    required TResult Function(
+            List<TransactionModel> transaction, List<String> months)
+        allDataLoaded,
     required TResult Function(String errorMessage) error,
   }) {
     return initial();
@@ -145,6 +158,8 @@ class _$InitialImpl implements Initial {
     TResult? Function()? initial,
     TResult? Function(List<TransactionModel> transactions)? dataLoaded,
     TResult? Function()? dataLoading,
+    TResult? Function(List<TransactionModel> transaction, List<String> months)?
+        allDataLoaded,
     TResult? Function(String errorMessage)? error,
   }) {
     return initial?.call();
@@ -156,6 +171,8 @@ class _$InitialImpl implements Initial {
     TResult Function()? initial,
     TResult Function(List<TransactionModel> transactions)? dataLoaded,
     TResult Function()? dataLoading,
+    TResult Function(List<TransactionModel> transaction, List<String> months)?
+        allDataLoaded,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) {
@@ -172,6 +189,7 @@ class _$InitialImpl implements Initial {
     required TResult Function(HomePageTransactionDataLoadedState value)
         dataLoaded,
     required TResult Function(LoadingState value) dataLoading,
+    required TResult Function(TransactionDataLoadedState value) allDataLoaded,
     required TResult Function(TransactionErrorState value) error,
   }) {
     return initial(this);
@@ -183,6 +201,7 @@ class _$InitialImpl implements Initial {
     TResult? Function(Initial value)? initial,
     TResult? Function(HomePageTransactionDataLoadedState value)? dataLoaded,
     TResult? Function(LoadingState value)? dataLoading,
+    TResult? Function(TransactionDataLoadedState value)? allDataLoaded,
     TResult? Function(TransactionErrorState value)? error,
   }) {
     return initial?.call(this);
@@ -194,6 +213,7 @@ class _$InitialImpl implements Initial {
     TResult Function(Initial value)? initial,
     TResult Function(HomePageTransactionDataLoadedState value)? dataLoaded,
     TResult Function(LoadingState value)? dataLoading,
+    TResult Function(TransactionDataLoadedState value)? allDataLoaded,
     TResult Function(TransactionErrorState value)? error,
     required TResult orElse(),
   }) {
@@ -294,6 +314,9 @@ class _$HomePageTransactionDataLoadedStateImpl
     required TResult Function() initial,
     required TResult Function(List<TransactionModel> transactions) dataLoaded,
     required TResult Function() dataLoading,
+    required TResult Function(
+            List<TransactionModel> transaction, List<String> months)
+        allDataLoaded,
     required TResult Function(String errorMessage) error,
   }) {
     return dataLoaded(transactions);
@@ -305,6 +328,8 @@ class _$HomePageTransactionDataLoadedStateImpl
     TResult? Function()? initial,
     TResult? Function(List<TransactionModel> transactions)? dataLoaded,
     TResult? Function()? dataLoading,
+    TResult? Function(List<TransactionModel> transaction, List<String> months)?
+        allDataLoaded,
     TResult? Function(String errorMessage)? error,
   }) {
     return dataLoaded?.call(transactions);
@@ -316,6 +341,8 @@ class _$HomePageTransactionDataLoadedStateImpl
     TResult Function()? initial,
     TResult Function(List<TransactionModel> transactions)? dataLoaded,
     TResult Function()? dataLoading,
+    TResult Function(List<TransactionModel> transaction, List<String> months)?
+        allDataLoaded,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) {
@@ -332,6 +359,7 @@ class _$HomePageTransactionDataLoadedStateImpl
     required TResult Function(HomePageTransactionDataLoadedState value)
         dataLoaded,
     required TResult Function(LoadingState value) dataLoading,
+    required TResult Function(TransactionDataLoadedState value) allDataLoaded,
     required TResult Function(TransactionErrorState value) error,
   }) {
     return dataLoaded(this);
@@ -343,6 +371,7 @@ class _$HomePageTransactionDataLoadedStateImpl
     TResult? Function(Initial value)? initial,
     TResult? Function(HomePageTransactionDataLoadedState value)? dataLoaded,
     TResult? Function(LoadingState value)? dataLoading,
+    TResult? Function(TransactionDataLoadedState value)? allDataLoaded,
     TResult? Function(TransactionErrorState value)? error,
   }) {
     return dataLoaded?.call(this);
@@ -354,6 +383,7 @@ class _$HomePageTransactionDataLoadedStateImpl
     TResult Function(Initial value)? initial,
     TResult Function(HomePageTransactionDataLoadedState value)? dataLoaded,
     TResult Function(LoadingState value)? dataLoading,
+    TResult Function(TransactionDataLoadedState value)? allDataLoaded,
     TResult Function(TransactionErrorState value)? error,
     required TResult orElse(),
   }) {
@@ -423,6 +453,9 @@ class _$LoadingStateImpl implements LoadingState {
     required TResult Function() initial,
     required TResult Function(List<TransactionModel> transactions) dataLoaded,
     required TResult Function() dataLoading,
+    required TResult Function(
+            List<TransactionModel> transaction, List<String> months)
+        allDataLoaded,
     required TResult Function(String errorMessage) error,
   }) {
     return dataLoading();
@@ -434,6 +467,8 @@ class _$LoadingStateImpl implements LoadingState {
     TResult? Function()? initial,
     TResult? Function(List<TransactionModel> transactions)? dataLoaded,
     TResult? Function()? dataLoading,
+    TResult? Function(List<TransactionModel> transaction, List<String> months)?
+        allDataLoaded,
     TResult? Function(String errorMessage)? error,
   }) {
     return dataLoading?.call();
@@ -445,6 +480,8 @@ class _$LoadingStateImpl implements LoadingState {
     TResult Function()? initial,
     TResult Function(List<TransactionModel> transactions)? dataLoaded,
     TResult Function()? dataLoading,
+    TResult Function(List<TransactionModel> transaction, List<String> months)?
+        allDataLoaded,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) {
@@ -461,6 +498,7 @@ class _$LoadingStateImpl implements LoadingState {
     required TResult Function(HomePageTransactionDataLoadedState value)
         dataLoaded,
     required TResult Function(LoadingState value) dataLoading,
+    required TResult Function(TransactionDataLoadedState value) allDataLoaded,
     required TResult Function(TransactionErrorState value) error,
   }) {
     return dataLoading(this);
@@ -472,6 +510,7 @@ class _$LoadingStateImpl implements LoadingState {
     TResult? Function(Initial value)? initial,
     TResult? Function(HomePageTransactionDataLoadedState value)? dataLoaded,
     TResult? Function(LoadingState value)? dataLoading,
+    TResult? Function(TransactionDataLoadedState value)? allDataLoaded,
     TResult? Function(TransactionErrorState value)? error,
   }) {
     return dataLoading?.call(this);
@@ -483,6 +522,7 @@ class _$LoadingStateImpl implements LoadingState {
     TResult Function(Initial value)? initial,
     TResult Function(HomePageTransactionDataLoadedState value)? dataLoaded,
     TResult Function(LoadingState value)? dataLoading,
+    TResult Function(TransactionDataLoadedState value)? allDataLoaded,
     TResult Function(TransactionErrorState value)? error,
     required TResult orElse(),
   }) {
@@ -495,6 +535,203 @@ class _$LoadingStateImpl implements LoadingState {
 
 abstract class LoadingState implements TransactionState {
   const factory LoadingState() = _$LoadingStateImpl;
+}
+
+/// @nodoc
+abstract class _$$TransactionDataLoadedStateImplCopyWith<$Res> {
+  factory _$$TransactionDataLoadedStateImplCopyWith(
+          _$TransactionDataLoadedStateImpl value,
+          $Res Function(_$TransactionDataLoadedStateImpl) then) =
+      __$$TransactionDataLoadedStateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<TransactionModel> transaction, List<String> months});
+}
+
+/// @nodoc
+class __$$TransactionDataLoadedStateImplCopyWithImpl<$Res>
+    extends _$TransactionStateCopyWithImpl<$Res,
+        _$TransactionDataLoadedStateImpl>
+    implements _$$TransactionDataLoadedStateImplCopyWith<$Res> {
+  __$$TransactionDataLoadedStateImplCopyWithImpl(
+      _$TransactionDataLoadedStateImpl _value,
+      $Res Function(_$TransactionDataLoadedStateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? transaction = null,
+    Object? months = null,
+  }) {
+    return _then(_$TransactionDataLoadedStateImpl(
+      transaction: null == transaction
+          ? _value._transaction
+          : transaction // ignore: cast_nullable_to_non_nullable
+              as List<TransactionModel>,
+      months: null == months
+          ? _value._months
+          : months // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$TransactionDataLoadedStateImpl implements TransactionDataLoadedState {
+  const _$TransactionDataLoadedStateImpl(
+      {required final List<TransactionModel> transaction,
+      required final List<String> months})
+      : _transaction = transaction,
+        _months = months;
+
+  final List<TransactionModel> _transaction;
+  @override
+  List<TransactionModel> get transaction {
+    if (_transaction is EqualUnmodifiableListView) return _transaction;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_transaction);
+  }
+
+  final List<String> _months;
+  @override
+  List<String> get months {
+    if (_months is EqualUnmodifiableListView) return _months;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_months);
+  }
+
+  @override
+  String toString() {
+    return 'TransactionState.allDataLoaded(transaction: $transaction, months: $months)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TransactionDataLoadedStateImpl &&
+            const DeepCollectionEquality()
+                .equals(other._transaction, _transaction) &&
+            const DeepCollectionEquality().equals(other._months, _months));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_transaction),
+      const DeepCollectionEquality().hash(_months));
+
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TransactionDataLoadedStateImplCopyWith<_$TransactionDataLoadedStateImpl>
+      get copyWith => __$$TransactionDataLoadedStateImplCopyWithImpl<
+          _$TransactionDataLoadedStateImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(List<TransactionModel> transactions) dataLoaded,
+    required TResult Function() dataLoading,
+    required TResult Function(
+            List<TransactionModel> transaction, List<String> months)
+        allDataLoaded,
+    required TResult Function(String errorMessage) error,
+  }) {
+    return allDataLoaded(transaction, months);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function(List<TransactionModel> transactions)? dataLoaded,
+    TResult? Function()? dataLoading,
+    TResult? Function(List<TransactionModel> transaction, List<String> months)?
+        allDataLoaded,
+    TResult? Function(String errorMessage)? error,
+  }) {
+    return allDataLoaded?.call(transaction, months);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(List<TransactionModel> transactions)? dataLoaded,
+    TResult Function()? dataLoading,
+    TResult Function(List<TransactionModel> transaction, List<String> months)?
+        allDataLoaded,
+    TResult Function(String errorMessage)? error,
+    required TResult orElse(),
+  }) {
+    if (allDataLoaded != null) {
+      return allDataLoaded(transaction, months);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(HomePageTransactionDataLoadedState value)
+        dataLoaded,
+    required TResult Function(LoadingState value) dataLoading,
+    required TResult Function(TransactionDataLoadedState value) allDataLoaded,
+    required TResult Function(TransactionErrorState value) error,
+  }) {
+    return allDataLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Initial value)? initial,
+    TResult? Function(HomePageTransactionDataLoadedState value)? dataLoaded,
+    TResult? Function(LoadingState value)? dataLoading,
+    TResult? Function(TransactionDataLoadedState value)? allDataLoaded,
+    TResult? Function(TransactionErrorState value)? error,
+  }) {
+    return allDataLoaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(HomePageTransactionDataLoadedState value)? dataLoaded,
+    TResult Function(LoadingState value)? dataLoading,
+    TResult Function(TransactionDataLoadedState value)? allDataLoaded,
+    TResult Function(TransactionErrorState value)? error,
+    required TResult orElse(),
+  }) {
+    if (allDataLoaded != null) {
+      return allDataLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TransactionDataLoadedState implements TransactionState {
+  const factory TransactionDataLoadedState(
+      {required final List<TransactionModel> transaction,
+      required final List<String> months}) = _$TransactionDataLoadedStateImpl;
+
+  List<TransactionModel> get transaction;
+  List<String> get months;
+
+  /// Create a copy of TransactionState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$TransactionDataLoadedStateImplCopyWith<_$TransactionDataLoadedStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -571,6 +808,9 @@ class _$TransactionErrorStateImpl implements TransactionErrorState {
     required TResult Function() initial,
     required TResult Function(List<TransactionModel> transactions) dataLoaded,
     required TResult Function() dataLoading,
+    required TResult Function(
+            List<TransactionModel> transaction, List<String> months)
+        allDataLoaded,
     required TResult Function(String errorMessage) error,
   }) {
     return error(errorMessage);
@@ -582,6 +822,8 @@ class _$TransactionErrorStateImpl implements TransactionErrorState {
     TResult? Function()? initial,
     TResult? Function(List<TransactionModel> transactions)? dataLoaded,
     TResult? Function()? dataLoading,
+    TResult? Function(List<TransactionModel> transaction, List<String> months)?
+        allDataLoaded,
     TResult? Function(String errorMessage)? error,
   }) {
     return error?.call(errorMessage);
@@ -593,6 +835,8 @@ class _$TransactionErrorStateImpl implements TransactionErrorState {
     TResult Function()? initial,
     TResult Function(List<TransactionModel> transactions)? dataLoaded,
     TResult Function()? dataLoading,
+    TResult Function(List<TransactionModel> transaction, List<String> months)?
+        allDataLoaded,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) {
@@ -609,6 +853,7 @@ class _$TransactionErrorStateImpl implements TransactionErrorState {
     required TResult Function(HomePageTransactionDataLoadedState value)
         dataLoaded,
     required TResult Function(LoadingState value) dataLoading,
+    required TResult Function(TransactionDataLoadedState value) allDataLoaded,
     required TResult Function(TransactionErrorState value) error,
   }) {
     return error(this);
@@ -620,6 +865,7 @@ class _$TransactionErrorStateImpl implements TransactionErrorState {
     TResult? Function(Initial value)? initial,
     TResult? Function(HomePageTransactionDataLoadedState value)? dataLoaded,
     TResult? Function(LoadingState value)? dataLoading,
+    TResult? Function(TransactionDataLoadedState value)? allDataLoaded,
     TResult? Function(TransactionErrorState value)? error,
   }) {
     return error?.call(this);
@@ -631,6 +877,7 @@ class _$TransactionErrorStateImpl implements TransactionErrorState {
     TResult Function(Initial value)? initial,
     TResult Function(HomePageTransactionDataLoadedState value)? dataLoaded,
     TResult Function(LoadingState value)? dataLoading,
+    TResult Function(TransactionDataLoadedState value)? allDataLoaded,
     TResult Function(TransactionErrorState value)? error,
     required TResult orElse(),
   }) {
