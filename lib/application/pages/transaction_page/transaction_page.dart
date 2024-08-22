@@ -1,12 +1,17 @@
+import 'package:finance_tracker/application/pages/data_insert_page/bloc/income_expense_add_bloc.dart';
 import 'package:finance_tracker/application/pages/transaction_page/bloc/transaction_bloc.dart';
 import 'package:finance_tracker/di/di.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+import '../../../domain/models/transaction_model.dart';
 import '../../../generated/assets.dart';
 import '../../../utils/models/theme.dart';
 import '../../../utils/strings.dart';
+import '../../core/services/routing/app_router.dart';
+import '../../core/services/routing/route_utils.dart';
 import '../../core/widgets/exception_container.dart';
 import '../../core/widgets/transaction_container.dart';
 import '../home_page/bloc/home_page_bloc.dart';
@@ -22,7 +27,8 @@ class TransactionPageWrapperProvider extends StatelessWidget {
               getIt<HomePageBloc>()..add(const HomePageEvent.started())),
       BlocProvider(
           create: (_) =>
-              getIt<TransactionBloc>()..add(const TransactionRequestEvent()))
+              getIt<TransactionBloc>()..add(const TransactionRequestEvent())),
+      BlocProvider(create: (_) => getIt<IncomeExpenseAddBloc>()),
     ], child: const TransactionPage());
   }
 }
@@ -110,9 +116,92 @@ class TransactionPage extends StatelessWidget {
                                           transaction.date.toString())) ==
                                       dateFormat.format(DateFormat("MM-yyyy")
                                           .parse(state.months[index])))
-                                  .map((transaction) => TransactionContainer(
-                                        transaction: state.transaction[index],
-                                        name: 'All',
+                                  .map((transaction) => Slidable(
+                                        startActionPane: ActionPane(
+                                            extentRatio: 0.3,
+                                            motion: const StretchMotion(),
+                                            children: [
+                                              SlidableAction(
+                                                onPressed: (context) {
+                                                  AppRouter.router.push(
+                                                      PAGES.insert.screenPath,
+                                                      extra: [
+                                                        Strings.update,
+                                                        TransactionModel(
+                                                            title: transaction
+                                                                .title,
+                                                            id: transaction.id,
+                                                            category: (transaction
+                                                                        .category ==
+                                                                    Strings
+                                                                        .others)
+                                                                ? Strings
+                                                                    .addOrOthers
+                                                                : transaction
+                                                                    .category,
+                                                            type: transaction
+                                                                .type,
+                                                            amount: transaction
+                                                                .amount,
+                                                            description:
+                                                                transaction
+                                                                    .description,
+                                                            date: transaction
+                                                                .date),
+                                                        PAGES.bottom.screenPath
+                                                      ]);
+                                                },
+                                                icon: Icons.update_rounded,
+                                                backgroundColor:
+                                                    Theme.of(context)
+                                                        .colorScheme
+                                                        .primary,
+                                                label: "Update",
+                                              )
+                                            ]),
+                                        endActionPane: ActionPane(
+                                            extentRatio: 0.3,
+                                            motion: const StretchMotion(),
+                                            children: [
+                                              SlidableAction(
+                                                onPressed: (context) {
+                                                  context
+                                                      .read<
+                                                          IncomeExpenseAddBloc>()
+                                                      .add(DeleteEvent(
+                                                          id: transaction.id!,
+                                                          type: transaction
+                                                              .type!));
+                                                  if (state.isSelect1) {
+                                                    context
+                                                        .read<TransactionBloc>()
+                                                        .add(
+                                                            const AllIncomesRequestEvent());
+                                                  } else if (state.isSelect2) {
+                                                    context
+                                                        .read<TransactionBloc>()
+                                                        .add(
+                                                            const AllExpensesRequestEvent());
+                                                  } else {
+                                                    context
+                                                        .read<TransactionBloc>()
+                                                        .add(
+                                                            const TransactionRequestEvent());
+                                                  }
+                                                  context
+                                                      .read<HomePageBloc>()
+                                                      .add(const HomePageEvent
+                                                          .started());
+                                                },
+                                                icon: Icons.delete_rounded,
+                                                backgroundColor:
+                                                    Colors.red[700]!,
+                                                label: "Delete",
+                                              )
+                                            ]),
+                                        child: TransactionContainer(
+                                          transaction: transaction,
+                                        ),
                                       ))
                                   .toList(),
                             )
