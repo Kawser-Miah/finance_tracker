@@ -14,7 +14,8 @@ class CategoryDetailsRepositoryIml extends CategoryDetailsRepository {
   CategoryDetailsRepositoryIml(this.db);
 
   @override
-  Future<Either<Failure, TransactionByMonthModel>> getTransactionGroupByMonth(String category) async {
+  Future<Either<Failure, TransactionByMonthModel>> getTransactionGroupByMonth(
+      String category) async {
     try {
       List<String> months = [];
       List<TransactionModel> transactions = [];
@@ -24,10 +25,14 @@ class CategoryDetailsRepositoryIml extends CategoryDetailsRepository {
       final expenses = await db.expenseDao.getExpenseByCategory(category);
       if (incomeMonth.isNotEmpty || expenseMonth.isNotEmpty) {
         for (var i in incomeMonth) {
-          months.add(i);
+          if (!months.contains(i)) {
+            months.add(i);
+          }
         }
         for (var i in expenseMonth) {
-          months.add(i);
+          if (!months.contains(i)) {
+            months.add(i);
+          }
         }
         for (var i in incomes) {
           transactions.add(TransactionModel(
