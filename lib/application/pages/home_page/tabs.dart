@@ -4,8 +4,13 @@ import 'package:finance_tracker/di/di.dart';
 import 'package:finance_tracker/utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import '../../../domain/models/transaction_model.dart';
+import '../../core/services/routing/app_router.dart';
+import '../../core/services/routing/route_utils.dart';
 import '../../core/widgets/exception_container.dart';
 import '../transaction_page/bloc/transaction_bloc.dart';
+import 'bloc/home_page_bloc.dart';
 
 class Tabs extends StatelessWidget {
   final String name;
@@ -51,9 +56,62 @@ class _CustomTabState extends State<CustomTab> {
           return ListView.builder(
               itemCount: state.transactions.length,
               itemBuilder: (context, index) {
-                return TransactionContainer(
-                  transaction: state.transactions[index],
-                  name: widget.name,
+                final transaction = state.transactions[index];
+                return Slidable(
+                  startActionPane: ActionPane(
+                      extentRatio: 0.3,
+                      motion: const StretchMotion(),
+                      children: [
+                        SlidableAction(
+                          onPressed: (context) {
+                            AppRouter.router
+                                .push(PAGES.insert.screenPath, extra: [
+                              Strings.update,
+                              TransactionModel(
+                                  title: transaction.title,
+                                  id: transaction.id,
+                                  category:
+                                      (transaction.category == Strings.others)
+                                          ? Strings.addOrOthers
+                                          : transaction.category,
+                                  type: transaction.type,
+                                  amount: transaction.amount,
+                                  description: transaction.description,
+                                  date: transaction.date),
+                              PAGES.bottom.screenPath
+                            ]);
+                          },
+                          icon: Icons.update_rounded,
+                          backgroundColor:
+                              Theme.of(context).colorScheme.primary,
+                          label: "Update",
+                        )
+                      ]),
+                  endActionPane: ActionPane(
+                      extentRatio: 0.3,
+                      motion: const StretchMotion(),
+                      children: [
+                        SlidableAction(
+                          onPressed: (context) {
+                            context.read<IncomeExpenseAddBloc>().add(
+                                DeleteEvent(
+                                    id: transaction.id!,
+                                    type: transaction.type!));
+                            context.read<TransactionBloc>().add(
+                                HomePageTransactionDataRequestEvent(
+                                    widget.name));
+                            context
+                                .read<HomePageBloc>()
+                                .add(const HomePageEvent.started());
+                          },
+                          icon: Icons.delete_rounded,
+                          backgroundColor: Colors.red[700]!,
+                          label: "Delete",
+                        )
+                      ]),
+                  child: TransactionContainer(
+                    transaction: state.transactions[index],
+                  ),
                 );
               });
         }
