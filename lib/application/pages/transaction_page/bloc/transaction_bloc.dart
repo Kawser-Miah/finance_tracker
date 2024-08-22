@@ -33,7 +33,10 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
           (l) => emit(const TransactionErrorState(
               errorMessage: "Did not found any data!")),
           (r) => emit(TransactionDataLoadedState(
-              transaction: r.transactions!, months: r.months!)));
+              transaction: r.transactions!,
+              months: r.months!,
+              isSelect1: false,
+              isSelect2: false)));
     });
 
     on<AllIncomesRequestEvent>((event, emit) async {
@@ -44,7 +47,10 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
           (l) => emit(const TransactionErrorState(
               errorMessage: "Did not found any data!")),
           (r) => emit(TransactionDataLoadedState(
-              transaction: r.transactions!, months: r.months!)));
+              transaction: r.transactions!,
+              months: r.months!,
+              isSelect1: true,
+              isSelect2: false)));
     });
 
     on<AllExpensesRequestEvent>((event, emit) async {
@@ -55,7 +61,10 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
           (l) => emit(const TransactionErrorState(
               errorMessage: "Did not found any data!")),
           (r) => emit(TransactionDataLoadedState(
-              transaction: r.transactions!, months: r.months!)));
+              transaction: r.transactions!,
+              months: r.months!,
+              isSelect1: false,
+              isSelect2: true)));
     });
   }
 }
