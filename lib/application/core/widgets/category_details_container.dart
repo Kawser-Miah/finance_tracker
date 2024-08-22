@@ -74,15 +74,13 @@ class CategoryDetailsContainer extends StatelessWidget {
           showDialog(
               context: context,
               builder: (context) => AlertDialog(
-                    title:
-                        Text("Type: ${transaction.type}"),
+                    title: Text("Type: ${transaction.type}"),
                     content: Text(
                       "Category: ${transaction.category}\n"
-                          "${transaction.type} Title: ${transaction.title}\n"
-                          "Date: ${DateFormat("d MMMM yyyy").format(
-                          DateTime.parse(transaction.date.toString()))}\n\n"
-                          "Amount: ${transaction.amount}.tk\n\n"
-                          "Description:\n${transaction.description}",
+                      "${transaction.type} Title: ${transaction.title}\n"
+                      "Date: ${DateFormat("d MMMM yyyy").format(DateTime.parse(transaction.date.toString()))}\n\n"
+                      "Amount: ${transaction.amount}.tk\n\n"
+                      "Description:\n${transaction.description}",
                       style: AppTheme.lightBodyText
                           .copyWith(fontWeight: FontWeight.w500),
                     ),
@@ -141,7 +139,7 @@ class CategoryDetailsContainer extends StatelessWidget {
               SizedBox(
                   width: MediaQuery.of(context).size.width * 0.22,
                   child: Text(
-                    "Tk${transaction.amount}",
+                    "Tk${transaction.amount?.toStringAsFixed(2)}",
                     style: AppTheme.lightBodyText,
                   ))
             ],

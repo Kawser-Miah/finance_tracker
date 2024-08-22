@@ -244,7 +244,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               style: const TextStyle(fontSize: 16),
             ),
             Text(
-              "Tk $amount",
+              "Tk ${amount?.toStringAsFixed(2)}",
               style: AppTheme.lightBodyText,
             )
           ],

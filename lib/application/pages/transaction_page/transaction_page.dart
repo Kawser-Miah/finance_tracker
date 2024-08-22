@@ -255,7 +255,7 @@ class _BoxState extends State<Box> {
                 style: AppTheme.lightBodyText,
               ),
               Text(
-                "Tk${widget.totalIncome - widget.totalExpense}",
+                "Tk${(widget.totalIncome - widget.totalExpense).toStringAsFixed(2)}",
                 style: AppTheme.lightHeadingText,
               )
             ],
@@ -304,7 +304,7 @@ class _BoxState extends State<Box> {
                               : Colors.black),
                     ),
                     Text(
-                      "Tk${widget.totalIncome}",
+                      "Tk${widget.totalIncome.toStringAsFixed(2)}",
                       style: AppTheme.lightHeadingText.copyWith(
                           color: (isSelect1)
                               ? Theme.of(context).colorScheme.onPrimary
@@ -354,7 +354,7 @@ class _BoxState extends State<Box> {
                               : Colors.black),
                     ),
                     Text(
-                      "Tk${widget.totalExpense}",
+                      "Tk${widget.totalExpense.toStringAsFixed(2)}",
                       style: AppTheme.lightHeadingText.copyWith(
                           color: (isSelect2)
                               ? Theme.of(context).colorScheme.onPrimary

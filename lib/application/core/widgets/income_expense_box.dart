@@ -50,7 +50,7 @@ class IncomeExpenseBox extends StatelessWidget {
                       )
                     ],
                   ),
-                  Text("Tk$totalIncome",
+                  Text("Tk${totalIncome?.toStringAsFixed(2)}",
                       style: AppTheme.lightHeadingText.copyWith(
                           color: Theme.of(context).colorScheme.onPrimary))
                 ],
@@ -80,7 +80,7 @@ class IncomeExpenseBox extends StatelessWidget {
                       )
                     ],
                   ),
-                  Text("Tk$totalExpense",
+                  Text("Tk${totalExpense?.toStringAsFixed(2)}",
                       style: AppTheme.lightHeadingText.copyWith(
                           color: Theme.of(context).colorScheme.onPrimary))
                 ],
