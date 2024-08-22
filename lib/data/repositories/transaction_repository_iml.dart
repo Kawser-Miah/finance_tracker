@@ -164,10 +164,14 @@ class TransactionRepositoryIml extends TransactionRepository {
       final expenses = await db.expenseDao.getAllExpense();
       if (incomeMonth.isNotEmpty || expenseMonth.isNotEmpty) {
         for (var i in incomeMonth) {
-          months.add(i);
+          if (!months.contains(i)) {
+            months.add(i);
+          }
         }
         for (var i in expenseMonth) {
-          months.add(i);
+          if (!months.contains(i)) {
+            months.add(i);
+          }
         }
         for (var i in incomes) {
           transactions.add(TransactionModel(
