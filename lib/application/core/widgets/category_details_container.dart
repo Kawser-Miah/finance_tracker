@@ -75,9 +75,14 @@ class CategoryDetailsContainer extends StatelessWidget {
               context: context,
               builder: (context) => AlertDialog(
                     title:
-                        Text("${transaction.type} Title: ${transaction.title}"),
+                        Text("Type: ${transaction.type}"),
                     content: Text(
-                      "ID: ${transaction.id}\nDescription:\n${transaction.description}",
+                      "Category: ${transaction.category}\n"
+                          "${transaction.type} Title: ${transaction.title}\n"
+                          "Date: ${DateFormat("d MMMM yyyy").format(
+                          DateTime.parse(transaction.date.toString()))}\n\n"
+                          "Amount: ${transaction.amount}.tk\n\n"
+                          "Description:\n${transaction.description}",
                       style: AppTheme.lightBodyText
                           .copyWith(fontWeight: FontWeight.w500),
                     ),
