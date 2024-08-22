@@ -21,8 +21,8 @@ mixin _$TransactionState {
     required TResult Function() initial,
     required TResult Function(List<TransactionModel> transactions) dataLoaded,
     required TResult Function() dataLoading,
-    required TResult Function(
-            List<TransactionModel> transaction, List<String> months)
+    required TResult Function(List<TransactionModel> transaction,
+            List<String> months, bool isSelect1, bool isSelect2)
         allDataLoaded,
     required TResult Function(String errorMessage) error,
   }) =>
@@ -32,7 +32,8 @@ mixin _$TransactionState {
     TResult? Function()? initial,
     TResult? Function(List<TransactionModel> transactions)? dataLoaded,
     TResult? Function()? dataLoading,
-    TResult? Function(List<TransactionModel> transaction, List<String> months)?
+    TResult? Function(List<TransactionModel> transaction, List<String> months,
+            bool isSelect1, bool isSelect2)?
         allDataLoaded,
     TResult? Function(String errorMessage)? error,
   }) =>
@@ -42,7 +43,8 @@ mixin _$TransactionState {
     TResult Function()? initial,
     TResult Function(List<TransactionModel> transactions)? dataLoaded,
     TResult Function()? dataLoading,
-    TResult Function(List<TransactionModel> transaction, List<String> months)?
+    TResult Function(List<TransactionModel> transaction, List<String> months,
+            bool isSelect1, bool isSelect2)?
         allDataLoaded,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
@@ -144,8 +146,8 @@ class _$InitialImpl implements Initial {
     required TResult Function() initial,
     required TResult Function(List<TransactionModel> transactions) dataLoaded,
     required TResult Function() dataLoading,
-    required TResult Function(
-            List<TransactionModel> transaction, List<String> months)
+    required TResult Function(List<TransactionModel> transaction,
+            List<String> months, bool isSelect1, bool isSelect2)
         allDataLoaded,
     required TResult Function(String errorMessage) error,
   }) {
@@ -158,7 +160,8 @@ class _$InitialImpl implements Initial {
     TResult? Function()? initial,
     TResult? Function(List<TransactionModel> transactions)? dataLoaded,
     TResult? Function()? dataLoading,
-    TResult? Function(List<TransactionModel> transaction, List<String> months)?
+    TResult? Function(List<TransactionModel> transaction, List<String> months,
+            bool isSelect1, bool isSelect2)?
         allDataLoaded,
     TResult? Function(String errorMessage)? error,
   }) {
@@ -171,7 +174,8 @@ class _$InitialImpl implements Initial {
     TResult Function()? initial,
     TResult Function(List<TransactionModel> transactions)? dataLoaded,
     TResult Function()? dataLoading,
-    TResult Function(List<TransactionModel> transaction, List<String> months)?
+    TResult Function(List<TransactionModel> transaction, List<String> months,
+            bool isSelect1, bool isSelect2)?
         allDataLoaded,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
@@ -314,8 +318,8 @@ class _$HomePageTransactionDataLoadedStateImpl
     required TResult Function() initial,
     required TResult Function(List<TransactionModel> transactions) dataLoaded,
     required TResult Function() dataLoading,
-    required TResult Function(
-            List<TransactionModel> transaction, List<String> months)
+    required TResult Function(List<TransactionModel> transaction,
+            List<String> months, bool isSelect1, bool isSelect2)
         allDataLoaded,
     required TResult Function(String errorMessage) error,
   }) {
@@ -328,7 +332,8 @@ class _$HomePageTransactionDataLoadedStateImpl
     TResult? Function()? initial,
     TResult? Function(List<TransactionModel> transactions)? dataLoaded,
     TResult? Function()? dataLoading,
-    TResult? Function(List<TransactionModel> transaction, List<String> months)?
+    TResult? Function(List<TransactionModel> transaction, List<String> months,
+            bool isSelect1, bool isSelect2)?
         allDataLoaded,
     TResult? Function(String errorMessage)? error,
   }) {
@@ -341,7 +346,8 @@ class _$HomePageTransactionDataLoadedStateImpl
     TResult Function()? initial,
     TResult Function(List<TransactionModel> transactions)? dataLoaded,
     TResult Function()? dataLoading,
-    TResult Function(List<TransactionModel> transaction, List<String> months)?
+    TResult Function(List<TransactionModel> transaction, List<String> months,
+            bool isSelect1, bool isSelect2)?
         allDataLoaded,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
@@ -453,8 +459,8 @@ class _$LoadingStateImpl implements LoadingState {
     required TResult Function() initial,
     required TResult Function(List<TransactionModel> transactions) dataLoaded,
     required TResult Function() dataLoading,
-    required TResult Function(
-            List<TransactionModel> transaction, List<String> months)
+    required TResult Function(List<TransactionModel> transaction,
+            List<String> months, bool isSelect1, bool isSelect2)
         allDataLoaded,
     required TResult Function(String errorMessage) error,
   }) {
@@ -467,7 +473,8 @@ class _$LoadingStateImpl implements LoadingState {
     TResult? Function()? initial,
     TResult? Function(List<TransactionModel> transactions)? dataLoaded,
     TResult? Function()? dataLoading,
-    TResult? Function(List<TransactionModel> transaction, List<String> months)?
+    TResult? Function(List<TransactionModel> transaction, List<String> months,
+            bool isSelect1, bool isSelect2)?
         allDataLoaded,
     TResult? Function(String errorMessage)? error,
   }) {
@@ -480,7 +487,8 @@ class _$LoadingStateImpl implements LoadingState {
     TResult Function()? initial,
     TResult Function(List<TransactionModel> transactions)? dataLoaded,
     TResult Function()? dataLoading,
-    TResult Function(List<TransactionModel> transaction, List<String> months)?
+    TResult Function(List<TransactionModel> transaction, List<String> months,
+            bool isSelect1, bool isSelect2)?
         allDataLoaded,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
@@ -544,7 +552,11 @@ abstract class _$$TransactionDataLoadedStateImplCopyWith<$Res> {
           $Res Function(_$TransactionDataLoadedStateImpl) then) =
       __$$TransactionDataLoadedStateImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<TransactionModel> transaction, List<String> months});
+  $Res call(
+      {List<TransactionModel> transaction,
+      List<String> months,
+      bool isSelect1,
+      bool isSelect2});
 }
 
 /// @nodoc
@@ -564,6 +576,8 @@ class __$$TransactionDataLoadedStateImplCopyWithImpl<$Res>
   $Res call({
     Object? transaction = null,
     Object? months = null,
+    Object? isSelect1 = null,
+    Object? isSelect2 = null,
   }) {
     return _then(_$TransactionDataLoadedStateImpl(
       transaction: null == transaction
@@ -574,6 +588,14 @@ class __$$TransactionDataLoadedStateImplCopyWithImpl<$Res>
           ? _value._months
           : months // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      isSelect1: null == isSelect1
+          ? _value.isSelect1
+          : isSelect1 // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isSelect2: null == isSelect2
+          ? _value.isSelect2
+          : isSelect2 // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -583,7 +605,9 @@ class __$$TransactionDataLoadedStateImplCopyWithImpl<$Res>
 class _$TransactionDataLoadedStateImpl implements TransactionDataLoadedState {
   const _$TransactionDataLoadedStateImpl(
       {required final List<TransactionModel> transaction,
-      required final List<String> months})
+      required final List<String> months,
+      required this.isSelect1,
+      required this.isSelect2})
       : _transaction = transaction,
         _months = months;
 
@@ -604,8 +628,13 @@ class _$TransactionDataLoadedStateImpl implements TransactionDataLoadedState {
   }
 
   @override
+  final bool isSelect1;
+  @override
+  final bool isSelect2;
+
+  @override
   String toString() {
-    return 'TransactionState.allDataLoaded(transaction: $transaction, months: $months)';
+    return 'TransactionState.allDataLoaded(transaction: $transaction, months: $months, isSelect1: $isSelect1, isSelect2: $isSelect2)';
   }
 
   @override
@@ -615,14 +644,20 @@ class _$TransactionDataLoadedStateImpl implements TransactionDataLoadedState {
             other is _$TransactionDataLoadedStateImpl &&
             const DeepCollectionEquality()
                 .equals(other._transaction, _transaction) &&
-            const DeepCollectionEquality().equals(other._months, _months));
+            const DeepCollectionEquality().equals(other._months, _months) &&
+            (identical(other.isSelect1, isSelect1) ||
+                other.isSelect1 == isSelect1) &&
+            (identical(other.isSelect2, isSelect2) ||
+                other.isSelect2 == isSelect2));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_transaction),
-      const DeepCollectionEquality().hash(_months));
+      const DeepCollectionEquality().hash(_months),
+      isSelect1,
+      isSelect2);
 
   /// Create a copy of TransactionState
   /// with the given fields replaced by the non-null parameter values.
@@ -639,12 +674,12 @@ class _$TransactionDataLoadedStateImpl implements TransactionDataLoadedState {
     required TResult Function() initial,
     required TResult Function(List<TransactionModel> transactions) dataLoaded,
     required TResult Function() dataLoading,
-    required TResult Function(
-            List<TransactionModel> transaction, List<String> months)
+    required TResult Function(List<TransactionModel> transaction,
+            List<String> months, bool isSelect1, bool isSelect2)
         allDataLoaded,
     required TResult Function(String errorMessage) error,
   }) {
-    return allDataLoaded(transaction, months);
+    return allDataLoaded(transaction, months, isSelect1, isSelect2);
   }
 
   @override
@@ -653,11 +688,12 @@ class _$TransactionDataLoadedStateImpl implements TransactionDataLoadedState {
     TResult? Function()? initial,
     TResult? Function(List<TransactionModel> transactions)? dataLoaded,
     TResult? Function()? dataLoading,
-    TResult? Function(List<TransactionModel> transaction, List<String> months)?
+    TResult? Function(List<TransactionModel> transaction, List<String> months,
+            bool isSelect1, bool isSelect2)?
         allDataLoaded,
     TResult? Function(String errorMessage)? error,
   }) {
-    return allDataLoaded?.call(transaction, months);
+    return allDataLoaded?.call(transaction, months, isSelect1, isSelect2);
   }
 
   @override
@@ -666,13 +702,14 @@ class _$TransactionDataLoadedStateImpl implements TransactionDataLoadedState {
     TResult Function()? initial,
     TResult Function(List<TransactionModel> transactions)? dataLoaded,
     TResult Function()? dataLoading,
-    TResult Function(List<TransactionModel> transaction, List<String> months)?
+    TResult Function(List<TransactionModel> transaction, List<String> months,
+            bool isSelect1, bool isSelect2)?
         allDataLoaded,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) {
     if (allDataLoaded != null) {
-      return allDataLoaded(transaction, months);
+      return allDataLoaded(transaction, months, isSelect1, isSelect2);
     }
     return orElse();
   }
@@ -722,10 +759,14 @@ class _$TransactionDataLoadedStateImpl implements TransactionDataLoadedState {
 abstract class TransactionDataLoadedState implements TransactionState {
   const factory TransactionDataLoadedState(
       {required final List<TransactionModel> transaction,
-      required final List<String> months}) = _$TransactionDataLoadedStateImpl;
+      required final List<String> months,
+      required final bool isSelect1,
+      required final bool isSelect2}) = _$TransactionDataLoadedStateImpl;
 
   List<TransactionModel> get transaction;
   List<String> get months;
+  bool get isSelect1;
+  bool get isSelect2;
 
   /// Create a copy of TransactionState
   /// with the given fields replaced by the non-null parameter values.
@@ -808,8 +849,8 @@ class _$TransactionErrorStateImpl implements TransactionErrorState {
     required TResult Function() initial,
     required TResult Function(List<TransactionModel> transactions) dataLoaded,
     required TResult Function() dataLoading,
-    required TResult Function(
-            List<TransactionModel> transaction, List<String> months)
+    required TResult Function(List<TransactionModel> transaction,
+            List<String> months, bool isSelect1, bool isSelect2)
         allDataLoaded,
     required TResult Function(String errorMessage) error,
   }) {
@@ -822,7 +863,8 @@ class _$TransactionErrorStateImpl implements TransactionErrorState {
     TResult? Function()? initial,
     TResult? Function(List<TransactionModel> transactions)? dataLoaded,
     TResult? Function()? dataLoading,
-    TResult? Function(List<TransactionModel> transaction, List<String> months)?
+    TResult? Function(List<TransactionModel> transaction, List<String> months,
+            bool isSelect1, bool isSelect2)?
         allDataLoaded,
     TResult? Function(String errorMessage)? error,
   }) {
@@ -835,7 +877,8 @@ class _$TransactionErrorStateImpl implements TransactionErrorState {
     TResult Function()? initial,
     TResult Function(List<TransactionModel> transactions)? dataLoaded,
     TResult Function()? dataLoading,
-    TResult Function(List<TransactionModel> transaction, List<String> months)?
+    TResult Function(List<TransactionModel> transaction, List<String> months,
+            bool isSelect1, bool isSelect2)?
         allDataLoaded,
     TResult Function(String errorMessage)? error,
     required TResult orElse(),
