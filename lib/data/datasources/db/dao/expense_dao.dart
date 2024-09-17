@@ -1,6 +1,7 @@
 import 'package:finance_tracker/domain/models/entity_model/expense_entity_model.dart';
 import 'package:floor/floor.dart';
 
+import '../../../../domain/models/analysis_model.dart';
 import '../../../../domain/models/total_balance.dart';
 
 @dao
@@ -49,6 +50,9 @@ abstract class ExpenseDao {
   @Query(
       "SELECT DISTINCT strftime('%m-%Y', date) AS month_year FROM expenses ORDER BY date DESC")
   Future<List<String>> getAllMonthYear();
+  
+  @Query(" SELECT strftime('%Y-%m', date) as time,  SUM(expense) AS total_amount FROM expenses WHERE strftime('%Y', date) = strftime('%Y', 'now','localtime') GROUP by strftime('%Y-%m', date) ORDER by date DESC")
+  Future<List<SingleAnalysis>> getAnalysisDataByMonth();
 
   @update
   Future<void> updateExpense(ExpenseEntityModel expense);

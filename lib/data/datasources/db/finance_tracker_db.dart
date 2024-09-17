@@ -8,9 +8,11 @@ import 'package:floor/floor.dart';
 import 'package:sqflite/sqflite.dart' as sqflite;
 import 'package:injectable/injectable.dart';
 
+import '../../../domain/models/analysis_model.dart';
+
 part 'finance_tracker_db.g.dart';
 
-@Database(version: 1, entities: [IncomeEntityModel, ExpenseEntityModel, BestExpense])
+@Database(version: 1, entities: [IncomeEntityModel, ExpenseEntityModel, BestExpense,SingleAnalysis])
 abstract class FinanceTrackerDB extends FloorDatabase {
   @injectable
   IncomeDao get incomeDao;

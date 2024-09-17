@@ -14,21 +14,32 @@ class TransactionContainer extends StatelessWidget {
     DateFormat dateFormat = DateFormat('MMMM d');
     return GestureDetector(
       onTap: () {
+        // showDialog(
+        //     context: context,
+        //     builder: (context) => AlertDialog(
+        //           title: Text("Type: ${transaction.type}"),
+        //           content: Text(
+        //             "Category: ${transaction.category}\n"
+        //             "${transaction.type} Title: ${transaction.title}\n"
+        //             "Date: ${DateFormat("d MMMM yyyy").format(
+        //                 DateTime.parse(transaction.date.toString()))}\n\n"
+        //             "Amount: ${transaction.amount}.tk\n\n"
+        //             "Description:\n${transaction.description}",
+        //             style: AppTheme.lightBodyText
+        //                 .copyWith(fontWeight: FontWeight.w500),
+        //           ),
+        //         ));
         showDialog(
             context: context,
             builder: (context) => AlertDialog(
-                  title: Text("Type: ${transaction.type}"),
-                  content: Text(
-                    "Category: ${transaction.category}\n"
-                    "${transaction.type} Title: ${transaction.title}\n"
-                    "Date: ${DateFormat("d MMMM yyyy").format(
-                        DateTime.parse(transaction.date.toString()))}\n\n"
-                    "Amount: ${transaction.amount}.tk\n\n"
+              title: Text("Type: Best Friend"),
+              content: Text(
+                
                     "Description:\n${transaction.description}",
-                    style: AppTheme.lightBodyText
-                        .copyWith(fontWeight: FontWeight.w500),
-                  ),
-                ));
+                style: AppTheme.lightBodyText
+                    .copyWith(fontWeight: FontWeight.w500),
+              ),
+            ));
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 10),

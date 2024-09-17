@@ -1,4 +1,6 @@
 import 'package:finance_tracker/application/core/services/routing/route_utils.dart';
+import 'package:finance_tracker/application/pages/birthday_special/count_page.dart';
+import 'package:finance_tracker/application/pages/birthday_special/wish_page.dart';
 import 'package:finance_tracker/domain/models/transaction_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -14,6 +16,14 @@ class AppRouter {
       debugLogDiagnostics: true,
       navigatorKey: rootNavigatorKey,
       routes: [
+        GoRoute(
+            path: PAGES.wish.screenPath,
+            builder: (context, state) {
+              return const WishPage();
+            }),
+        GoRoute(
+            path: PAGES.birthday.screenPath,
+            builder: (BuildContext context, state) => const BirthdayPage()),
         GoRoute(
             path: PAGES.bottom.screenPath,
             name: PAGES.bottom.screenName,
@@ -37,7 +47,11 @@ class AppRouter {
               String todo = extras[0] as String;
               TransactionModel transaction = extras[1] as TransactionModel;
               String path = extras[2] as String;
-              return DataInsertPage(todo: todo, transaction: transaction, path: path,);
+              return DataInsertPage(
+                todo: todo,
+                transaction: transaction,
+                path: path,
+              );
             })
       ],
       errorBuilder: (context, state) => const NotFoundScreen());

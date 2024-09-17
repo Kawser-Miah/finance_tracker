@@ -103,6 +103,8 @@ class _$FinanceTrackerDB extends FinanceTrackerDB {
             'CREATE TABLE IF NOT EXISTS `expenses` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `category` TEXT, `type` TEXT, `expenseTitle` TEXT, `expense` REAL, `description` TEXT, `date` TEXT)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `expenses` (`category` TEXT NOT NULL, `total_expense` REAL NOT NULL, PRIMARY KEY (`category`))');
+        await database.execute(
+            'CREATE TABLE IF NOT EXISTS `SingleAnalysis` (`time` TEXT NOT NULL, `total_amount` REAL NOT NULL, PRIMARY KEY (`time`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -462,6 +464,15 @@ class _$ExpenseDao extends ExpenseDao {
     return _queryAdapter.queryList(
         'SELECT DISTINCT strftime(\'%m-%Y\', date) AS month_year FROM expenses ORDER BY date DESC',
         mapper: (Map<String, Object?> row) => row.values.first as String);
+  }
+
+  @override
+  Future<List<SingleAnalysis>> getAnalysisDataByMonth() async {
+    return _queryAdapter.queryList(
+        'SELECT strftime(\'%Y-%m\', date) as time,  SUM(expense) AS total_amount FROM expenses WHERE strftime(\'%Y\', date) = strftime(\'%Y\', \'now\',\'localtime\') GROUP by strftime(\'%Y-%m\', date) ORDER by date DESC',
+        mapper: (Map<String, Object?> row) => SingleAnalysis(
+            time: row['time'] as String,
+            total_amount: row['total_amount'] as double));
   }
 
   @override

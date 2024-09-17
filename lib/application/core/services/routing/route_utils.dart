@@ -1,10 +1,14 @@
-enum PAGES { bottom, categoryDetails, insert }
+enum PAGES { bottom, categoryDetails, insert, birthday,wish }
 
 extension AppPageExtension on PAGES {
   String get screenPath {
     switch (this) {
-      case PAGES.bottom:
+      case PAGES.birthday:
         return "/";
+      case PAGES.wish:
+        return "/wish";
+      case PAGES.bottom:
+        return "/bottom";
       case PAGES.categoryDetails:
         return "/categoryDetailsPage";
       case PAGES.insert:

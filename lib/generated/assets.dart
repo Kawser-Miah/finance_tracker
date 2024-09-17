@@ -16,6 +16,11 @@ class Assets {
   static const String categoryRent = 'assets/category/rent.svg';
   static const String categorySavings = 'assets/category/savings.svg';
   static const String categoryTransport = 'assets/category/transport.svg';
+  static const String fontAnimatedTrophy = 'assets/font/animated_trophy.gif';
+  static const String fontBirthday = 'assets/font/birthday.png';
+  static const String fontBirthday1 = 'assets/font/Birthday1.mp3';
+  static const String fontBirthday2 = 'assets/font/birthday-2.png';
+  static const String fontPlaypenSansRegular = 'assets/font/PlaypenSans-Regular.ttf';
   static const String homeCar = 'assets/home/Car.svg';
   static const String homeExpense = 'assets/home/Expense.svg';
   static const String homeIncome = 'assets/home/Income.svg';
