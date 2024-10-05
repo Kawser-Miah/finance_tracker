@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../widgets/empty_placeholder_screen.dart';
 
 class NotFoundScreen extends StatelessWidget {

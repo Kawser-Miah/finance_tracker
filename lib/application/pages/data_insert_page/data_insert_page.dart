@@ -2,7 +2,6 @@ import 'package:finance_tracker/application/pages/data_insert_page/all_field.dar
 import 'package:finance_tracker/application/pages/data_insert_page/bloc/income_expense_add_bloc.dart';
 import 'package:finance_tracker/di/di.dart';
 import 'package:finance_tracker/domain/models/transaction_model.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

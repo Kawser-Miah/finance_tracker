@@ -7,12 +7,12 @@ import 'package:finance_tracker/utils/models/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+
 import '../../../utils/strings.dart';
 import '../../core/services/routing/route_utils.dart';
 import '../../core/widgets/category_details_container.dart';
 import '../../core/widgets/exception_container.dart';
 import '../../core/widgets/income_expense_box.dart';
-
 import '../home_page/bloc/home_page_bloc.dart';
 
 class CategoryDetailsPage extends StatelessWidget {

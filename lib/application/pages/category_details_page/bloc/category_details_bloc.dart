@@ -4,8 +4,9 @@ import 'package:injectable/injectable.dart';
 
 import 'category_details_event.dart';
 import 'category_details_state.dart';
-export 'category_details_state.dart';
+
 export 'category_details_event.dart';
+export 'category_details_state.dart';
 
 @injectable
 class CategoryDetailsBloc

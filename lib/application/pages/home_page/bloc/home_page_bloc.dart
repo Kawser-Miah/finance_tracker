@@ -5,8 +5,9 @@ import 'package:injectable/injectable.dart';
 import '../../../../domain/models/total_balance.dart';
 import 'home_page_event.dart';
 import 'home_page_state.dart';
-export 'home_page_state.dart';
+
 export 'home_page_event.dart';
+export 'home_page_state.dart';
 
 @injectable
 class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {

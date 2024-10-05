@@ -4,10 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../domain/usecases/transaction_usecase.dart';
-import 'transaction_state.dart';
 import 'transaction_event.dart';
-export 'transaction_state.dart';
+import 'transaction_state.dart';
+
 export 'transaction_event.dart';
+export 'transaction_state.dart';
 
 @injectable
 class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {

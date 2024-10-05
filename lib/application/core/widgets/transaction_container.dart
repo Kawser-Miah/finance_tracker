@@ -1,9 +1,10 @@
 import 'package:finance_tracker/domain/models/transaction_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
+
 import '../../../generated/assets.dart';
 import '../../../utils/models/theme.dart';
-import 'package:intl/intl.dart';
 
 class TransactionContainer extends StatelessWidget {
   final TransactionModel transaction;

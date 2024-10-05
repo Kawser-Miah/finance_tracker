@@ -3,13 +3,13 @@ import 'package:finance_tracker/application/pages/data_insert_page/bloc/income_e
 import 'package:finance_tracker/application/pages/home_page/bloc/home_page_bloc.dart';
 import 'package:finance_tracker/domain/models/transaction_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
+
 import '../../../generated/assets.dart';
 import '../../../utils/models/theme.dart';
-import 'package:intl/intl.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../utils/strings.dart';
 import '../services/routing/app_router.dart';
 import '../services/routing/route_utils.dart';

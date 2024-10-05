@@ -1,8 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../../../domain/usecases/category_usecase.dart';
 import 'category_event.dart';
 import 'category_state.dart';
+
 export 'category_event.dart';
 export 'category_state.dart';
 

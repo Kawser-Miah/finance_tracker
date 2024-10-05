@@ -4,8 +4,9 @@ import 'package:finance_tracker/data/exceptions/exception.dart';
 import 'package:finance_tracker/domain/failures/failures.dart';
 import 'package:finance_tracker/domain/models/transaction_by_month_model.dart';
 import 'package:finance_tracker/domain/models/transaction_model.dart';
-import '../../domain/repositories/transaction_repository.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../domain/repositories/transaction_repository.dart';
 
 @LazySingleton(as: TransactionRepository)
 class TransactionRepositoryIml extends TransactionRepository {

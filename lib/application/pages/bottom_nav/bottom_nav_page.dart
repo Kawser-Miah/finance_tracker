@@ -1,4 +1,3 @@
-import 'package:finance_tracker/application/pages/analysis_page/analysis_page.dart';
 import 'package:finance_tracker/application/pages/bottom_nav/bloc/bottom_bloc.dart';
 import 'package:finance_tracker/application/pages/home_page/home_page.dart';
 import 'package:finance_tracker/generated/assets.dart';
@@ -6,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../analysis_page/analysis_page.dart';
 import '../category_page/category_page.dart';
 import '../settings_page/settings_page.dart';
 import '../transaction_page/transaction_page.dart';

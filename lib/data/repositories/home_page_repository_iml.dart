@@ -2,8 +2,9 @@ import 'package:dartz/dartz.dart';
 import 'package:finance_tracker/data/datasources/db/finance_tracker_db.dart';
 import 'package:finance_tracker/domain/failures/failures.dart';
 import 'package:finance_tracker/domain/models/total_balance.dart';
-import '../../domain/repositories/home_page_repository.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../domain/repositories/home_page_repository.dart';
 
 @LazySingleton(as: HomePageRepository)
 class HomePageRepositoryIml extends HomePageRepository {

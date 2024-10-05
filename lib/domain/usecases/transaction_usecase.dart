@@ -3,6 +3,7 @@ import 'package:finance_tracker/domain/failures/failures.dart';
 import 'package:finance_tracker/domain/models/transaction_by_month_model.dart';
 import 'package:finance_tracker/domain/models/transaction_model.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../application/core/category_enum.dart';
 import '../repositories/transaction_repository.dart';
 

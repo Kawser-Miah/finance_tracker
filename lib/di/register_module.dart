@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+
 import '../data/datasources/db/finance_tracker_db.dart';
 
 @module

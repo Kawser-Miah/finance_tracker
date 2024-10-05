@@ -1,10 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import 'bottom_state.dart';
 import 'bottom_event.dart';
-export 'bottom_state.dart';
+import 'bottom_state.dart';
+
 export 'bottom_event.dart';
+export 'bottom_state.dart';
 
 @injectable
 class BottomBloc extends Bloc<BottomEvent, BottomState> {
