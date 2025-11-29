@@ -20,18 +20,20 @@ class BottomNavPage extends StatefulWidget {
 class _BottomNavPageState extends State<BottomNavPage> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BottomBloc, BottomState>(builder: (context, state) {
-      return Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: _buildPage(state.currentIndex),
-        bottomNavigationBar: NavigationBar(
-          selectedIndex: state.currentIndex,
-          onDestinationSelected: (int index) {
-            context.read<BottomBloc>().add(ChangeBottomEvent(index));
-          },
-        ),
-      );
-    });
+    return BlocBuilder<BottomBloc, BottomState>(
+      builder: (context, state) {
+        return Scaffold(
+          resizeToAvoidBottomInset: false,
+          body: _buildPage(state.currentIndex),
+          bottomNavigationBar: NavigationBar(
+            selectedIndex: state.currentIndex,
+            onDestinationSelected: (int index) {
+              context.read<BottomBloc>().add(ChangeBottomEvent(index));
+            },
+          ),
+        );
+      },
+    );
   }
 
   Widget _buildPage(int currentIndex) {
@@ -55,10 +57,11 @@ class _BottomNavPageState extends State<BottomNavPage> {
 class NavigationBar extends StatelessWidget {
   final int selectedIndex;
   final Function(int) onDestinationSelected;
-  const NavigationBar(
-      {super.key,
-      required this.selectedIndex,
-      required this.onDestinationSelected});
+  const NavigationBar({
+    super.key,
+    required this.selectedIndex,
+    required this.onDestinationSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -66,12 +69,15 @@ class NavigationBar extends StatelessWidget {
       padding: EdgeInsets.zero,
       margin: EdgeInsets.zero,
       decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.onPrimary,
-          border: const Border(top: BorderSide.none)),
+        color: Theme.of(context).colorScheme.onPrimary,
+        border: const Border(top: BorderSide.none),
+      ),
       height: 98,
       child: ClipRRect(
         borderRadius: const BorderRadius.only(
-            topRight: Radius.circular(65), topLeft: Radius.circular(65)),
+          topRight: Radius.circular(65),
+          topLeft: Radius.circular(65),
+        ),
         child: BottomNavigationBar(
           showSelectedLabels: false,
           showUnselectedLabels: false,
@@ -82,93 +88,106 @@ class NavigationBar extends StatelessWidget {
           backgroundColor: Theme.of(context).colorScheme.primaryContainer,
           items: [
             BottomNavigationBarItem(
-                icon: const Icon(
+              icon: const Icon(
+                Icons.home_outlined,
+                size: 28,
+                color: Colors.black,
+              ),
+              activeIcon: Container(
+                height: 44,
+                width: 48,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primary,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: const Icon(
                   Icons.home_outlined,
-                  size: 30,
+                  size: 28,
                   color: Colors.black,
                 ),
-                activeIcon: Container(
-                  height: 47,
-                  width: 50,
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.primary,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: const Icon(
-                    Icons.home_outlined,
-                    size: 30,
-                    color: Colors.black,
-                  ),
-                ),
-                label: "Home"),
+              ),
+              label: "Home",
+            ),
             BottomNavigationBarItem(
-                icon: SvgPicture.asset(
+              icon: SvgPicture.asset(
+                Assets.bottomNavIconAnalysis,
+                height: 28,
+                width: 28,
+              ),
+              activeIcon: Container(
+                height: 44,
+                width: 48,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primary,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: SvgPicture.asset(
                   Assets.bottomNavIconAnalysis,
-                  height: 30,
-                  width: 30,
+                  fit: BoxFit.scaleDown,
                 ),
-                activeIcon: Container(
-                    height: 47,
-                    width: 50,
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primary,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: SvgPicture.asset(
-                      Assets.bottomNavIconAnalysis,
-                      fit: BoxFit.scaleDown,
-                    )),
-                label: "Analytics"),
+              ),
+              label: "Analytics",
+            ),
             BottomNavigationBarItem(
-                icon: SvgPicture.asset(
+              icon: SvgPicture.asset(
+                Assets.bottomNavIconTransactions,
+                height: 28,
+                width: 28,
+              ),
+              activeIcon: Container(
+                height: 44,
+                width: 48,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primary,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: SvgPicture.asset(
                   Assets.bottomNavIconTransactions,
-                  height: 30,
-                  width: 30,
+                  fit: BoxFit.scaleDown,
                 ),
-                activeIcon: Container(
-                    height: 47,
-                    width: 50,
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primary,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: SvgPicture.asset(
-                      Assets.bottomNavIconTransactions,
-                      fit: BoxFit.scaleDown,
-                    )),
-                label: "Transaction"),
+              ),
+              label: "Transaction",
+            ),
             BottomNavigationBarItem(
-                icon: SvgPicture.asset(
+              icon: SvgPicture.asset(
+                Assets.bottomNavIconCategory,
+                height: 28,
+                width: 28,
+              ),
+              activeIcon: Container(
+                height: 44,
+                width: 48,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primary,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: SvgPicture.asset(
                   Assets.bottomNavIconCategory,
-                  height: 30,
-                  width: 30,
+                  fit: BoxFit.scaleDown,
                 ),
-                activeIcon: Container(
-                    height: 47,
-                    width: 50,
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primary,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: SvgPicture.asset(
-                      Assets.bottomNavIconCategory,
-                      fit: BoxFit.scaleDown,
-                    )),
-                label: "Category"),
+              ),
+              label: "Category",
+            ),
             BottomNavigationBarItem(
-                icon: SvgPicture.asset(
+              icon: SvgPicture.asset(
+                Assets.bottomNavIconProfile,
+                height: 28,
+                width: 28,
+              ),
+              activeIcon: Container(
+                height: 44,
+                width: 48,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primary,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: SvgPicture.asset(
                   Assets.bottomNavIconProfile,
-                  height: 30,
-                  width: 30,
+                  fit: BoxFit.scaleDown,
                 ),
-                activeIcon: Container(
-                  height: 47,
-                  width: 50,
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.primary,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: SvgPicture.asset(
-                    Assets.bottomNavIconProfile,
-                    fit: BoxFit.scaleDown,
-                  ),
-                ),
-                label: "Profile"),
+              ),
+              label: "Profile",
+            ),
           ],
         ),
       ),
