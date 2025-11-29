@@ -20,36 +20,42 @@ class HomePageRepositoryIml extends HomePageRepository {
     try {
       totalExpenseC =
           (await db.expenseDao.getTotalExpenseByCurrentMonth())?.toDouble() ??
-              0.0;
+          0.0;
     } catch (e) {
       print("EC: $e");
     }
     try {
       totalIncomeC =
           (await db.incomeDao.getTotalIncomeByCurrentMonth())?.toDouble() ??
-              0.0;
+          0.0;
     } catch (e) {
       print("IC: $e");
     }
     try {
       totalExpensePre =
-          await db.expenseDao.getTotalExpenseByPreviousMonth() ?? 0;
+          (await db.expenseDao.getTotalExpenseByPreviousMonth())?.toDouble() ??
+          0.0;
     } catch (e) {
       print("EP: $e");
     }
     try {
-      totalIncomePre = await db.incomeDao.getTotalIncomeByPreviousMonth() ?? 0;
+      totalIncomePre =
+          (await db.incomeDao.getTotalIncomeByPreviousMonth())?.toDouble() ??
+          0.0;
     } catch (e) {
       print("IP: $e");
     }
-    var bestExpense =
-        await db.expenseDao.getCategoryWithHighestExpenseByLastWeek();
+    var bestExpense = await db.expenseDao
+        .getCategoryWithHighestExpenseByLastWeek();
     bestExpense ??= BestExpense(category: 'category', total_expense: 0);
-    return right(TotalBalance(
+    return right(
+      TotalBalance(
         totalExpense: totalExpenseC,
         totalIncome: totalIncomeC,
         bestExpense: bestExpense,
-        savingsLastMonth: (totalIncomePre - totalExpensePre)));
+        savingsLastMonth: (totalIncomePre - totalExpensePre),
+      ),
+    );
     // savingsLastMonth: 23));
     // } catch (e) {
     //   print(e);
