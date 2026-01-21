@@ -388,10 +388,10 @@ packages:
     dependency: "direct main"
     description:
       name: get_it
-      sha256: "2c120112e34bbd5f4ce2ca1ad3076a5b2068eb1e48aae8dd7b717b26cdd38543"
+      sha256: "1d648d2dd2047d7f7450d5727ca24ee435f240385753d90b49650e3cdff32e56"
       url: "https://pub.dev"
     source: hosted
-    version: "9.1.1"
+    version: "9.2.0"
   glob:
     dependency: transitive
     description:
@@ -404,10 +404,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: c92d18e1fe994cb06d48aa786c46b142a5633067e8297cff6b5a3ac742620104
+      sha256: eff94d2a6fc79fa8b811dde79c7549808c2346037ee107a1121b4a644c745f2a
       url: "https://pub.dev"
     source: hosted
-    version: "17.0.0"
+    version: "17.0.1"
   graphs:
     dependency: transitive
     description:
@@ -444,10 +444,10 @@ packages:
     dependency: "direct main"
     description:
       name: injectable
-      sha256: "32e9bac6fe9c84339c5add60478d27a01e363ce1ad5c22ca7e525c6b28a7559c"
+      sha256: "32b36a9d87f18662bee0b1951b81f47a01f2bf28cd6ea94f60bc5453c7bf598c"
       url: "https://pub.dev"
     source: hosted
-    version: "2.7.0"
+    version: "2.7.1+4"
   injectable_generator:
     dependency: "direct dev"
     description:
@@ -1007,4 +1007,4 @@ packages:
     version: "3.1.2"
 sdks:
   dart: ">=3.10.0 <4.0.0"
-  flutter: ">=3.32.0"
+  flutter: ">=3.35.0"
