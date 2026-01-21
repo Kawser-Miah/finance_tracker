@@ -72,7 +72,7 @@ class NavigationBar extends StatelessWidget {
         color: Theme.of(context).colorScheme.onPrimary,
         border: const Border(top: BorderSide.none),
       ),
-      height: 98,
+      height: 100,
       child: ClipRRect(
         borderRadius: const BorderRadius.only(
           topRight: Radius.circular(65),
@@ -94,7 +94,7 @@ class NavigationBar extends StatelessWidget {
                 color: Colors.black,
               ),
               activeIcon: Container(
-                height: 44,
+                height: 42,
                 width: 48,
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.primary,
@@ -115,7 +115,7 @@ class NavigationBar extends StatelessWidget {
                 width: 28,
               ),
               activeIcon: Container(
-                height: 44,
+                height: 42,
                 width: 48,
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.primary,
@@ -135,7 +135,7 @@ class NavigationBar extends StatelessWidget {
                 width: 28,
               ),
               activeIcon: Container(
-                height: 44,
+                height: 42,
                 width: 48,
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.primary,
@@ -155,7 +155,7 @@ class NavigationBar extends StatelessWidget {
                 width: 28,
               ),
               activeIcon: Container(
-                height: 44,
+                height: 42,
                 width: 48,
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.primary,
@@ -175,7 +175,7 @@ class NavigationBar extends StatelessWidget {
                 width: 28,
               ),
               activeIcon: Container(
-                height: 44,
+                height: 42,
                 width: 48,
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.primary,
