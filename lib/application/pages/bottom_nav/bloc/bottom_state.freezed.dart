@@ -50,9 +50,7 @@ mixin _$BottomState {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of BottomState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $BottomStateCopyWith<BottomState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -76,8 +74,6 @@ class _$BottomStateCopyWithImpl<$Res, $Val extends BottomState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of BottomState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -111,8 +107,6 @@ class __$$ChangeBottomStateImplCopyWithImpl<$Res>
       $Res Function(_$ChangeBottomStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of BottomState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -152,9 +146,7 @@ class _$ChangeBottomStateImpl implements ChangeBottomState {
   @override
   int get hashCode => Object.hash(runtimeType, currentIndex);
 
-  /// Create a copy of BottomState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ChangeBottomStateImplCopyWith<_$ChangeBottomStateImpl> get copyWith =>
@@ -224,11 +216,8 @@ abstract class ChangeBottomState implements BottomState {
 
   @override
   int get currentIndex;
-
-  /// Create a copy of BottomState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ChangeBottomStateImplCopyWith<_$ChangeBottomStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
