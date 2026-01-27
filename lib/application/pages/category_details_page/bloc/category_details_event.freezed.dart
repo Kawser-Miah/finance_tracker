@@ -50,9 +50,7 @@ mixin _$CategoryDetailsEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of CategoryDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CategoryDetailsEventCopyWith<CategoryDetailsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -77,8 +75,6 @@ class _$CategoryDetailsEventCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CategoryDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -112,8 +108,6 @@ class __$$StartedImplCopyWithImpl<$Res>
       _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CategoryDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -153,9 +147,7 @@ class _$StartedImpl implements _Started {
   @override
   int get hashCode => Object.hash(runtimeType, category);
 
-  /// Create a copy of CategoryDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$StartedImplCopyWith<_$StartedImpl> get copyWith =>
@@ -223,11 +215,8 @@ abstract class _Started implements CategoryDetailsEvent {
 
   @override
   String get category;
-
-  /// Create a copy of CategoryDetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$StartedImplCopyWith<_$StartedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
