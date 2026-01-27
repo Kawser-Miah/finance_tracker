@@ -7,6 +7,8 @@ import 'package:flutter_svg/svg.dart';
 import '../../../di/di.dart';
 import '../../../generated/assets.dart';
 import '../../../utils/models/theme.dart';
+import '../../core/widgets/income_expense_chart_card_widget.dart';
+import '../../core/widgets/income_expense_summary_row_widgte.dart';
 
 class AnalysisPageWrapperProvider extends StatelessWidget {
   const AnalysisPageWrapperProvider({super.key});
@@ -16,8 +18,9 @@ class AnalysisPageWrapperProvider extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (_) =>
-                getIt<HomePageBloc>()..add(const HomePageEvent.started()))
+          create: (_) =>
+              getIt<HomePageBloc>()..add(const HomePageEvent.started()),
+        ),
       ],
       child: const AnalysisPage(),
     );
@@ -48,8 +51,12 @@ class _AnalysisPageState extends State<AnalysisPage>
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Container(
-          padding:
-              const EdgeInsets.only(top: 25, right: 20, left: 20, bottom: 5),
+          padding: const EdgeInsets.only(
+            top: 25,
+            right: 20,
+            left: 20,
+            bottom: 5,
+          ),
           height: MediaQuery.of(context).size.height * 0.29,
           width: MediaQuery.of(context).size.width,
           color: Theme.of(context).colorScheme.primary,
@@ -58,17 +65,15 @@ class _AnalysisPageState extends State<AnalysisPage>
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "Analysis",
-                    style: AppTheme.lightHeadingText,
-                  ),
+                  const Text("Analysis", style: AppTheme.lightHeadingText),
                   SizedBox(
                     height: 35,
                     width: 35,
                     child: CircleAvatar(
                       radius: 17.5,
-                      backgroundColor:
-                          Theme.of(context).colorScheme.primaryContainer,
+                      backgroundColor: Theme.of(
+                        context,
+                      ).colorScheme.primaryContainer,
                       child: SvgPicture.asset(
                         Assets.homeNotification,
                         fit: BoxFit.cover,
@@ -78,9 +83,11 @@ class _AnalysisPageState extends State<AnalysisPage>
                 ],
               ),
               BlocBuilder<HomePageBloc, HomePageState>(
-                  builder: (context, state) => IncomeExpenseBox(
-                      totalIncome: state.totalBalance.totalIncome,
-                      totalExpense: state.totalBalance.totalExpense)),
+                builder: (context, state) => IncomeExpenseBox(
+                  totalIncome: state.totalBalance.totalIncome,
+                  totalExpense: state.totalBalance.totalExpense,
+                ),
+              ),
             ],
           ),
         ),
@@ -89,51 +96,54 @@ class _AnalysisPageState extends State<AnalysisPage>
           height: MediaQuery.of(context).size.height * 0.56,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(50), topRight: Radius.circular(50)),
-              color: Theme.of(context).colorScheme.onPrimary),
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(50),
+              topRight: Radius.circular(50),
+            ),
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
           child: Column(
             children: [
               DefaultTabController(
-                  length: 3,
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 15),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 60,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(22),
-                            color:
-                                Theme.of(context).colorScheme.primaryContainer,
+                length: 3,
+                child: Container(
+                  margin: const EdgeInsets.only(top: 15),
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 60,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(22),
+                          color: Theme.of(context).colorScheme.primaryContainer,
+                        ),
+                        child: TabBar(
+                          indicatorPadding: const EdgeInsets.all(7),
+                          indicatorSize: TabBarIndicatorSize.tab,
+                          labelColor: Colors.black,
+                          indicator: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: Theme.of(context).colorScheme.primary,
                           ),
-                          child: TabBar(
-                            indicatorPadding: const EdgeInsets.all(7),
-                            indicatorSize: TabBarIndicatorSize.tab,
-                            labelColor: Colors.black,
-                            indicator: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                color: Theme.of(context).colorScheme.primary),
-                            dividerColor: Colors.transparent,
-                            tabs: const [
-                              Tab(
-                                text: "Daily",
-                              ),
-                              Tab(
-                                text: "Monthly",
-                              ),
-                              Tab(
-                                text: "Yearly",
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ))
+                          dividerColor: Colors.transparent,
+                          tabs: const [
+                            Tab(text: "Daily"),
+                            Tab(text: "Monthly"),
+                            Tab(text: "Yearly"),
+                          ],
+                          controller: _controller,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      const IncomeExpenseChartCard(),
+                      const SizedBox(height: 20),
+                      const IncomeExpenseSummaryRow(),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
-        )
+        ),
       ],
     );
   }
