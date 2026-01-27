@@ -90,9 +90,6 @@ class _$TransactionEventCopyWithImpl<$Res, $Val extends TransactionEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of TransactionEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -115,8 +112,6 @@ class __$$HomePageTransactionDataRequestEventImplCopyWithImpl<$Res>
       $Res Function(_$HomePageTransactionDataRequestEventImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of TransactionEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -156,9 +151,7 @@ class _$HomePageTransactionDataRequestEventImpl
   @override
   int get hashCode => Object.hash(runtimeType, name);
 
-  /// Create a copy of TransactionEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$HomePageTransactionDataRequestEventImplCopyWith<
@@ -252,10 +245,7 @@ abstract class HomePageTransactionDataRequestEvent implements TransactionEvent {
       _$HomePageTransactionDataRequestEventImpl;
 
   String get name;
-
-  /// Create a copy of TransactionEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$HomePageTransactionDataRequestEventImplCopyWith<
           _$HomePageTransactionDataRequestEventImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -277,9 +267,6 @@ class __$$TransactionRequestEventImplCopyWithImpl<$Res>
       _$TransactionRequestEventImpl _value,
       $Res Function(_$TransactionRequestEventImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of TransactionEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -403,9 +390,6 @@ class __$$AllIncomesRequestEventImplCopyWithImpl<$Res>
       _$AllIncomesRequestEventImpl _value,
       $Res Function(_$AllIncomesRequestEventImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of TransactionEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -529,9 +513,6 @@ class __$$AllExpensesRequestEventImplCopyWithImpl<$Res>
       _$AllExpensesRequestEventImpl _value,
       $Res Function(_$AllExpensesRequestEventImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of TransactionEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
