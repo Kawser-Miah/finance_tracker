@@ -72,9 +72,6 @@ class _$CategoryStateCopyWithImpl<$Res, $Val extends CategoryState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of CategoryState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -91,9 +88,6 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of CategoryState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -199,8 +193,6 @@ class __$$CategoryLoadedStateImplCopyWithImpl<$Res>
       $Res Function(_$CategoryLoadedStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CategoryState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -247,9 +239,7 @@ class _$CategoryLoadedStateImpl implements CategoryLoadedState {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_categories));
 
-  /// Create a copy of CategoryState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CategoryLoadedStateImplCopyWith<_$CategoryLoadedStateImpl> get copyWith =>
@@ -324,10 +314,7 @@ abstract class CategoryLoadedState implements CategoryState {
       {required final List<Category> categories}) = _$CategoryLoadedStateImpl;
 
   List<Category> get categories;
-
-  /// Create a copy of CategoryState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CategoryLoadedStateImplCopyWith<_$CategoryLoadedStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
