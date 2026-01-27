@@ -91,9 +91,6 @@ class _$IncomeExpenseAddEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of IncomeExpenseAddEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -122,8 +119,6 @@ class __$$TextFieldTextChangeEventImplCopyWithImpl<$Res>
       $Res Function(_$TextFieldTextChangeEventImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of IncomeExpenseAddEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -211,9 +206,7 @@ class _$TextFieldTextChangeEventImpl implements TextFieldTextChangeEvent {
   int get hashCode => Object.hash(
       runtimeType, category, type, title, amount, description, date);
 
-  /// Create a copy of IncomeExpenseAddEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$TextFieldTextChangeEventImplCopyWith<_$TextFieldTextChangeEventImpl>
@@ -316,10 +309,7 @@ abstract class TextFieldTextChangeEvent implements IncomeExpenseAddEvent {
   String get amount;
   String get description;
   String get date;
-
-  /// Create a copy of IncomeExpenseAddEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$TextFieldTextChangeEventImplCopyWith<_$TextFieldTextChangeEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -341,8 +331,6 @@ class __$$DeleteEventImplCopyWithImpl<$Res>
       _$DeleteEventImpl _value, $Res Function(_$DeleteEventImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of IncomeExpenseAddEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -389,9 +377,7 @@ class _$DeleteEventImpl implements DeleteEvent {
   @override
   int get hashCode => Object.hash(runtimeType, id, type);
 
-  /// Create a copy of IncomeExpenseAddEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DeleteEventImplCopyWith<_$DeleteEventImpl> get copyWith =>
@@ -484,10 +470,7 @@ abstract class DeleteEvent implements IncomeExpenseAddEvent {
 
   int get id;
   String get type;
-
-  /// Create a copy of IncomeExpenseAddEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DeleteEventImplCopyWith<_$DeleteEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -511,8 +494,6 @@ class __$$SubmitToDataBaseEventImplCopyWithImpl<$Res>
       $Res Function(_$SubmitToDataBaseEventImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of IncomeExpenseAddEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -552,9 +533,7 @@ class _$SubmitToDataBaseEventImpl implements SubmitToDataBaseEvent {
   @override
   int get hashCode => Object.hash(runtimeType, transaction);
 
-  /// Create a copy of IncomeExpenseAddEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SubmitToDataBaseEventImplCopyWith<_$SubmitToDataBaseEventImpl>
@@ -648,10 +627,7 @@ abstract class SubmitToDataBaseEvent implements IncomeExpenseAddEvent {
       _$SubmitToDataBaseEventImpl;
 
   TransactionModel get transaction;
-
-  /// Create a copy of IncomeExpenseAddEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SubmitToDataBaseEventImplCopyWith<_$SubmitToDataBaseEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -675,8 +651,6 @@ class __$$UpdateToDataBaseEventImplCopyWithImpl<$Res>
       $Res Function(_$UpdateToDataBaseEventImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of IncomeExpenseAddEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -716,9 +690,7 @@ class _$UpdateToDataBaseEventImpl implements UpdateToDataBaseEvent {
   @override
   int get hashCode => Object.hash(runtimeType, transaction);
 
-  /// Create a copy of IncomeExpenseAddEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$UpdateToDataBaseEventImplCopyWith<_$UpdateToDataBaseEventImpl>
@@ -812,10 +784,7 @@ abstract class UpdateToDataBaseEvent implements IncomeExpenseAddEvent {
       _$UpdateToDataBaseEventImpl;
 
   TransactionModel get transaction;
-
-  /// Create a copy of IncomeExpenseAddEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$UpdateToDataBaseEventImplCopyWith<_$UpdateToDataBaseEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
