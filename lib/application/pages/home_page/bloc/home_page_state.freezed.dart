@@ -50,9 +50,7 @@ mixin _$HomePageState {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of HomePageState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $HomePageStateCopyWith<HomePageState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -76,8 +74,6 @@ class _$HomePageStateCopyWithImpl<$Res, $Val extends HomePageState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of HomePageState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -111,8 +107,6 @@ class __$$HomePageLoadedStateImplCopyWithImpl<$Res>
       $Res Function(_$HomePageLoadedStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of HomePageState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -152,9 +146,7 @@ class _$HomePageLoadedStateImpl implements HomePageLoadedState {
   @override
   int get hashCode => Object.hash(runtimeType, totalBalance);
 
-  /// Create a copy of HomePageState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$HomePageLoadedStateImplCopyWith<_$HomePageLoadedStateImpl> get copyWith =>
@@ -224,11 +216,8 @@ abstract class HomePageLoadedState implements HomePageState {
 
   @override
   TotalBalance get totalBalance;
-
-  /// Create a copy of HomePageState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$HomePageLoadedStateImplCopyWith<_$HomePageLoadedStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
