@@ -89,9 +89,6 @@ class _$CategoryDetailsStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of CategoryDetailsState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -108,9 +105,6 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of CategoryDetailsState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -235,8 +229,6 @@ class __$$CategoryDetailsLoadedStateImplCopyWithImpl<$Res>
       $Res Function(_$CategoryDetailsLoadedStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CategoryDetailsState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -302,9 +294,7 @@ class _$CategoryDetailsLoadedStateImpl implements CategoryDetailsLoadedState {
       const DeepCollectionEquality().hash(_transactions),
       const DeepCollectionEquality().hash(_months));
 
-  /// Create a copy of CategoryDetailsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CategoryDetailsLoadedStateImplCopyWith<_$CategoryDetailsLoadedStateImpl>
@@ -397,10 +387,7 @@ abstract class CategoryDetailsLoadedState implements CategoryDetailsState {
 
   List<TransactionModel> get transactions;
   List<String> get months;
-
-  /// Create a copy of CategoryDetailsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CategoryDetailsLoadedStateImplCopyWith<_$CategoryDetailsLoadedStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -419,9 +406,6 @@ class __$$LoadingStateImplCopyWithImpl<$Res>
   __$$LoadingStateImplCopyWithImpl(
       _$LoadingStateImpl _value, $Res Function(_$LoadingStateImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of CategoryDetailsState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -546,8 +530,6 @@ class __$$CategoryDetailsErrorStateImplCopyWithImpl<$Res>
       $Res Function(_$CategoryDetailsErrorStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CategoryDetailsState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -587,9 +569,7 @@ class _$CategoryDetailsErrorStateImpl implements CategoryDetailsErrorState {
   @override
   int get hashCode => Object.hash(runtimeType, errorMessage);
 
-  /// Create a copy of CategoryDetailsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CategoryDetailsErrorStateImplCopyWith<_$CategoryDetailsErrorStateImpl>
@@ -680,10 +660,7 @@ abstract class CategoryDetailsErrorState implements CategoryDetailsState {
       {required final String errorMessage}) = _$CategoryDetailsErrorStateImpl;
 
   String get errorMessage;
-
-  /// Create a copy of CategoryDetailsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CategoryDetailsErrorStateImplCopyWith<_$CategoryDetailsErrorStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
