@@ -97,9 +97,6 @@ class _$IncomeExpenseAddStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of IncomeExpenseAddState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -116,9 +113,6 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of IncomeExpenseAddState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -248,8 +242,6 @@ class __$$AmountNullStateImplCopyWithImpl<$Res>
       _$AmountNullStateImpl _value, $Res Function(_$AmountNullStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of IncomeExpenseAddState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -289,9 +281,7 @@ class _$AmountNullStateImpl implements AmountNullState {
   @override
   int get hashCode => Object.hash(runtimeType, errorMessage);
 
-  /// Create a copy of IncomeExpenseAddState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$AmountNullStateImplCopyWith<_$AmountNullStateImpl> get copyWith =>
@@ -390,10 +380,7 @@ abstract class AmountNullState implements IncomeExpenseAddState {
       _$AmountNullStateImpl;
 
   String get errorMessage;
-
-  /// Create a copy of IncomeExpenseAddState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$AmountNullStateImplCopyWith<_$AmountNullStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -415,8 +402,6 @@ class __$$TitleNullStateImplCopyWithImpl<$Res>
       _$TitleNullStateImpl _value, $Res Function(_$TitleNullStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of IncomeExpenseAddState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -456,9 +441,7 @@ class _$TitleNullStateImpl implements TitleNullState {
   @override
   int get hashCode => Object.hash(runtimeType, errorMessage);
 
-  /// Create a copy of IncomeExpenseAddState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$TitleNullStateImplCopyWith<_$TitleNullStateImpl> get copyWith =>
@@ -557,10 +540,7 @@ abstract class TitleNullState implements IncomeExpenseAddState {
       _$TitleNullStateImpl;
 
   String get errorMessage;
-
-  /// Create a copy of IncomeExpenseAddState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$TitleNullStateImplCopyWith<_$TitleNullStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -588,8 +568,6 @@ class __$$AllValidStateImplCopyWithImpl<$Res>
       _$AllValidStateImpl _value, $Res Function(_$AllValidStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of IncomeExpenseAddState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -677,9 +655,7 @@ class _$AllValidStateImpl implements AllValidState {
   int get hashCode => Object.hash(
       runtimeType, category, type, title, amount, description, date);
 
-  /// Create a copy of IncomeExpenseAddState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$AllValidStateImplCopyWith<_$AllValidStateImpl> get copyWith =>
@@ -787,10 +763,7 @@ abstract class AllValidState implements IncomeExpenseAddState {
   double get amount;
   String get description;
   String get date;
-
-  /// Create a copy of IncomeExpenseAddState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$AllValidStateImplCopyWith<_$AllValidStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -809,9 +782,6 @@ class __$$SuccessedStateImplCopyWithImpl<$Res>
   __$$SuccessedStateImplCopyWithImpl(
       _$SuccessedStateImpl _value, $Res Function(_$SuccessedStateImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of IncomeExpenseAddState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
