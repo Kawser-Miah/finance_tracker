@@ -76,6 +76,8 @@ class _$FinanceTrackerDB extends FinanceTrackerDB {
 
   ExpenseDao? _expenseDaoInstance;
 
+  AnalysisDao? _analysisDaoInstance;
+
   Future<sqflite.Database> open(
     String path,
     List<Migration> migrations, [
@@ -104,6 +106,9 @@ class _$FinanceTrackerDB extends FinanceTrackerDB {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `expenses` (`category` TEXT NOT NULL, `total_expense` REAL NOT NULL, PRIMARY KEY (`category`))');
 
+        await database.execute(
+            'CREATE VIEW IF NOT EXISTS `TimeSeriesTotal` AS SELECT \n  \'\' AS period,\n  0.0 AS income,\n  0.0 AS expense\n');
+
         await callback?.onCreate?.call(database, version);
       },
     );
@@ -118,6 +123,11 @@ class _$FinanceTrackerDB extends FinanceTrackerDB {
   @override
   ExpenseDao get expenseDao {
     return _expenseDaoInstance ??= _$ExpenseDao(database, changeListener);
+  }
+
+  @override
+  AnalysisDao get analysisDao {
+    return _analysisDaoInstance ??= _$AnalysisDao(database, changeListener);
   }
 }
 
@@ -474,5 +484,48 @@ class _$ExpenseDao extends ExpenseDao {
   Future<void> updateExpense(ExpenseEntityModel expense) async {
     await _expenseEntityModelUpdateAdapter.update(
         expense, OnConflictStrategy.abort);
+  }
+}
+
+class _$AnalysisDao extends AnalysisDao {
+  _$AnalysisDao(
+    this.database,
+    this.changeListener,
+  ) : _queryAdapter = QueryAdapter(database);
+
+  final sqflite.DatabaseExecutor database;
+
+  final StreamController<String> changeListener;
+
+  final QueryAdapter _queryAdapter;
+
+  @override
+  Future<List<TimeSeriesTotal>> getDailySummary() async {
+    return _queryAdapter.queryList(
+        'SELECT      d.day AS period,     IFNULL(i.total_income, 0) AS income,     IFNULL(e.total_expense, 0) AS expense   FROM   (     SELECT DATE(\'now\',\'-6 days\',\'localtime\') AS day     UNION ALL SELECT DATE(\'now\',\'-5 days\',\'localtime\')     UNION ALL SELECT DATE(\'now\',\'-4 days\',\'localtime\')     UNION ALL SELECT DATE(\'now\',\'-3 days\',\'localtime\')     UNION ALL SELECT DATE(\'now\',\'-2 days\',\'localtime\')     UNION ALL SELECT DATE(\'now\',\'-1 days\',\'localtime\')     UNION ALL SELECT DATE(\'now\',\'localtime\')   ) d   LEFT JOIN   (     SELECT DATE(date) AS day, SUM(income) AS total_income     FROM incomes     GROUP BY DATE(date)   ) i ON d.day = i.day   LEFT JOIN   (     SELECT DATE(date) AS day, SUM(expense) AS total_expense     FROM expenses     GROUP BY DATE(date)   ) e ON d.day = e.day   ORDER BY d.day ASC;',
+        mapper: (Map<String, Object?> row) => TimeSeriesTotal(
+            row['period'] as String,
+            row['income'] as double,
+            row['expense'] as double));
+  }
+
+  @override
+  Future<List<TimeSeriesTotal>> getMonthlySummary() async {
+    return _queryAdapter.queryList(
+        'SELECT      m.month AS period,     IFNULL(i.total_income, 0) AS income,     IFNULL(e.total_expense, 0) AS expense   FROM   (     SELECT strftime(\'%Y-%m\',\'now\',\'-5 months\') AS month     UNION ALL SELECT strftime(\'%Y-%m\',\'now\',\'-4 months\')     UNION ALL SELECT strftime(\'%Y-%m\',\'now\',\'-3 months\')     UNION ALL SELECT strftime(\'%Y-%m\',\'now\',\'-2 months\')     UNION ALL SELECT strftime(\'%Y-%m\',\'now\',\'-1 months\')     UNION ALL SELECT strftime(\'%Y-%m\',\'now\')   ) m   LEFT JOIN   (     SELECT strftime(\'%Y-%m\',date) AS month, SUM(income) AS total_income     FROM incomes     GROUP BY strftime(\'%Y-%m\',date)   ) i ON m.month = i.month   LEFT JOIN   (     SELECT strftime(\'%Y-%m\',date) AS month, SUM(expense) AS total_expense     FROM expenses     GROUP BY strftime(\'%Y-%m\',date)   ) e ON m.month = e.month   ORDER BY m.month ASC;',
+        mapper: (Map<String, Object?> row) => TimeSeriesTotal(
+            row['period'] as String,
+            row['income'] as double,
+            row['expense'] as double));
+  }
+
+  @override
+  Future<List<TimeSeriesTotal>> getYearlySummary() async {
+    return _queryAdapter.queryList(
+        'SELECT      y.year AS period,     IFNULL(i.total_income, 0) AS income,     IFNULL(e.total_expense, 0) AS expense   FROM   (     SELECT strftime(\'%Y\',\'now\',\'-4 years\') AS year     UNION ALL SELECT strftime(\'%Y\',\'now\',\'-3 years\')     UNION ALL SELECT strftime(\'%Y\',\'now\',\'-2 years\')     UNION ALL SELECT strftime(\'%Y\',\'now\',\'-1 years\')     UNION ALL SELECT strftime(\'%Y\',\'now\')   ) y   LEFT JOIN   (     SELECT strftime(\'%Y\',date) AS year, SUM(income) AS total_income     FROM incomes     GROUP BY strftime(\'%Y\',date)   ) i ON y.year = i.year   LEFT JOIN   (     SELECT strftime(\'%Y\',date) AS year, SUM(expense) AS total_expense     FROM expenses     GROUP BY strftime(\'%Y\',date)   ) e ON y.year = e.year   ORDER BY y.year ASC;',
+        mapper: (Map<String, Object?> row) => TimeSeriesTotal(
+            row['period'] as String,
+            row['income'] as double,
+            row['expense'] as double));
   }
 }
