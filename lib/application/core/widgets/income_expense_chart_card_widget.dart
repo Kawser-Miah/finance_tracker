@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import '../../../utils/strings.dart';
-import 'income_expense_summary_row_widgte.dart';
+import 'income_expense_summary_row_widget.dart';
 
 class IncomeExpenseChartCardWidget extends StatelessWidget {
   final String name;
@@ -24,9 +24,44 @@ class IncomeExpenseChartCardWidget extends StatelessWidget {
   }
 }
 
-class IncomeExpenseChartCard extends StatelessWidget {
+class IncomeExpenseChartCard extends StatefulWidget {
   final String name;
   const IncomeExpenseChartCard({super.key, required this.name});
+
+  @override
+  State<IncomeExpenseChartCard> createState() => _IncomeExpenseChartCardState();
+}
+
+class _IncomeExpenseChartCardState extends State<IncomeExpenseChartCard>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1200),
+    );
+    _animation = CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.easeOutCubic,
+    );
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  void _startAnimation() {
+    if (!_animationController.isAnimating &&
+        _animationController.status != AnimationStatus.completed) {
+      _animationController.forward();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,48 +73,61 @@ class IncomeExpenseChartCard extends StatelessWidget {
           return Center(child: CircularProgressIndicator());
         }
         if (state is AnalysisDataLoadedState) {
-          return Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: colors.primaryContainer,
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    /// Header
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          _startAnimation();
+          return AnimatedBuilder(
+            animation: _animation,
+            builder: (context, child) {
+              return Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: colors.primaryContainer,
+                      borderRadius: BorderRadius.circular(24),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          "Income & Expenses",
-                          style: TextStyle(fontWeight: FontWeight.w600),
-                        ),
+                        /// Header
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            _icon(colors.primary),
-                            const SizedBox(width: 8),
-                            _icon(colors.primary),
+                            const Text(
+                              "Income & Expenses",
+                              style: TextStyle(fontWeight: FontWeight.w600),
+                            ),
+                            Row(
+                              children: [
+                                _icon(colors.primary),
+                                const SizedBox(width: 8),
+                                _icon(colors.primary),
+                              ],
+                            ),
                           ],
+                        ),
+
+                        const SizedBox(height: 20),
+
+                        /// Chart
+                        SizedBox(
+                          height: 180,
+                          child: BarChart(
+                            _barChartData(
+                              context,
+                              state.data,
+                              widget.name,
+                              _animation.value,
+                            ),
+                          ),
                         ),
                       ],
                     ),
-
-                    const SizedBox(height: 20),
-
-                    /// Chart
-                    SizedBox(
-                      height: 180,
-                      child: BarChart(_barChartData(context, state.data, name)),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20),
-              IncomeExpenseSummaryRow(data: state.data),
-            ],
+                  ),
+                  const SizedBox(height: 20),
+                  IncomeExpenseSummaryRow(data: state.data),
+                ],
+              );
+            },
           );
         }
         if (state is AnalysisErrorState) {
@@ -106,6 +154,7 @@ class IncomeExpenseChartCard extends StatelessWidget {
     BuildContext context,
     List<TimeSeriesTotal> timeSeriesTotal,
     String name,
+    double animationValue,
   ) {
     final colors = Theme.of(context).colorScheme;
 
@@ -178,7 +227,6 @@ class IncomeExpenseChartCard extends StatelessWidget {
                 // Daily view
                 label = DateFormat('EEE').format(DateTime.parse(date));
               }
-              const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
               return Padding(
                 padding: const EdgeInsets.only(top: 6),
                 child: Text(
@@ -194,8 +242,14 @@ class IncomeExpenseChartCard extends StatelessWidget {
         return BarChartGroupData(
           x: index,
           barRods: [
-            _rod(timeSeriesTotal[index].income, colors.primary), // Income
-            _rod(timeSeriesTotal[index].expense, Colors.blue), // Expense
+            _rod(
+              timeSeriesTotal[index].income * animationValue,
+              colors.primary,
+            ), // Income
+            _rod(
+              timeSeriesTotal[index].expense * animationValue,
+              Colors.blue,
+            ), // Expense
           ],
           barsSpace: 6,
         );
