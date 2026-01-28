@@ -12,24 +12,6 @@ import 'domain/models/entity_model/income_entity_model.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
-  final database = await $FloorFinanceTrackerDB
-      .databaseBuilder('finance_tracker.db')
-      .build();
-  // for (var i in A.list) {
-  //   await database.incomeDao.insertIncome(i);
-  // }
-//   try{
-//   for (var i in A.list1) {
-//   await database.expenseDao.insertExpense(i);
-//   }}catch(e){
-// print(e);
-// }
-
-  // final db = await database.expenseDao.getTotalExpenseByCurrentMonth();
-// await database.expenseDao.deleteExpense(3);
-// for(var i in db){
-// print(db);
-// print(i.description);}
 
   runApp(const MyApp());
 }
@@ -55,17 +37,19 @@ class MyApp extends StatelessWidget {
 class A {
   static List<IncomeEntityModel> list = [
     IncomeEntityModel(
-        category: 'Salary',
-        type: 'Income',
-        income: 40000,
-        description: "Demo",
-        date: '2024-07-04'),
+      category: 'Salary',
+      type: 'Income',
+      income: 40000,
+      description: "Demo",
+      date: '2024-07-04',
+    ),
     IncomeEntityModel(
-        category: 'Money Owed',
-        type: 'Income',
-        income: 10000,
-        description: 'Demo',
-        date: '2024-06-04'),
+      category: 'Money Owed',
+      type: 'Income',
+      income: 10000,
+      description: 'Demo',
+      date: '2024-06-04',
+    ),
   ];
   static List<ExpenseEntityModel> list1 = [
     // ExpenseEntityModel(
@@ -79,6 +63,6 @@ class A {
       type: "Expense",
       expense: 1000,
       date: '2024-08-15',
-    )
+    ),
   ];
 }
