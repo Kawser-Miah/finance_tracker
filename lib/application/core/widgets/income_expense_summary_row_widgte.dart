@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+
+import '../../../domain/models/entity_model/time_series_total_model.dart';
+
 class IncomeExpenseSummaryRow extends StatelessWidget {
-  const IncomeExpenseSummaryRow({super.key});
+  final List<TimeSeriesTotal> data;
+  const IncomeExpenseSummaryRow({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
+    final income = data.fold(0.0, (s, e) => s + e.income);
+    final expense = data.fold(0.0, (s, e) => s + e.expense);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -12,13 +18,13 @@ class IncomeExpenseSummaryRow extends StatelessWidget {
         _item(
           icon: Icons.trending_up,
           title: "Income",
-          amount: "\$4,120.00",
+          amount: "$income",
           color: colors.primary,
         ),
         _item(
           icon: Icons.trending_down,
           title: "Expense",
-          amount: "\$1,187.40",
+          amount: "$expense",
           color: Colors.blue,
         ),
       ],
@@ -38,10 +44,7 @@ class IncomeExpenseSummaryRow extends StatelessWidget {
         Text(title),
         Text(
           amount,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: color,
-          ),
+          style: TextStyle(fontWeight: FontWeight.bold, color: color),
         ),
       ],
     );
