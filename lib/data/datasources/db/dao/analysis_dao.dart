@@ -6,8 +6,8 @@ abstract class AnalysisDao {
   @Query("""
   SELECT 
     d.day AS period,
-    IFNULL(i.total_income, 0) AS income,
-    IFNULL(e.total_expense, 0) AS expense
+    IFNULL(i.total_income, 0.0) AS income,
+    IFNULL(e.total_expense, 0.0) AS expense
   FROM
   (
     SELECT DATE('now','-6 days','localtime') AS day
@@ -37,8 +37,8 @@ abstract class AnalysisDao {
   @Query("""
   SELECT 
     m.month AS period,
-    IFNULL(i.total_income, 0) AS income,
-    IFNULL(e.total_expense, 0) AS expense
+    IFNULL(i.total_income, 0.0) AS income,
+    IFNULL(e.total_expense, 0.0) AS expense
   FROM
   (
     SELECT strftime('%Y-%m','now','-5 months') AS month
@@ -66,8 +66,8 @@ abstract class AnalysisDao {
   @Query("""
   SELECT 
     y.year AS period,
-    IFNULL(i.total_income, 0) AS income,
-    IFNULL(e.total_expense, 0) AS expense
+    IFNULL(i.total_income, 0.0) AS income,
+    IFNULL(e.total_expense, 0.0) AS expense
   FROM
   (
     SELECT strftime('%Y','now','-4 years') AS year
