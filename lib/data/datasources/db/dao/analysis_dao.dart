@@ -35,33 +35,33 @@ abstract class AnalysisDao {
   Future<List<TimeSeriesTotal>> getDailySummary();
 
   @Query("""
-  SELECT 
-    m.month AS period,
-    IFNULL(i.total_income, 0.0) AS income,
-    IFNULL(e.total_expense, 0.0) AS expense
-  FROM
-  (
-    SELECT strftime('%Y-%m','now','-5 months') AS month
-    UNION ALL SELECT strftime('%Y-%m','now','-4 months')
-    UNION ALL SELECT strftime('%Y-%m','now','-3 months')
-    UNION ALL SELECT strftime('%Y-%m','now','-2 months')
-    UNION ALL SELECT strftime('%Y-%m','now','-1 months')
-    UNION ALL SELECT strftime('%Y-%m','now')
-  ) m
-  LEFT JOIN
-  (
-    SELECT strftime('%Y-%m',date) AS month, SUM(income) AS total_income
-    FROM incomes
-    GROUP BY strftime('%Y-%m',date)
-  ) i ON m.month = i.month
-  LEFT JOIN
-  (
-    SELECT strftime('%Y-%m',date) AS month, SUM(expense) AS total_expense
-    FROM expenses
-    GROUP BY strftime('%Y-%m',date)
-  ) e ON m.month = e.month
-  ORDER BY m.month ASC;
-  """)
+SELECT 
+  m.month || '-01' AS period,
+  IFNULL(i.total_income, 0.0) AS income,
+  IFNULL(e.total_expense, 0.0) AS expense
+FROM
+(
+  SELECT strftime('%Y-%m','now','localtime','-5 months') AS month
+  UNION ALL SELECT strftime('%Y-%m','now','localtime','-4 months')
+  UNION ALL SELECT strftime('%Y-%m','now','localtime','-3 months')
+  UNION ALL SELECT strftime('%Y-%m','now','localtime','-2 months')
+  UNION ALL SELECT strftime('%Y-%m','now','localtime','-1 months')
+  UNION ALL SELECT strftime('%Y-%m','now','localtime')
+) m
+LEFT JOIN
+(
+  SELECT strftime('%Y-%m',date,'localtime') AS month, SUM(income) AS total_income
+  FROM incomes
+  GROUP BY strftime('%Y-%m',date,'localtime')
+) i ON m.month = i.month
+LEFT JOIN
+(
+  SELECT strftime('%Y-%m',date,'localtime') AS month, SUM(expense) AS total_expense
+  FROM expenses
+  GROUP BY strftime('%Y-%m',date,'localtime')
+) e ON m.month = e.month
+ORDER BY m.month ASC;
+""")
   Future<List<TimeSeriesTotal>> getMonthlySummary();
   @Query("""
   SELECT 
