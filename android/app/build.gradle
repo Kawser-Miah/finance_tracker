@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.finance_tracker"
-    compileSdkVersion 35
+    compileSdkVersion 36
     ndkVersion "29.0.13599879"
 
     compileOptions {
