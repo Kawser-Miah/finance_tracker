@@ -8,6 +8,8 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:finance_tracker/application/pages/analysis_page/bloc/analysis_bloc.dart'
+    as _i1007;
 import 'package:finance_tracker/application/pages/bottom_nav/bloc/bottom_bloc.dart'
     as _i854;
 import 'package:finance_tracker/application/pages/category_details_page/bloc/category_details_bloc.dart'
@@ -22,6 +24,8 @@ import 'package:finance_tracker/application/pages/transaction_page/bloc/transact
     as _i709;
 import 'package:finance_tracker/data/datasources/db/finance_tracker_db.dart'
     as _i273;
+import 'package:finance_tracker/data/repositories/analysis_repository_iml.dart'
+    as _i331;
 import 'package:finance_tracker/data/repositories/category_details_repository_iml.dart'
     as _i114;
 import 'package:finance_tracker/data/repositories/category_repository_iml.dart'
@@ -33,6 +37,8 @@ import 'package:finance_tracker/data/repositories/insert_transaction_repository_
 import 'package:finance_tracker/data/repositories/transaction_repository_iml.dart'
     as _i338;
 import 'package:finance_tracker/di/register_module.dart' as _i827;
+import 'package:finance_tracker/domain/repositories/analysis_repository.dart'
+    as _i837;
 import 'package:finance_tracker/domain/repositories/category_details_repository.dart'
     as _i546;
 import 'package:finance_tracker/domain/repositories/category_repository.dart'
@@ -43,6 +49,8 @@ import 'package:finance_tracker/domain/repositories/insert_transaction_repositor
     as _i52;
 import 'package:finance_tracker/domain/repositories/transaction_repository.dart'
     as _i163;
+import 'package:finance_tracker/domain/usecases/analysis_use_case.dart'
+    as _i123;
 import 'package:finance_tracker/domain/usecases/category_details_usecase.dart'
     as _i43;
 import 'package:finance_tracker/domain/usecases/category_usecase.dart' as _i347;
@@ -75,6 +83,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i25.CategoryRepositoryIml());
     gh.lazySingleton<_i856.HomePageRepository>(
         () => _i256.HomePageRepositoryIml(db: gh<_i273.FinanceTrackerDB>()));
+    gh.lazySingleton<_i837.AnalysisRepository>(
+        () => _i331.AnalysisRepositoryIml(gh<_i273.FinanceTrackerDB>()));
     gh.lazySingleton<_i546.CategoryDetailsRepository>(
         () => _i114.CategoryDetailsRepositoryIml(gh<_i273.FinanceTrackerDB>()));
     gh.lazySingleton<_i52.InsertTransactionRepository>(() =>
@@ -99,8 +109,12 @@ extension GetItInjectableX on _i174.GetIt {
                 gh<_i52.InsertTransactionRepository>()));
     gh.factory<_i511.CategoryDetailsBloc>(() => _i511.CategoryDetailsBloc(
         categoryDetailsUseCase: gh<_i43.CategoryDetailsUseCase>()));
+    gh.factory<_i123.AnalysisUseCase>(() => _i123.AnalysisUseCase(
+        analysisRepository: gh<_i837.AnalysisRepository>()));
     gh.factory<_i709.TransactionBloc>(() => _i709.TransactionBloc(
         transactionUseCase: gh<_i815.TransactionUseCase>()));
+    gh.factory<_i1007.AnalysisBloc>(
+        () => _i1007.AnalysisBloc(gh<_i123.AnalysisUseCase>()));
     gh.factory<_i559.IncomeExpenseAddBloc>(() => _i559.IncomeExpenseAddBloc(
         insertTransactionDataUseCase:
             gh<_i635.InsertTransactionDataUseCase>()));
