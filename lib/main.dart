@@ -33,36 +33,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-class A {
-  static List<IncomeEntityModel> list = [
-    IncomeEntityModel(
-      category: 'Salary',
-      type: 'Income',
-      income: 40000,
-      description: "Demo",
-      date: '2024-07-04',
-    ),
-    IncomeEntityModel(
-      category: 'Money Owed',
-      type: 'Income',
-      income: 10000,
-      description: 'Demo',
-      date: '2024-06-04',
-    ),
-  ];
-  static List<ExpenseEntityModel> list1 = [
-    // ExpenseEntityModel(
-    //     category: "Food",
-    //     type: "Expense",
-    //     expense: 1000,
-    //
-    //     date: '2024-08-03'),
-    ExpenseEntityModel(
-      category: "Entertainment",
-      type: "Expense",
-      expense: 1000,
-      date: '2024-08-15',
-    ),
-  ];
-}
