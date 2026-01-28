@@ -1,6 +1,7 @@
 import 'package:finance_tracker/utils/strings.dart';
 
 import '../application/core/category_enum.dart';
+import '../domain/models/entity_model/time_series_total_model.dart';
 import '../domain/models/income_expense_category.dart';
 import '../generated/assets.dart';
 
@@ -15,6 +16,19 @@ class Utils {
     } else {
       return 'Good Evening!';
     }
+  }
+
+  static double getMaxIncomeExpense(List<TimeSeriesTotal> list) {
+    final double maxIncome = list.fold(
+      0.0,
+      (m, e) => e.income > m ? e.income : m,
+    );
+    final double maxExpense = list.fold(
+      0.0,
+      (m, e) => e.expense > m ? e.expense : m,
+    );
+
+    return maxIncome > maxExpense ? maxIncome : maxExpense;
   }
 
   static String getMessage(double value) {
@@ -79,8 +93,11 @@ class Utils {
     Category(id: 5, img: Assets.categoryRent, name: Strings.rent),
     Category(id: 6, img: Assets.categoryGifts, name: Strings.gift),
     Category(
-        id: 7, img: Assets.categoryEntertainment, name: Strings.entertainment),
+      id: 7,
+      img: Assets.categoryEntertainment,
+      name: Strings.entertainment,
+    ),
     Category(id: 8, img: Assets.homeSalary, name: Strings.salary),
-    Category(id: 9, img: Assets.categoryMore, name: Strings.addOrOthers)
+    Category(id: 9, img: Assets.categoryMore, name: Strings.addOrOthers),
   ];
 }
