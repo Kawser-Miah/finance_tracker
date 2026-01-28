@@ -12,4 +12,13 @@ class TimeSeriesTotal {
   final double expense;
 
   TimeSeriesTotal(this.period, this.income, this.expense);
+
+  @override
+  String toString() {
+    return """{
+      period: $period,
+      income: $income,
+      expense: $expense
+    }""";
+  }
 }
