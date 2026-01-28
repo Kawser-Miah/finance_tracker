@@ -7,8 +7,8 @@ import 'package:flutter_svg/svg.dart';
 import '../../../di/di.dart';
 import '../../../generated/assets.dart';
 import '../../../utils/models/theme.dart';
+import '../../../utils/strings.dart';
 import '../../core/widgets/income_expense_chart_card_widget.dart';
-import '../../core/widgets/income_expense_summary_row_widgte.dart';
 
 class AnalysisPageWrapperProvider extends StatelessWidget {
   const AnalysisPageWrapperProvider({super.key});
@@ -134,9 +134,17 @@ class _AnalysisPageState extends State<AnalysisPage>
                         ),
                       ),
                       const SizedBox(height: 20),
-                      const IncomeExpenseChartCard(),
-                      const SizedBox(height: 20),
-                      const IncomeExpenseSummaryRow(),
+                      SizedBox(
+                        height: 410,
+                        child: TabBarView(
+                          controller: _controller,
+                          children: [
+                            IncomeExpenseChartCardWidget(name: Strings.daily),
+                            IncomeExpenseChartCardWidget(name: Strings.monthly),
+                            IncomeExpenseChartCardWidget(name: Strings.yearly),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
