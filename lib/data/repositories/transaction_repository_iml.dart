@@ -16,7 +16,7 @@ class TransactionRepositoryIml extends TransactionRepository {
 
   @override
   Future<Either<Failure, List<TransactionModel>>>
-      getTransactionDataByCurrentDate() async {
+  getTransactionDataByCurrentDate() async {
     try {
       List<TransactionModel> transactions = [];
       final incomeResult = await db.incomeDao.getIncomeDataByCurrentDate();
@@ -24,49 +24,61 @@ class TransactionRepositoryIml extends TransactionRepository {
 
       if (incomeResult.isNotEmpty || expenseResult.isNotEmpty) {
         for (var i in incomeResult) {
-          transactions.add(TransactionModel(
+          transactions.add(
+            TransactionModel(
               id: i.id,
               category: i.category,
               type: i.type,
               amount: i.income,
               description: i.description,
               date: i.date,
-              title: i.incomeTitle));
+              title: i.incomeTitle,
+            ),
+          );
         }
         for (var i in expenseResult) {
-          transactions.add(TransactionModel(
+          transactions.add(
+            TransactionModel(
               id: i.id,
               category: i.category,
               type: i.type,
               amount: i.expense,
               description: i.description,
               date: i.date,
-              title: i.expenseTitle));
+              title: i.expenseTitle,
+            ),
+          );
         }
       } else {
         final incomeResult = await db.incomeDao.getIncomeDataByPreviousDate();
-        final expenseResult =
-            await db.expenseDao.getExpenseDataByPreviousDate();
+        final expenseResult = await db.expenseDao
+            .getExpenseDataByPreviousDate();
         if (incomeResult.isNotEmpty || expenseResult.isNotEmpty) {
           for (var i in incomeResult) {
-            transactions.add(TransactionModel(
+            transactions.add(
+              TransactionModel(
                 id: i.id,
                 category: i.category,
                 type: i.type,
                 amount: i.income,
                 description: i.description,
                 date: i.date,
-                title: i.incomeTitle));
+                title: i.incomeTitle,
+              ),
+            );
           }
           for (var i in expenseResult) {
-            transactions.add(TransactionModel(
+            transactions.add(
+              TransactionModel(
                 id: i.id,
                 category: i.category,
                 type: i.type,
                 amount: i.expense,
                 description: i.description,
                 date: i.date,
-                title: i.expenseTitle));
+                title: i.expenseTitle,
+              ),
+            );
           }
         } else {
           return left(NullFailure());
@@ -80,7 +92,7 @@ class TransactionRepositoryIml extends TransactionRepository {
 
   @override
   Future<Either<Failure, List<TransactionModel>>>
-      getTransactionDataByCurrentMonth() async {
+  getTransactionDataByCurrentMonth() async {
     try {
       List<TransactionModel> transactions = [];
       final incomeResult = await db.incomeDao.getIncomeDataByCurrentMonth();
@@ -88,24 +100,30 @@ class TransactionRepositoryIml extends TransactionRepository {
 
       if (incomeResult.isNotEmpty || expenseResult.isNotEmpty) {
         for (var i in incomeResult) {
-          transactions.add(TransactionModel(
+          transactions.add(
+            TransactionModel(
               id: i.id,
               category: i.category,
               type: i.type,
               amount: i.income,
               description: i.description,
               date: i.date,
-              title: i.incomeTitle));
+              title: i.incomeTitle,
+            ),
+          );
         }
         for (var i in expenseResult) {
-          transactions.add(TransactionModel(
+          transactions.add(
+            TransactionModel(
               id: i.id,
               category: i.category,
               type: i.type,
               amount: i.expense,
               description: i.description,
               date: i.date,
-              title: i.expenseTitle));
+              title: i.expenseTitle,
+            ),
+          );
         }
       } else {
         return left(NullFailure());
@@ -118,7 +136,7 @@ class TransactionRepositoryIml extends TransactionRepository {
 
   @override
   Future<Either<Failure, List<TransactionModel>>>
-      getTransactionDataByCurrentWeek() async {
+  getTransactionDataByCurrentWeek() async {
     try {
       List<TransactionModel> transactions = [];
       final incomeResult = await db.incomeDao.getIncomeDataByCurrentWeek();
@@ -126,24 +144,30 @@ class TransactionRepositoryIml extends TransactionRepository {
 
       if (incomeResult.isNotEmpty || expenseResult.isNotEmpty) {
         for (var i in incomeResult) {
-          transactions.add(TransactionModel(
+          transactions.add(
+            TransactionModel(
               id: i.id,
               category: i.category,
               type: i.type,
               amount: i.income,
               description: i.description,
               date: i.date,
-              title: i.incomeTitle));
+              title: i.incomeTitle,
+            ),
+          );
         }
         for (var i in expenseResult) {
-          transactions.add(TransactionModel(
+          transactions.add(
+            TransactionModel(
               id: i.id,
               category: i.category,
               type: i.type,
               amount: i.expense,
               description: i.description,
               date: i.date,
-              title: i.expenseTitle));
+              title: i.expenseTitle,
+            ),
+          );
         }
       } else {
         return left(NullFailure());
@@ -175,32 +199,38 @@ class TransactionRepositoryIml extends TransactionRepository {
           }
         }
         for (var i in incomes) {
-          transactions.add(TransactionModel(
+          transactions.add(
+            TransactionModel(
               title: i.incomeTitle,
               id: i.id,
               category: i.category,
               type: i.type,
               amount: i.income,
               description: i.description,
-              date: i.date));
+              date: i.date,
+            ),
+          );
         }
         for (var i in expenses) {
-          transactions.add(TransactionModel(
+          transactions.add(
+            TransactionModel(
               title: i.expenseTitle,
               id: i.id,
               category: i.category,
               type: i.type,
               amount: i.expense,
               description: i.description,
-              date: i.date));
+              date: i.date,
+            ),
+          );
         }
       } else {
         return left(NullFailure());
       }
       return right(
-          TransactionByMonthModel(months: months, transactions: transactions));
+        TransactionByMonthModel(months: months, transactions: transactions),
+      );
     } catch (e) {
-      print(e);
       throw ServerException();
     }
   }
@@ -218,22 +248,25 @@ class TransactionRepositoryIml extends TransactionRepository {
           months.add(i);
         }
         for (var i in expenses) {
-          transactions.add(TransactionModel(
+          transactions.add(
+            TransactionModel(
               title: i.expenseTitle,
               id: i.id,
               category: i.category,
               type: i.type,
               amount: i.expense,
               description: i.description,
-              date: i.date));
+              date: i.date,
+            ),
+          );
         }
       } else {
         return left(NullFailure());
       }
       return right(
-          TransactionByMonthModel(months: months, transactions: transactions));
+        TransactionByMonthModel(months: months, transactions: transactions),
+      );
     } catch (e) {
-      print(e);
       throw ServerException();
     }
   }
@@ -253,22 +286,25 @@ class TransactionRepositoryIml extends TransactionRepository {
         }
 
         for (var i in incomes) {
-          transactions.add(TransactionModel(
+          transactions.add(
+            TransactionModel(
               title: i.incomeTitle,
               id: i.id,
               category: i.category,
               type: i.type,
               amount: i.income,
               description: i.description,
-              date: i.date));
+              date: i.date,
+            ),
+          );
         }
       } else {
         return left(NullFailure());
       }
       return right(
-          TransactionByMonthModel(months: months, transactions: transactions));
+        TransactionByMonthModel(months: months, transactions: transactions),
+      );
     } catch (e) {
-      print(e);
       throw ServerException();
     }
   }
