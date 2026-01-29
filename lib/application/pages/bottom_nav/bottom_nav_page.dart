@@ -107,6 +107,7 @@ class NavigationBar extends StatelessWidget {
                 ),
               ),
               label: "Home",
+              tooltip: "Home",
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
@@ -127,6 +128,7 @@ class NavigationBar extends StatelessWidget {
                 ),
               ),
               label: "Analytics",
+              tooltip: "Analysis",
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
@@ -147,6 +149,7 @@ class NavigationBar extends StatelessWidget {
                 ),
               ),
               label: "Transaction",
+              tooltip: "Transaction",
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
@@ -167,6 +170,7 @@ class NavigationBar extends StatelessWidget {
                 ),
               ),
               label: "Category",
+              tooltip: "Category",
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
@@ -187,6 +191,7 @@ class NavigationBar extends StatelessWidget {
                 ),
               ),
               label: "Profile",
+              tooltip: "Profile",
             ),
           ],
         ),
