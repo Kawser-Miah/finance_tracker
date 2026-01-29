@@ -2,6 +2,7 @@ import 'package:finance_tracker/application/core/services/routing/route_utils.da
 import 'package:finance_tracker/utils/models/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:share_plus/share_plus.dart';
 
 class SettingsPageWrapperProvider extends StatelessWidget {
   const SettingsPageWrapperProvider({super.key});
@@ -207,6 +208,31 @@ class SettingsPage extends StatelessWidget {
                   },
                 ),
                 const SizedBox(height: 20),
+                Text(
+                  "Share",
+                  style: AppTheme.lightBodyText.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black54,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                _SettingsTile(
+                  icon: Icons.share_outlined,
+                  title: "Share App",
+                  subtitle: "Share Finance Tracker with friends",
+                  onTap: () {
+                    _shareApp();
+                  },
+                ),
+                _SettingsTile(
+                  icon: Icons.star_outline,
+                  title: "Rate App",
+                  subtitle: "Rate us on Play Store",
+                  onTap: () {
+                    _showComingSoonSnackBar(context);
+                  },
+                ),
+                const SizedBox(height: 20),
               ],
             ),
           ),
@@ -222,6 +248,20 @@ class SettingsPage extends StatelessWidget {
         behavior: SnackBarBehavior.floating,
         backgroundColor: Theme.of(context).colorScheme.primary,
         duration: const Duration(seconds: 1),
+      ),
+    );
+  }
+
+  void _shareApp() {
+    SharePlus.instance.share(
+      ShareParams(
+        text: '📊 Check out Finance Tracker - A simple and beautiful app to manage your personal finances!\n\n'
+            '✅ Track income & expenses\n'
+            '✅ Visual analytics & charts\n'
+            '✅ Organize by categories\n'
+            '✅ 100% offline & private\n\n'
+            'Download now: https://github.com/Kawser-Miah/finance_tracker/tree/main/Andriod%20APK',
+        subject: 'Finance Tracker - Personal Finance App',
       ),
     );
   }
