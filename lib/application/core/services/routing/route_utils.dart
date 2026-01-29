@@ -1,4 +1,4 @@
-enum PAGES { bottom, categoryDetails, insert }
+enum PAGES { bottom, categoryDetails, insert, privacyPolicy, termsOfService }
 
 extension AppPageExtension on PAGES {
   String get screenPath {
@@ -9,8 +9,10 @@ extension AppPageExtension on PAGES {
         return "/categoryDetailsPage";
       case PAGES.insert:
         return "/insertPage";
-      default:
-        return "/";
+      case PAGES.privacyPolicy:
+        return "/privacyPolicy";
+      case PAGES.termsOfService:
+        return "/termsOfService";
     }
   }
 
@@ -22,8 +24,10 @@ extension AppPageExtension on PAGES {
         return "CATEGORY DETAILS";
       case PAGES.insert:
         return "DATA INSERT";
-      default:
-        return "BOTTOM";
+      case PAGES.privacyPolicy:
+        return "PRIVACY POLICY";
+      case PAGES.termsOfService:
+        return "TERMS OF SERVICE";
     }
   }
 }
