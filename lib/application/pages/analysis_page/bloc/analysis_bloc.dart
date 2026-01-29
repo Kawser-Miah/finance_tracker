@@ -5,9 +5,9 @@ import 'package:injectable/injectable.dart';
 import '../../../../domain/models/entity_model/time_series_total_model.dart';
 import '../../../../domain/usecases/analysis_use_case.dart';
 
+part 'analysis_bloc.freezed.dart';
 part 'analysis_event.dart';
 part 'analysis_state.dart';
-part 'analysis_bloc.freezed.dart';
 
 @injectable
 class AnalysisBloc extends Bloc<AnalysisEvent, AnalysisState> {
