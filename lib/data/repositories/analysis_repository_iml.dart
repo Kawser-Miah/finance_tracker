@@ -1,7 +1,5 @@
 import 'package:dartz/dartz.dart';
-
 import 'package:finance_tracker/domain/failures/failures.dart';
-
 import 'package:finance_tracker/domain/models/entity_model/time_series_total_model.dart';
 import 'package:injectable/injectable.dart';
 
@@ -19,6 +17,8 @@ class AnalysisRepositoryIml extends AnalysisRepository {
       final result = await db.analysisDao.getDailySummary();
       if (result.isEmpty) {
         return left(NullFailure());
+      } else if (!result.any((e) => e.income != 0 || e.expense != 0)) {
+        return left(NullFailure());
       } else {
         return right(result);
       }
@@ -33,6 +33,8 @@ class AnalysisRepositoryIml extends AnalysisRepository {
       final result = await db.analysisDao.getMonthlySummary();
       if (result.isEmpty) {
         return left(NullFailure());
+      } else if (!result.any((e) => e.income != 0 || e.expense != 0)) {
+        return left(NullFailure());
       } else {
         return right(result);
       }
@@ -46,6 +48,8 @@ class AnalysisRepositoryIml extends AnalysisRepository {
     try {
       final result = await db.analysisDao.getYearlySummary();
       if (result.isEmpty) {
+        return left(NullFailure());
+      } else if (!result.any((e) => e.income != 0 || e.expense != 0)) {
         return left(NullFailure());
       } else {
         return right(result);
