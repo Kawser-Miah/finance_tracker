@@ -25,7 +25,7 @@ class CategoryPageWrapperProvider extends StatelessWidget {
         BlocProvider(
           create: (_) =>
               getIt<CategoryBloc>()..add(const CategoryRequestEvent()),
-        )
+        ),
       ],
       child: const CategoryPage(),
     );
@@ -41,8 +41,12 @@ class CategoryPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Container(
-          padding:
-              const EdgeInsets.only(top: 25, right: 20, left: 20, bottom: 5),
+          padding: const EdgeInsets.only(
+            top: 25,
+            right: 20,
+            left: 20,
+            bottom: 5,
+          ),
           height: MediaQuery.of(context).size.height * 0.29,
           width: MediaQuery.of(context).size.width,
           color: Theme.of(context).colorScheme.primary,
@@ -51,17 +55,15 @@ class CategoryPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "Categories",
-                    style: AppTheme.lightHeadingText,
-                  ),
+                  const Text("Categories", style: AppTheme.lightHeadingText),
                   SizedBox(
                     height: 35,
                     width: 35,
                     child: CircleAvatar(
                       radius: 17.5,
-                      backgroundColor:
-                          Theme.of(context).colorScheme.primaryContainer,
+                      backgroundColor: Theme.of(
+                        context,
+                      ).colorScheme.primaryContainer,
                       child: SvgPicture.asset(
                         Assets.homeNotification,
                         fit: BoxFit.cover,
@@ -86,63 +88,68 @@ class CategoryPage extends StatelessWidget {
           height: MediaQuery.of(context).size.height * 0.56,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(50), topRight: Radius.circular(50)),
-              color: Theme.of(context).colorScheme.onPrimary),
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(50),
+              topRight: Radius.circular(50),
+            ),
+            color: Theme.of(context).colorScheme.onPrimary,
+          ),
           child: BlocBuilder<CategoryBloc, CategoryState>(
             builder: (context, state) {
               if (state is CategoryLoadedState) {
                 return GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      childAspectRatio: 1,
-                      mainAxisSpacing: 30,
-                      crossAxisSpacing: 12,
-                    ),
-                    itemCount: state.categories.length,
-                    itemBuilder: (context, index) => InkWell(
-                          onTap: () {
-                            AppRouter.router
-                                .push(PAGES.categoryDetails.screenPath,
-                                    extra: state.categories[index].name)
-                                .then((_) {
-                              context
-                                  .read<HomePageBloc>()
-                                  .add(const HomePageEvent.started());
-                            });
-                          },
-                          child: Column(
-                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                height: 85,
-                                width: 85,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(22),
-                                    // color: Theme.of(context).colorScheme.primary,
-                                    color: Colors.deepPurple.shade50),
-                                child: SvgPicture.asset(
-                                  state.categories[index].img,
-                                  color: Colors.black,
-                                  fit: BoxFit.scaleDown,
-                                ),
-                              ),
-                              Text(
-                                state.categories[index].name,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ],
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    childAspectRatio: 1,
+                    mainAxisSpacing: 30,
+                    crossAxisSpacing: 12,
+                  ),
+                  itemCount: state.categories.length,
+                  itemBuilder: (context, index) => InkWell(
+                    onTap: () {
+                      AppRouter.router
+                          .push(
+                            PAGES.categoryDetails.screenPath,
+                            extra: state.categories[index].name,
+                          )
+                          .then((_) {
+                            if (context.mounted) {
+                              context.read<HomePageBloc>().add(
+                                const HomePageEvent.started(),
+                              );
+                            }
+                          });
+                    },
+                    child: Column(
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          height: 85,
+                          width: 85,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(22),
+                            // color: Theme.of(context).colorScheme.primary,
+                            color: Colors.deepPurple.shade50,
                           ),
-                        ));
+                          child: SvgPicture.asset(
+                            state.categories[index].img,
+                            color: Colors.black,
+                            fit: BoxFit.scaleDown,
+                          ),
+                        ),
+                        Text(
+                          state.categories[index].name,
+                          style: const TextStyle(fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
               }
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              return const Center(child: CircularProgressIndicator());
             },
           ),
-        )
+        ),
       ],
     );
   }
