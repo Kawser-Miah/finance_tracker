@@ -96,13 +96,13 @@ class _IncomeExpenseChartCardState extends State<IncomeExpenseChartCard>
                               "Income & Expenses",
                               style: TextStyle(fontWeight: FontWeight.w600),
                             ),
-                            Row(
-                              children: [
-                                _icon(colors.primary),
-                                const SizedBox(width: 8),
-                                _icon(colors.primary),
-                              ],
-                            ),
+                            // Row(
+                            //   children: [
+                            //     _icon(colors.primary),
+                            //     const SizedBox(width: 8),
+                            //     _icon(colors.primary),
+                            //   ],
+                            // ),
                           ],
                         ),
 
