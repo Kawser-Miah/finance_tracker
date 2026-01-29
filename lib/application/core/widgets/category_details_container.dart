@@ -16,75 +16,97 @@ import '../services/routing/route_utils.dart';
 
 class CategoryDetailsContainer extends StatelessWidget {
   final TransactionModel transaction;
-  const CategoryDetailsContainer({
-    super.key,
-    required this.transaction,
-  });
+  const CategoryDetailsContainer({super.key, required this.transaction});
 
   @override
   Widget build(BuildContext context) {
     DateFormat dateFormat = DateFormat('MMMM d');
+    final rootContext = context;
     return Slidable(
       startActionPane: ActionPane(
-          extentRatio: 0.3,
-          motion: const StretchMotion(),
-          children: [
-            SlidableAction(
-              onPressed: (context) {
-                AppRouter.router.push(PAGES.insert.screenPath, extra: [
-                  Strings.update,
-                  TransactionModel(
-                      title: transaction.title,
-                      id: transaction.id,
-                      category: (transaction.category == Strings.others)
-                          ? Strings.addOrOthers
-                          : transaction.category,
-                      type: transaction.type,
-                      amount: transaction.amount,
-                      description: transaction.description,
-                      date: transaction.date),
-                  PAGES.categoryDetails.screenPath
-                ]);
-              },
-              icon: Icons.update_rounded,
-              backgroundColor: Theme.of(context).colorScheme.primary,
-              label: "Update",
-            )
-          ]),
+        extentRatio: 0.3,
+        motion: const StretchMotion(),
+        children: [
+          SlidableAction(
+            onPressed: (context) {
+              AppRouter.router
+                  .push(
+                    PAGES.insert.screenPath,
+                    extra: [
+                      Strings.update,
+                      TransactionModel(
+                        title: transaction.title,
+                        id: transaction.id,
+                        category: (transaction.category == Strings.others)
+                            ? Strings.addOrOthers
+                            : transaction.category,
+                        type: transaction.type,
+                        amount: transaction.amount,
+                        description: transaction.description,
+                        date: transaction.date,
+                      ),
+                      PAGES.categoryDetails.screenPath,
+                    ],
+                  )
+                  .then((result) {
+                    if (rootContext.mounted) {
+                      if (result == true) {
+                        rootContext.read<HomePageBloc>().add(
+                          const HomePageEvent.started(),
+                        );
+                        rootContext.read<CategoryDetailsBloc>().add(
+                          CategoryDetailsEvent.started(
+                            category: transaction.category!,
+                          ),
+                        );
+                      }
+                    }
+                  });
+            },
+            icon: Icons.update_rounded,
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            label: "Update",
+          ),
+        ],
+      ),
       endActionPane: ActionPane(
-          extentRatio: 0.3,
-          motion: const StretchMotion(),
-          children: [
-            SlidableAction(
-              onPressed: (context) {
-                context.read<IncomeExpenseAddBloc>().add(
-                    DeleteEvent(id: transaction.id!, type: transaction.type!));
-                context.read<CategoryDetailsBloc>().add(
-                    CategoryDetailsEvent.started(
-                        category: transaction.category!));
-                context.read<HomePageBloc>().add(const HomePageEvent.started());
-              },
-              icon: Icons.delete_rounded,
-              backgroundColor: Colors.red[700]!,
-              label: "Delete",
-            )
-          ]),
+        extentRatio: 0.3,
+        motion: const StretchMotion(),
+        children: [
+          SlidableAction(
+            onPressed: (context) {
+              context.read<IncomeExpenseAddBloc>().add(
+                DeleteEvent(id: transaction.id!, type: transaction.type!),
+              );
+              context.read<CategoryDetailsBloc>().add(
+                CategoryDetailsEvent.started(category: transaction.category!),
+              );
+              context.read<HomePageBloc>().add(const HomePageEvent.started());
+            },
+            icon: Icons.delete_rounded,
+            backgroundColor: Colors.red[700]!,
+            label: "Delete",
+          ),
+        ],
+      ),
       child: GestureDetector(
         onTap: () {
           showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                    title: Text("Type: ${transaction.type}"),
-                    content: Text(
-                      "Category: ${transaction.category}\n"
-                      "${transaction.type} Title: ${transaction.title}\n"
-                      "Date: ${DateFormat("d MMMM yyyy").format(DateTime.parse(transaction.date.toString()))}\n\n"
-                      "Amount: ${transaction.amount}.tk\n\n"
-                      "Description:\n${transaction.description}",
-                      style: AppTheme.lightBodyText
-                          .copyWith(fontWeight: FontWeight.w500),
-                    ),
-                  ));
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text("Type: ${transaction.type}"),
+              content: Text(
+                "Category: ${transaction.category}\n"
+                "${transaction.type} Title: ${transaction.title}\n"
+                "Date: ${DateFormat("d MMMM yyyy").format(DateTime.parse(transaction.date.toString()))}\n\n"
+                "Amount: ${transaction.amount}.tk\n\n"
+                "Description:\n${transaction.description}",
+                style: AppTheme.lightBodyText.copyWith(
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          );
         },
         child: Container(
           margin: const EdgeInsets.only(bottom: 10),
@@ -99,9 +121,10 @@ class CategoryDetailsContainer extends StatelessWidget {
                     height: 70,
                     width: 70,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(22),
-                        // color: Theme.of(context).colorScheme.primary,
-                        color: Colors.deepPurple.shade50),
+                      borderRadius: BorderRadius.circular(22),
+                      // color: Theme.of(context).colorScheme.primary,
+                      color: Colors.deepPurple.shade50,
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: SvgPicture.asset(
@@ -111,9 +134,7 @@ class CategoryDetailsContainer extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    width: 10,
-                  ),
+                  const SizedBox(width: 10),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.45,
                     child: Column(
@@ -126,22 +147,25 @@ class CategoryDetailsContainer extends StatelessWidget {
                         ),
                         Text(
                           dateFormat.format(
-                              DateTime.parse(transaction.date.toString())),
+                            DateTime.parse(transaction.date.toString()),
+                          ),
                           style: const TextStyle(
-                              color: Colors.deepPurpleAccent,
-                              fontWeight: FontWeight.w500),
-                        )
+                            color: Colors.deepPurpleAccent,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
               SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.22,
-                  child: Text(
-                    "Tk${transaction.amount?.toStringAsFixed(2)}",
-                    style: AppTheme.lightBodyText,
-                  ))
+                width: MediaQuery.of(context).size.width * 0.22,
+                child: Text(
+                  "Tk${transaction.amount?.toStringAsFixed(2)}",
+                  style: AppTheme.lightBodyText,
+                ),
+              ),
             ],
           ),
         ),
