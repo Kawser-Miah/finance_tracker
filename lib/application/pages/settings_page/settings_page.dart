@@ -224,14 +224,14 @@ class SettingsPage extends StatelessWidget {
                     _shareApp();
                   },
                 ),
-                _SettingsTile(
-                  icon: Icons.star_outline,
-                  title: "Rate App",
-                  subtitle: "Rate us on Play Store",
-                  onTap: () {
-                    _showComingSoonSnackBar(context);
-                  },
-                ),
+                // _SettingsTile(
+                //   icon: Icons.star_outline,
+                //   title: "Rate App",
+                //   subtitle: "Rate us on Play Store",
+                //   onTap: () {
+                //     _showComingSoonSnackBar(context);
+                //   },
+                // ),
                 const SizedBox(height: 20),
               ],
             ),
