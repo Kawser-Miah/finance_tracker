@@ -68,6 +68,15 @@ dev_dependencies:
   injectable_generator: ^2.6.2
   floor_generator: ^1.5.0
   freezed: ^2.4.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/app_icon/finance_tracker_app_icon.png"
+  adaptive_icon_background: "#E9DCF3"
+  adaptive_icon_foreground: "assets/app_icon/finance_tracker_app_icon.png"
+  min_sdk_android: 21
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -114,4 +123,5 @@ flutter:
     - assets/bottom_nav_icon/
     - assets/home/
     - assets/category/
+    - assets/app_icon/finance_tracker_app_icon.png
 
