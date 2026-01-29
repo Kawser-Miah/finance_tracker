@@ -1,13 +1,9 @@
 import 'package:finance_tracker/application/core/services/routing/app_router.dart';
 import 'package:finance_tracker/application/pages/bottom_nav/bloc/bottom_bloc.dart';
-import 'package:finance_tracker/data/datasources/db/finance_tracker_db.dart';
 import 'package:finance_tracker/di/di.dart';
 import 'package:finance_tracker/utils/models/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'domain/models/entity_model/expense_entity_model.dart';
-import 'domain/models/entity_model/income_entity_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
