@@ -1,4 +1,5 @@
 import 'package:floor/floor.dart';
+
 import '../../../../domain/models/entity_model/time_series_total_model.dart';
 
 @dao
