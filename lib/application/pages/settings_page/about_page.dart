@@ -59,16 +59,13 @@ class AboutPage extends StatelessWidget {
                     children: [
                       const SizedBox(height: 20),
                       // App Icon
-                      Container(
-                        padding: const EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.primary,
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        child: Icon(
-                          Icons.account_balance_wallet,
-                          size: 60,
-                          color: Theme.of(context).colorScheme.onPrimary,
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(25),
+                        child: Image.asset(
+                          'assets/app_icon/finance_tracker_app_icon.png',
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.cover,
                         ),
                       ),
                       const SizedBox(height: 20),
