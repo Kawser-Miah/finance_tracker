@@ -62,13 +62,13 @@ class SettingsPage extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    CircleAvatar(
-                      radius: 35,
-                      backgroundColor: Theme.of(context).colorScheme.onPrimary,
-                      child: Icon(
-                        Icons.account_balance_wallet,
-                        size: 35,
-                        color: Theme.of(context).colorScheme.primary,
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: Image.asset(
+                        'assets/app_icon/finance_tracker_app_icon.png',
+                        width: 70,
+                        height: 70,
+                        fit: BoxFit.cover,
                       ),
                     ),
                     const SizedBox(width: 15),
