@@ -1,8 +1,6 @@
-import 'package:finance_tracker/application/core/services/routing/app_router.dart';
 import 'package:finance_tracker/domain/models/transaction_model.dart';
 import 'package:finance_tracker/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
@@ -16,7 +14,12 @@ class AllField extends StatefulWidget {
   final String todo;
   final String path;
 
-  const AllField({super.key, required this.transaction, required this.todo, required this.path});
+  const AllField({
+    super.key,
+    required this.transaction,
+    required this.todo,
+    required this.path,
+  });
 
   @override
   State<AllField> createState() => _AllFieldState();
@@ -49,28 +52,36 @@ class _AllFieldState extends State<AllField> {
       defaultValue = Strings.salary;
     }
     if (widget.transaction.type == Strings.expense) {
-      items =
-          Utils.categoriesList.where((e) => e.name != Strings.salary).toList();
+      items = Utils.categoriesList
+          .where((e) => e.name != Strings.salary)
+          .toList();
     } else {
       items = Utils.categoriesList
           .where(
-              (e) => e.name == Strings.salary || e.name == Strings.addOrOthers)
+            (e) => e.name == Strings.salary || e.name == Strings.addOrOthers,
+          )
           .toList();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<IncomeExpenseAddBloc, IncomeExpenseAddState>(
+    return BlocConsumer<IncomeExpenseAddBloc, IncomeExpenseAddState>(
+      listener: (context, state) {
+        if (state is SuccessedState) {
+          Navigator.of(context).pop(true);
+        }
+      },
       builder: (context, state) {
         if (state is SuccessedState) {
           FocusScope.of(context).unfocus();
-
-          SchedulerBinding.instance.addPostFrameCallback((_) {
-            // Navigator.of(context).pop();
-            AppRouter.router.pushReplacement(widget.path,
-                extra: widget.transaction.category);
-          });
+          //
+          // // SchedulerBinding.instance.addPostFrameCallback((_) {
+          // //   Navigator.of(context).pop();
+          // //   // AppRouter.router.pushReplacement(widget.path,
+          // //   //     extra: widget.transaction.category);
+          // // });
+          // Navigator.of(context).pop();
         }
         return CustomScrollView(
           scrollDirection: Axis.vertical,
@@ -84,14 +95,9 @@ class _AllFieldState extends State<AllField> {
                 children: [
                   const Padding(
                     padding: EdgeInsets.only(left: 15),
-                    child: Text(
-                      'Date',
-                      style: AppTheme.lightBodyText,
-                    ),
+                    child: Text('Date', style: AppTheme.lightBodyText),
                   ),
-                  const SizedBox(
-                    height: 5,
-                  ),
+                  const SizedBox(height: 5),
                   TextField(
                     controller: dateController,
                     readOnly: true,
@@ -99,111 +105,103 @@ class _AllFieldState extends State<AllField> {
                       _widget(dateController.text);
                     },
                     decoration: InputDecoration(
-                        suffixIcon: Container(
-                          margin: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              color: Theme.of(context).colorScheme.primary),
-                          child: const Icon(Icons.calendar_month_outlined),
+                      suffixIcon: Container(
+                        margin: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Theme.of(context).colorScheme.primary,
                         ),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(30)),
-                        fillColor:
-                            Theme.of(context).colorScheme.primaryContainer,
-                        filled: true),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 15),
-                    child: Text(
-                      'Category',
-                      style: AppTheme.lightBodyText,
+                        child: const Icon(Icons.calendar_month_outlined),
+                      ),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      fillColor: Theme.of(context).colorScheme.primaryContainer,
+                      filled: true,
                     ),
                   ),
-                  const SizedBox(
-                    height: 5,
+                  const SizedBox(height: 20),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 15),
+                    child: Text('Category', style: AppTheme.lightBodyText),
                   ),
+                  const SizedBox(height: 5),
                   InputDecorator(
                     decoration: InputDecoration(
-                        filled: true,
-                        fillColor:
-                            Theme.of(context).colorScheme.primaryContainer,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                          borderRadius: BorderRadius.circular(30),
-                        )),
+                      filled: true,
+                      fillColor: Theme.of(context).colorScheme.primaryContainer,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
                     child: DropdownButtonHideUnderline(
                       child: DropdownButton<String>(
-                          value: defaultValue,
-                          isDense: true,
-                          isExpanded: true,
-                          // menuMaxHeight: 350,
-                          items: [
-                            ...?items?.map<DropdownMenuItem<String>>((e) {
-                              return DropdownMenuItem(
-                                value: e.name,
-                                child: Text(e.name),
-                              );
-                            })
-                          ],
-                          onChanged: (value) {
-                            setState(() {
-                              defaultValue = value!;
-                              context.read<IncomeExpenseAddBloc>().add(
-                                  TextFieldTextChangeEvent(
-                                      category: defaultValue!,
-                                      type: widget.transaction.type!,
-                                      title: titleController.text,
-                                      amount: amountController.text,
-                                      description: descriptionController.text,
-                                      date: dateController.text));
-                            });
+                        value: defaultValue,
+                        isDense: true,
+                        isExpanded: true,
+                        // menuMaxHeight: 350,
+                        items: [
+                          ...?items?.map<DropdownMenuItem<String>>((e) {
+                            return DropdownMenuItem(
+                              value: e.name,
+                              child: Text(e.name),
+                            );
                           }),
+                        ],
+                        onChanged: (value) {
+                          setState(() {
+                            defaultValue = value!;
+                            context.read<IncomeExpenseAddBloc>().add(
+                              TextFieldTextChangeEvent(
+                                category: defaultValue!,
+                                type: widget.transaction.type!,
+                                title: titleController.text,
+                                amount: amountController.text,
+                                description: descriptionController.text,
+                                date: dateController.text,
+                              ),
+                            );
+                          });
+                        },
+                      ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  const SizedBox(height: 20),
                   const Padding(
                     padding: EdgeInsets.only(left: 15),
-                    child: Text(
-                      'Amount*',
-                      style: AppTheme.lightBodyText,
-                    ),
+                    child: Text('Amount*', style: AppTheme.lightBodyText),
                   ),
-                  const SizedBox(
-                    height: 5,
-                  ),
+                  const SizedBox(height: 5),
                   TextField(
                     keyboardType: TextInputType.number,
                     controller: amountController,
                     onChanged: (value) {
                       context.read<IncomeExpenseAddBloc>().add(
-                          TextFieldTextChangeEvent(
-                              category: defaultValue!,
-                              type: widget.transaction.type!,
-                              title: titleController.text,
-                              amount: amountController.text,
-                              description: descriptionController.text,
-                              date: dateController.text));
+                        TextFieldTextChangeEvent(
+                          category: defaultValue!,
+                          type: widget.transaction.type!,
+                          title: titleController.text,
+                          amount: amountController.text,
+                          description: descriptionController.text,
+                          date: dateController.text,
+                        ),
+                      );
                     },
                     decoration: InputDecoration(
-                        errorText: (state is AmountNullState)
-                            ? state.errorMessage
-                            : null,
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(30)),
-                        fillColor:
-                            Theme.of(context).colorScheme.primaryContainer,
-                        filled: true),
+                      errorText: (state is AmountNullState)
+                          ? state.errorMessage
+                          : null,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      fillColor: Theme.of(context).colorScheme.primaryContainer,
+                      filled: true,
+                    ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  const SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.only(left: 15),
                     child: Text(
@@ -211,45 +209,39 @@ class _AllFieldState extends State<AllField> {
                       style: AppTheme.lightBodyText,
                     ),
                   ),
-                  const SizedBox(
-                    height: 5,
-                  ),
+                  const SizedBox(height: 5),
                   TextField(
                     controller: titleController,
                     onChanged: (value) {
                       context.read<IncomeExpenseAddBloc>().add(
-                          TextFieldTextChangeEvent(
-                              category: defaultValue!,
-                              type: widget.transaction.type!,
-                              title: titleController.text,
-                              amount: amountController.text,
-                              description: descriptionController.text,
-                              date: dateController.text));
+                        TextFieldTextChangeEvent(
+                          category: defaultValue!,
+                          type: widget.transaction.type!,
+                          title: titleController.text,
+                          amount: amountController.text,
+                          description: descriptionController.text,
+                          date: dateController.text,
+                        ),
+                      );
                     },
                     decoration: InputDecoration(
-                        errorText: (state is TitleNullState)
-                            ? state.errorMessage
-                            : null,
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(30)),
-                        fillColor:
-                            Theme.of(context).colorScheme.primaryContainer,
-                        filled: true),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 15),
-                    child: Text(
-                      'Description',
-                      style: AppTheme.lightBodyText,
+                      errorText: (state is TitleNullState)
+                          ? state.errorMessage
+                          : null,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      fillColor: Theme.of(context).colorScheme.primaryContainer,
+                      filled: true,
                     ),
                   ),
-                  const SizedBox(
-                    height: 5,
+                  const SizedBox(height: 20),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 15),
+                    child: Text('Description', style: AppTheme.lightBodyText),
                   ),
+                  const SizedBox(height: 5),
                   SizedBox(
                     height: 150,
                     child: TextField(
@@ -260,67 +252,78 @@ class _AllFieldState extends State<AllField> {
                       controller: descriptionController,
                       onChanged: (value) {
                         context.read<IncomeExpenseAddBloc>().add(
-                            TextFieldTextChangeEvent(
-                                category: defaultValue!,
-                                type: widget.transaction.type!,
-                                title: titleController.text,
-                                amount: amountController.text,
-                                description: descriptionController.text,
-                                date: dateController.text));
+                          TextFieldTextChangeEvent(
+                            category: defaultValue!,
+                            type: widget.transaction.type!,
+                            title: titleController.text,
+                            amount: amountController.text,
+                            description: descriptionController.text,
+                            date: dateController.text,
+                          ),
+                        );
                       },
                       decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                              borderRadius: BorderRadius.circular(30)),
-                          fillColor:
-                              Theme.of(context).colorScheme.primaryContainer,
-                          filled: true),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        fillColor: Theme.of(
+                          context,
+                        ).colorScheme.primaryContainer,
+                        filled: true,
+                      ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  const SizedBox(height: 20),
                   Center(
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                Theme.of(context).colorScheme.primary,
-                          ),
-                          onPressed: (state is AllValidState)
-                              ? () {
-                                  if (widget.todo == Strings.add) {
-                                    context.read<IncomeExpenseAddBloc>().add(
-                                        SubmitToDataBaseEvent(
-                                            transaction: TransactionModel(
-                                                category: state.category,
-                                                type: state.type,
-                                                title: state.title,
-                                                amount: state.amount,
-                                                description: state.description,
-                                                date: state.date,
-                                                id: widget.transaction.id)));
-                                  } else {
-                                    context.read<IncomeExpenseAddBloc>().add(
-                                        UpdateToDataBaseEvent(
-                                            transaction: TransactionModel(
-                                                category: state.category,
-                                                type: state.type,
-                                                title: state.title,
-                                                amount: state.amount,
-                                                description: state.description,
-                                                date: state.date,
-                                                id: widget.transaction.id)));
-                                  }
-                                }
-                              : null,
-                          child: Text(
-                            "Save",
-                            style: AppTheme.lightBodyText
-                                .copyWith(fontWeight: FontWeight.w500),
-                          )))
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                      ),
+                      onPressed: (state is AllValidState)
+                          ? () {
+                              if (widget.todo == Strings.add) {
+                                context.read<IncomeExpenseAddBloc>().add(
+                                  SubmitToDataBaseEvent(
+                                    transaction: TransactionModel(
+                                      category: state.category,
+                                      type: state.type,
+                                      title: state.title,
+                                      amount: state.amount,
+                                      description: state.description,
+                                      date: state.date,
+                                      id: widget.transaction.id,
+                                    ),
+                                  ),
+                                );
+                              } else {
+                                context.read<IncomeExpenseAddBloc>().add(
+                                  UpdateToDataBaseEvent(
+                                    transaction: TransactionModel(
+                                      category: state.category,
+                                      type: state.type,
+                                      title: state.title,
+                                      amount: state.amount,
+                                      description: state.description,
+                                      date: state.date,
+                                      id: widget.transaction.id,
+                                    ),
+                                  ),
+                                );
+                              }
+                            }
+                          : null,
+                      child: Text(
+                        "Save",
+                        style: AppTheme.lightBodyText.copyWith(
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
-            )
+            ),
           ],
         );
       },
@@ -338,13 +341,16 @@ class _AllFieldState extends State<AllField> {
     if (date != null) {
       dateController.text = DateFormat('yyyy-MM-dd').format(date);
       if (mounted) {
-        context.read<IncomeExpenseAddBloc>().add(TextFieldTextChangeEvent(
+        context.read<IncomeExpenseAddBloc>().add(
+          TextFieldTextChangeEvent(
             category: defaultValue!,
             type: widget.transaction.type!,
             title: titleController.text,
             amount: amountController.text,
             description: descriptionController.text,
-            date: dateController.text));
+            date: dateController.text,
+          ),
+        );
       }
     }
     // print(date);
