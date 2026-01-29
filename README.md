@@ -15,7 +15,18 @@ A beautiful and intuitive personal finance management application built with Flu
   <img src="assets/App%20Screenshot/Category%20Page.png" width="200" alt="Category Page"/>
   <img src="assets/App%20Screenshot/About%20Page.png" width="200" alt="About Page"/>
 </p>
+## 📥 Download & Install
 
+You can download the APK and install the app directly on your Android device:
+
+[![Download APK](https://img.shields.io/badge/Download-APK-green?style=for-the-badge&logo=android)](https://github.com/Kawser-Miah/finance_tracker/tree/main/Andriod%20APK)
+
+**Installation Steps:**
+1. Download the APK file from the link above
+2. Enable "Install from Unknown Sources" in your device settings
+3. Open the downloaded APK file
+4. Tap "Install" and wait for the installation to complete
+5. Open Finance Tracker and start managing your finances!
 ## �📱 Features
 
 ### ✅ Available Features
