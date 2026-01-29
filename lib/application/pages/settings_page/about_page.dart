@@ -298,36 +298,36 @@ class AboutPage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 20),
+                      // const SizedBox(height: 20),
                       // Tech Stack
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          color: Theme.of(
-                            context,
-                          ).colorScheme.primaryContainer.withOpacity(0.5),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _buildSectionTitle("Built With"),
-                            const SizedBox(height: 10),
-                            Wrap(
-                              spacing: 10,
-                              runSpacing: 10,
-                              children: [
-                                _buildTechChip(context, "Flutter"),
-                                _buildTechChip(context, "Dart"),
-                                _buildTechChip(context, "BLoC"),
-                                _buildTechChip(context, "Floor (SQLite)"),
-                                _buildTechChip(context, "Clean Architecture"),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
+                      // Container(
+                      //   width: double.infinity,
+                      //   padding: const EdgeInsets.all(20),
+                      //   decoration: BoxDecoration(
+                      //     color: Theme.of(
+                      //       context,
+                      //     ).colorScheme.primaryContainer.withOpacity(0.5),
+                      //     borderRadius: BorderRadius.circular(20),
+                      //   ),
+                      //   child: Column(
+                      //     crossAxisAlignment: CrossAxisAlignment.start,
+                      //     children: [
+                      //       _buildSectionTitle("Built With"),
+                      //       const SizedBox(height: 10),
+                      //       Wrap(
+                      //         spacing: 10,
+                      //         runSpacing: 10,
+                      //         children: [
+                      //           _buildTechChip(context, "Flutter"),
+                      //           _buildTechChip(context, "Dart"),
+                      //           _buildTechChip(context, "BLoC"),
+                      //           _buildTechChip(context, "Floor (SQLite)"),
+                      //           _buildTechChip(context, "Clean Architecture"),
+                      //         ],
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
                       const SizedBox(height: 30),
                       // Footer
                       Text(
