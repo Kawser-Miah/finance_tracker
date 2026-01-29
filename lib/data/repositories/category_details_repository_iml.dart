@@ -16,7 +16,8 @@ class CategoryDetailsRepositoryIml extends CategoryDetailsRepository {
 
   @override
   Future<Either<Failure, TransactionByMonthModel>> getTransactionGroupByMonth(
-      String category) async {
+    String category,
+  ) async {
     try {
       List<String> months = [];
       List<TransactionModel> transactions = [];
@@ -36,32 +37,38 @@ class CategoryDetailsRepositoryIml extends CategoryDetailsRepository {
           }
         }
         for (var i in incomes) {
-          transactions.add(TransactionModel(
+          transactions.add(
+            TransactionModel(
               title: i.incomeTitle,
               id: i.id,
               category: i.category,
               type: i.type,
               amount: i.income,
               description: i.description,
-              date: i.date));
+              date: i.date,
+            ),
+          );
         }
         for (var i in expenses) {
-          transactions.add(TransactionModel(
+          transactions.add(
+            TransactionModel(
               title: i.expenseTitle,
               id: i.id,
               category: i.category,
               type: i.type,
               amount: i.expense,
               description: i.description,
-              date: i.date));
+              date: i.date,
+            ),
+          );
         }
       } else {
         return left(NullFailure());
       }
       return right(
-          TransactionByMonthModel(months: months, transactions: transactions));
+        TransactionByMonthModel(months: months, transactions: transactions),
+      );
     } catch (e) {
-      print(e);
       throw ServerException();
     }
   }
