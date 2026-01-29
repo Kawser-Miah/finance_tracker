@@ -23,14 +23,13 @@ class Tabs extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => getIt<TransactionBloc>()
-            ..add(HomePageTransactionDataRequestEvent(name)),
+          create: (_) =>
+              getIt<TransactionBloc>()
+                ..add(HomePageTransactionDataRequestEvent(name)),
         ),
         BlocProvider(create: (_) => getIt<IncomeExpenseAddBloc>()),
       ],
-      child: CustomTab(
-        name: name,
-      ),
+      child: CustomTab(name: name),
     );
   }
 }
@@ -46,82 +45,101 @@ class CustomTab extends StatefulWidget {
 class _CustomTabState extends State<CustomTab> {
   @override
   Widget build(BuildContext context) {
+    final rootContext = context;
     return BlocBuilder<TransactionBloc, TransactionState>(
       builder: (context, state) {
         if (state is LoadingState || state is Initial) {
-          return ErrorMessage(
-            message: Strings.load,
-          );
+          return ErrorMessage(message: Strings.load);
         }
         if (state is HomePageTransactionDataLoadedState) {
           return ListView.builder(
-              itemCount: state.transactions.length,
-              itemBuilder: (context, index) {
-                final transaction = state.transactions[index];
-                return Slidable(
-                  startActionPane: ActionPane(
-                      extentRatio: 0.3,
-                      motion: const StretchMotion(),
-                      children: [
-                        SlidableAction(
-                          onPressed: (context) {
-                            AppRouter.router
-                                .push(PAGES.insert.screenPath, extra: [
-                              Strings.update,
-                              TransactionModel(
+            itemCount: state.transactions.length,
+            itemBuilder: (context, index) {
+              final transaction = state.transactions[index];
+              return Slidable(
+                startActionPane: ActionPane(
+                  extentRatio: 0.3,
+                  motion: const StretchMotion(),
+                  children: [
+                    SlidableAction(
+                      onPressed: (context) {
+                        AppRouter.router
+                            .push(
+                              PAGES.insert.screenPath,
+                              extra: [
+                                Strings.update,
+                                TransactionModel(
                                   title: transaction.title,
                                   id: transaction.id,
                                   category:
                                       (transaction.category == Strings.others)
-                                          ? Strings.addOrOthers
-                                          : transaction.category,
+                                      ? Strings.addOrOthers
+                                      : transaction.category,
                                   type: transaction.type,
                                   amount: transaction.amount,
                                   description: transaction.description,
-                                  date: transaction.date),
-                              PAGES.bottom.screenPath
-                            ]);
-                          },
-                          icon: Icons.update_rounded,
-                          backgroundColor:
-                              Theme.of(context).colorScheme.primary,
-                          label: "Update",
-                        )
-                      ]),
-                  endActionPane: ActionPane(
-                      extentRatio: 0.3,
-                      motion: const StretchMotion(),
-                      children: [
-                        SlidableAction(
-                          onPressed: (context) {
-                            context.read<IncomeExpenseAddBloc>().add(
-                                DeleteEvent(
-                                    id: transaction.id!,
-                                    type: transaction.type!));
-                            context.read<TransactionBloc>().add(
-                                HomePageTransactionDataRequestEvent(
-                                    widget.name));
-                            context
-                                .read<HomePageBloc>()
-                                .add(const HomePageEvent.started());
-                          },
-                          icon: Icons.delete_rounded,
-                          backgroundColor: Colors.red[700]!,
-                          label: "Delete",
-                        )
-                      ]),
-                  child: TransactionContainer(
-                    transaction: state.transactions[index],
-                  ),
-                );
-              });
+                                  date: transaction.date,
+                                ),
+                                PAGES.bottom.screenPath,
+                              ],
+                            )
+                            .then((result) {
+                              if (rootContext.mounted) {
+                                if (result == true) {
+                                  rootContext.read<HomePageBloc>().add(
+                                    const HomePageEvent.started(),
+                                  );
+                                  rootContext.read<TransactionBloc>().add(
+                                    HomePageTransactionDataRequestEvent(
+                                      widget.name,
+                                    ),
+                                  );
+                                }
+                              }
+                            });
+                      },
+                      icon: Icons.update_rounded,
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      label: "Update",
+                    ),
+                  ],
+                ),
+                endActionPane: ActionPane(
+                  extentRatio: 0.3,
+                  motion: const StretchMotion(),
+                  children: [
+                    SlidableAction(
+                      onPressed: (context) {
+                        context.read<IncomeExpenseAddBloc>().add(
+                          DeleteEvent(
+                            id: transaction.id!,
+                            type: transaction.type!,
+                          ),
+                        );
+                        context.read<TransactionBloc>().add(
+                          HomePageTransactionDataRequestEvent(widget.name),
+                        );
+                        context.read<HomePageBloc>().add(
+                          const HomePageEvent.started(),
+                        );
+                      },
+                      icon: Icons.delete_rounded,
+                      backgroundColor: Colors.red[700]!,
+                      label: "Delete",
+                    ),
+                  ],
+                ),
+                child: TransactionContainer(
+                  transaction: state.transactions[index],
+                ),
+              );
+            },
+          );
         }
         if (state is TransactionErrorState) {
           return ErrorMessage(message: state.errorMessage);
         } else {
-          return ErrorMessage(
-            message: Strings.load,
-          );
+          return ErrorMessage(message: Strings.load);
         }
       },
     );
