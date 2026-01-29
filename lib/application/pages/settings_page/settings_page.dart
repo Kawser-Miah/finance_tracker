@@ -184,9 +184,11 @@ class SettingsPage extends StatelessWidget {
                 const SizedBox(height: 10),
                 _SettingsTile(
                   icon: Icons.info_outline,
-                  title: "App Version",
-                  subtitle: "1.0.0",
-                  onTap: () {},
+                  title: "About App",
+                  subtitle: "Learn more about Finance Tracker",
+                  onTap: () {
+                    context.pushNamed(PAGES.about.screenName);
+                  },
                 ),
                 _SettingsTile(
                   icon: Icons.privacy_tip_outlined,
