@@ -173,11 +173,7 @@ class NavigationBar extends StatelessWidget {
               tooltip: "Category",
             ),
             BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                Assets.bottomNavIconProfile,
-                height: 28,
-                width: 28,
-              ),
+              icon: Icon(Icons.settings, color: Colors.black),
               activeIcon: Container(
                 height: 42,
                 width: 48,
@@ -185,13 +181,10 @@ class NavigationBar extends StatelessWidget {
                   color: Theme.of(context).colorScheme.primary,
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: SvgPicture.asset(
-                  Assets.bottomNavIconProfile,
-                  fit: BoxFit.scaleDown,
-                ),
+                child: Icon(Icons.settings, color: Colors.black),
               ),
-              label: "Profile",
-              tooltip: "Profile",
+              label: "Settings",
+              tooltip: "Settings",
             ),
           ],
         ),
