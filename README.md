@@ -6,7 +6,17 @@ A beautiful and intuitive personal finance management application built with Flu
 ![Dart](https://img.shields.io/badge/Dart-3.0+-0175C2?logo=dart)
 ![License](https://img.shields.io/badge/License-Private-red)
 
-## 📱 Features
+## � App Screenshots
+
+<p align="center">
+  <img src="assets/App%20Screenshot/Home%20Page.png" width="200" alt="Home Page"/>
+  <img src="assets/App%20Screenshot/Analysis%20Page.png" width="200" alt="Analysis Page"/>
+  <img src="assets/App%20Screenshot/Transection%20Page.png" width="200" alt="Transaction Page"/>
+  <img src="assets/App%20Screenshot/Category%20Page.png" width="200" alt="Category Page"/>
+  <img src="assets/App%20Screenshot/About%20Page.png" width="200" alt="About Page"/>
+</p>
+
+## �📱 Features
 
 ### ✅ Available Features
 
