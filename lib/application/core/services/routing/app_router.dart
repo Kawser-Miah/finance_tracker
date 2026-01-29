@@ -8,6 +8,7 @@ import '../../../pages/category_details_page/category_details_page.dart';
 import '../../../pages/data_insert_page/data_insert_page.dart';
 import '../../../pages/settings_page/privacy_policy_page.dart';
 import '../../../pages/settings_page/terms_of_service_page.dart';
+import '../../../pages/settings_page/about_page.dart';
 import 'not_found_screen.dart';
 
 class AppRouter {
@@ -56,6 +57,11 @@ class AppRouter {
         path: PAGES.termsOfService.screenPath,
         name: PAGES.termsOfService.screenName,
         builder: (context, state) => const TermsOfServicePage(),
+      ),
+      GoRoute(
+        path: PAGES.about.screenPath,
+        name: PAGES.about.screenName,
+        builder: (context, state) => const AboutPage(),
       ),
     ],
     errorBuilder: (context, state) => const NotFoundScreen(),
